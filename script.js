@@ -149,6 +149,43 @@ class ParticleSystem {
             this.mouse.x = null;
             this.mouse.y = null;
         });
+        
+        // Add click event to the entire hero section to catch clicks
+        const heroSection = document.getElementById('home');
+        heroSection.addEventListener('click', (e) => {
+            const canvasRect = this.canvas.getBoundingClientRect();
+            const heroRect = heroSection.getBoundingClientRect();
+            
+            // Calculate click position relative to canvas
+            const clickX = e.clientX - canvasRect.left;
+            const clickY = e.clientY - canvasRect.top;
+            
+            console.log('Hero clicked at:', clickX, clickY); // Debug log
+            
+            let affectedParticles = 0;
+            this.particles.forEach(particle => {
+                const dx = clickX - particle.x;
+                const dy = clickY - particle.y;
+                const distance = Math.sqrt(dx * dx + dy * dy);
+                
+                if (distance < this.maxDistance) {
+                    const force = 0.3; // Increased force for more visible effect
+                    const angle = Math.atan2(dy, dx);
+                    particle.vx += Math.cos(angle) * force;
+                    particle.vy += Math.sin(angle) * force;
+                    affectedParticles++;
+                    
+                    // Limit velocity to prevent particles from moving too fast
+                    const maxVelocity = 3;
+                    const currentVelocity = Math.sqrt(particle.vx * particle.vx + particle.vy * particle.vy);
+                    if (currentVelocity > maxVelocity) {
+                        particle.vx = (particle.vx / currentVelocity) * maxVelocity;
+                        particle.vy = (particle.vy / currentVelocity) * maxVelocity;
+                    }
+                }
+            });
+            console.log('Affected particles:', affectedParticles); // Debug log
+        });
     }
     
     drawConnections() {
