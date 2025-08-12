@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Prithul Biswas - Portfolio</title>
+    <link rel="stylesheet" href="styles.css" />
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+      rel="stylesheet"
+    />
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Poppins:wght@300;400;500;600;700;800&family=Montserrat:wght@300;400;500;600;700;800&family=Open+Sans:wght@300;400;500;600;700;800&family=Roboto:wght@300;400;500;700&family=Playfair+Display:wght@400;500;600;700;800&family=Source+Sans+Pro:wght@300;400;600;700&family=Space+Grotesk:wght@300;400;500;600;700&family=IBM+Plex+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  </head>
+  <body>
+    <nav class="navbar">
+      <div class="nav-container">
+        <div class="nav-logo">
+          <h3 id="nav-logo-text">Portfolio</h3>
+        </div>
+        <ul class="nav-menu">
+          <li><a href="#home">Home</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#projects">Projects</a></li>
+          <li><a href="#contact">Contact</a></li>
+          <li>
+            <a href="Prithul Biswas CV202506.pdf" download class="cv-btn"
+              >Download CV</a
+            >
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+    <section id="home" class="hero">
+      <canvas id="particles-canvas" class="particles-canvas"></canvas>
+      <div class="hero-content">
+        <h1>Hello, I'm <span>Prithul Biswas Dip</span></h1>
+        <p>Game Developer & Software Engineer</p>
+        <p class="location">📍 Dhaka, Bangladesh | Unity & C# Specialist</p>
+        <div class="hero-buttons">
+          <a href="#projects" class="btn primary">View My Games</a>
+          <a href="Prithul Biswas CV202506.pdf" download class="btn secondary">
+            <i class="fas fa-download"></i> Download CV
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <section id="about" class="about">
+      <div class="container">
+        <div class="about-content">
+          <div class="about-text">
+            <h2 class="main-title">Game Developer</h2>
+            <h3 class="subtitle">Unity & C# Specialist</h3>
+            
+            <p class="description">
+              Creative Game Developer with expertise in Unity and C#. Currently working as Software Engineer II at Nagorik Technology, developing 2D and 3D mobile games. Passionate about immersive design, procedural mechanics, and creating engaging player experiences.
+            </p>
+            
+            <div class="action-buttons">
+              <a href="#projects" class="btn-primary">View Projects</a>
+              <a href="#contact" class="btn-secondary">Get In Touch</a>
+            </div>
+            
+            <div class="contact-email">
+              <span>prithuldip@gmail.com →</span>
+            </div>
+          </div>
+          
+          <div class="about-image">
+            <img src="Res/Me.JPEG" alt="Prithul Biswas Dip" class="profile-img">
+            <div class="availability-badge">
+              <span class="status-dot"></span>
+              Available for opportunities
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="projects" class="projects">
+      <div class="container">
+        <h2>Game Projects</h2>
+        <div class="projects-grid">
+          <div class="project-card featured">
+            <div class="project-icon ant-march">
+              <span>🐜</span>
+              <div class="icon-bg"></div>
+            </div>
+            <h3>Ant March Adventure</h3>
+            <span class="project-type">Roguelike Game (In Development)</span>
+            <p>
+              Roguelike where players collect eggs to grow a line of ants,
+              protect them from bugs, and bring them to the nest. Features
+              unique obstacles, dynamic weather, skill system, and procedural
+              levels.
+            </p>
+            <div class="tech-stack">
+              <span>Unity</span>
+              <span>C#</span>
+              <span>DOTween</span>
+              <span>ScriptableObjects</span>
+            </div>
+            <div class="project-links">
+              <a href="#" class="btn-coming-soon">Coming Soon</a>
+            </div>
+          </div>
+          <div class="project-card featured">
+            <div class="project-icon zen-merge">
+              <span>☯</span>
+              <div class="icon-bg"></div>
+            </div>
+            <h3>Zen Merge Puzzle</h3>
+            <span class="project-type">Puzzle Game</span>
+            <p>
+              Yin & Yang move in mirrored directions; guide them to unite on the
+              Harmony tile. Features unique gameplay mechanics and visual
+              optimization.
+            </p>
+            <div class="tech-stack">
+              <span>Unity</span>
+              <span>C#</span>
+              <span>Blender</span>
+            </div>
+            <div class="project-links">
+              <a href="https://play.google.com/store/apps/details?id=tech.atm.zenmergepuzzle" target="_blank" class="store-btn google-play">
+                <i class="fab fa-google-play"></i>
+                <span>Google Play</span>
+              </a>
+              <a href="https://apps.apple.com/us/app/zen-match-saga/id6745928396" target="_blank" class="store-btn app-store">
+                <i class="fab fa-app-store-ios"></i>
+                <span>App Store</span>
+              </a>
+            </div>
+          </div>
+          <div class="project-card">
+            <div class="project-icon color-craft">
+              <span>🎨</span>
+              <div class="icon-bg"></div>
+            </div>
+            <h3>Color Craft</h3>
+            <span class="project-type">Casual Game</span>
+            <p>
+              Level-based painting game where players replicate reference images
+              for points. Features stencil paint logic and color mixing
+              mechanics.
+            </p>
+            <div class="tech-stack">
+              <span>Unity</span>
+              <span>C#</span>
+              <span>Shader Graph</span>
+            </div>
+            <div class="project-links">
+              <a href="https://play.google.com/store/apps/details?id=tech.atm.colorcraft&hl=en" target="_blank" class="store-btn google-play">
+                <i class="fab fa-google-play"></i>
+                <span>Google Play</span>
+              </a>
+              <a href="https://apps.apple.com/us/app/color-craft-mix-match-puzzle/id6741428276" target="_blank" class="store-btn app-store">
+                <i class="fab fa-app-store-ios"></i>
+                <span>App Store</span>
+              </a>
+            </div>
+          </div>
+          <div class="project-card">
+            <div class="project-icon leaping-frog">
+              <span>🐸</span>
+              <div class="icon-bg"></div>
+            </div>
+            <h3>Leaping Frog</h3>
+            <span class="project-type">Endless Jumper</span>
+            <p>
+              Frog leaps between platforms, collecting boosts & avoiding
+              hazards. Features procedural platform generation and physics-based
+              gameplay.
+            </p>
+            <div class="tech-stack">
+              <span>Unity</span>
+              <span>C#</span>
+              <span>Blender</span>
+            </div>
+            <div class="project-links">
+              <a href="https://play.google.com/store/apps/details?id=tech.atm.leapingfrog&hl=en" target="_blank" class="store-btn google-play">
+                <i class="fab fa-google-play"></i>
+                <span>Google Play</span>
+              </a>
+              <a href="https://apps.apple.com/us/app/leaping-frog-endless/id6737447859" target="_blank" class="store-btn app-store">
+                <i class="fab fa-app-store-ios"></i>
+                <span>App Store</span>
+              </a>
+            </div>
+          </div>
+          <div class="project-card">
+            <div class="project-icon tic-tac-toe">
+              <span>⭕</span>
+              <div class="icon-bg"></div>
+            </div>
+            <h3>Tic Tac Toe Multiplayer</h3>
+            <span class="project-type">Multiplayer Game</span>
+            <p>
+              Multiplayer Tic Tac Toe with Unity Netcode, room creation,
+              matchmaking, and ChatWheel system. Features real-time networking
+              and gameplay sync.
+            </p>
+            <div class="tech-stack">
+              <span>Unity</span>
+              <span>Unity NGO</span>
+              <span>Unity Relay</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact" class="contact">
+      <div class="container">
+        <h2>Get In Touch</h2>
+        <div class="contact-content">
+          <p>
+            I'm always open to discussing new game development opportunities and
+            interesting projects.
+          </p>
+          <div class="contact-info">
+            <a href="mailto:prithuldip@gmail.com" class="contact-btn email">
+              <i class="fas fa-envelope"></i>
+              <span>Email</span>
+            </a>
+            <a href="https://linkedin.com/in/prithul-biswas" target="_blank" class="contact-btn linkedin">
+              <i class="fab fa-linkedin"></i>
+              <span>LinkedIn</span>
+            </a>
+            <a href="https://discordapp.com/users/509020415868403761" target="_blank" class="contact-btn discord">
+              <i class="fab fa-discord"></i>
+              <span>Discord</span>
+            </a>
+          </div>
+          <div class="experience-section">
+            <h3>Current Position</h3>
+            <div class="job-info">
+              <h4>Software Engineer II (Unity)</h4>
+              <p><a href="https://www.nagorik.tech/" target="_blank" class="company-link">Nagorik Technology</a> | June 2024 – Present</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      <div class="container">
+        <p>&copy; 2025 Prithul Biswas. All rights reserved.</p>
+      </div>
+    </footer>
+
+    <script src="script.js"></script>
+  </body>
+</html>
