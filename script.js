@@ -402,8 +402,16 @@ function closeGallery() {
     currentVideoElement.pause();
 }
 
-// Event listeners
+// Prevent project links from triggering card click
 document.addEventListener('DOMContentLoaded', function () {
+    // Stop propagation for project links to prevent card click
+    const projectLinks = document.querySelectorAll('.project-links a');
+    projectLinks.forEach(link => {
+        link.addEventListener('click', function (e) {
+            e.stopPropagation();
+        });
+    });
+
     const modal = document.getElementById('gallery-modal');
     const closeBtn = document.getElementsByClassName('gallery-close')[0];
     const prevBtn = document.getElementById('prev-media');

@@ -638,6 +638,7 @@ p, .description {
     transition: transform 0.3s ease;
     border: 1px solid #374151;
     position: relative;
+    cursor: pointer;
 }
 
 /* Project Icons */
@@ -653,43 +654,8 @@ p, .description {
     right: 1rem;
     overflow: visible;
     z-index: 10;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    animation: subtlePulse 3s infinite;
 }
 
-.project-icon:hover {
-    transform: scale(1.1);
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
-    animation: none;
-}
-
-
-/* Tooltip */
-.project-icon::before {
-    content: 'View Gallery';
-    position: absolute;
-    top: -40px;
-    left: 50%;
-    transform: translateX(-50%);
-    background: #1e293b;
-    color: white;
-    padding: 6px 10px;
-    border-radius: 6px;
-    font-size: 12px;
-    font-weight: 500;
-    white-space: nowrap;
-    opacity: 0;
-    visibility: hidden;
-    transition: all 0.3s ease;
-    z-index: 1000;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-}
-
-.project-icon:hover::before {
-    opacity: 1;
-    visibility: visible;
-    top: -35px;
 }
 
 /* Disable interactive effects for Tic Tac Toe (no gallery) */
@@ -770,7 +736,15 @@ p, .description {
 }
 
 .project-card:hover {
-    transform: translateY(-5px);
+    transform: translateY(-5px) scale(1.02);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4), 0 0 20px rgba(59, 130, 246, 0.5);
+    border: 1px solid rgba(59, 130, 246, 0.3);
+}
+
+.project-card.featured:hover {
+    transform: translateY(-5px) scale(1.02);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4), 0 0 20px rgba(245, 158, 11, 0.6);
+    border: 2px solid rgba(245, 158, 11, 0.8);
 }
 
 .project-card h3 {
@@ -781,6 +755,7 @@ p, .description {
 .project-card p {
     margin-bottom: 1.5rem;
     color: #d1d5db;
+    text-align: justify;
 }
 
 .project-links {
