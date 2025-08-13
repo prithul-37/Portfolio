@@ -147,8 +147,8 @@
         <h2>Game Projects</h2>
         <div class="projects-grid">
           <div class="project-card featured">
-            <div class="project-icon ant-march">
-              <span>🐜</span>
+            <div class="project-icon ant-march" onclick="openGallery('ant-march')">
+              <img src="Icons/AntGameLogo.png" alt="Ant March Adventure">
               <div class="icon-bg"></div>
             </div>
             <h3>Ant March Adventure</h3>
@@ -170,8 +170,8 @@
             </div>
           </div>
           <div class="project-card featured">
-            <div class="project-icon zen-merge">
-              <span>☯</span>
+            <div class="project-icon zen-merge" onclick="openGallery('zen-merge')">
+              <img src="Icons/ZenMergeLogo.png" alt="Zen Merge Puzzle">
               <div class="icon-bg"></div>
             </div>
             <h3>Zen Merge Puzzle</h3>
@@ -198,8 +198,8 @@
             </div>
           </div>
           <div class="project-card">
-            <div class="project-icon color-craft">
-              <span>🎨</span>
+            <div class="project-icon color-craft" onclick="openGallery('color-craft')">
+              <img src="Icons/ColorCraftLogo.png" alt="Color Craft">
               <div class="icon-bg"></div>
             </div>
             <h3>Color Craft</h3>
@@ -226,8 +226,8 @@
             </div>
           </div>
           <div class="project-card">
-            <div class="project-icon leaping-frog">
-              <span>🐸</span>
+            <div class="project-icon leaping-frog" onclick="openGallery('leaping-frog')">
+              <img src="Icons/FrogGamelogo.png" alt="Leaping Frog">
               <div class="icon-bg"></div>
             </div>
             <h3>Leaping Frog</h3>
@@ -321,6 +321,30 @@
         <p>&copy; 2025 Prithul Biswas. All rights reserved.</p>
       </div>
     </footer>
+
+    <!-- Gallery Modal -->
+    <div id="gallery-modal" class="gallery-modal">
+      <div class="gallery-content">
+        <span class="gallery-close">&times;</span>
+        <h3 id="gallery-title">Game Gallery</h3>
+        <div class="gallery-media">
+          <div class="media-viewer">
+            <img id="current-media" src="" alt="" />
+            <video id="current-video" controls style="display: none;">
+              <source src="" type="video/mp4">
+              Your browser does not support the video tag.
+            </video>
+          </div>
+          <div class="media-thumbnails" id="media-thumbnails">
+            <!-- Thumbnails will be populated by JavaScript -->
+          </div>
+        </div>
+        <div class="gallery-navigation">
+          <button id="prev-media" class="nav-btn">‹</button>
+          <button id="next-media" class="nav-btn">›</button>
+        </div>
+      </div>
+    </div>
 
     <script src="script.js"></script>
   </body>
