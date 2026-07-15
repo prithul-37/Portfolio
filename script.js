@@ -127,6 +127,12 @@ class ParticleSystem {
         this.ripples = [];
         this.charge = null;        // active press-and-hold charge
         this.maxChargeMs = 1400;   // hold time for a full-power blast
+        this.credits = 0;          // coins inserted (blasts fired)
+        this.baseCount = 0;        // starting star count
+        this.maxParticles = 0;     // cap the field can grow to
+        this.coinTimer = null;     // INSERT COIN flash timeout
+        this.pressStartEl = document.querySelector('.press-start');
+        this.coinHintEl = document.querySelector('.scroll-hint');
         this.mouse = { x: null, y: null };
         this.maxDistance = 150;
         this.palette = ['#ff2e88', '#29f2ff', '#ffd23f', '#57ff8f', '#a86bff'];
@@ -174,10 +180,53 @@ class ParticleSystem {
 
     createParticles() {
         const count = Math.min(130, Math.floor((this.canvas.width * this.canvas.height) / 12000));
+        this.baseCount = count;
+        this.maxParticles = Math.round(count * 2); // field can grow to ~2x by feeding coins
         this.particles = [];
         for (let i = 0; i < count; i++) {
             this.particles.push(this.spawnParticle(false));
         }
+    }
+
+    // Insert-a-coin effect: birth new stars at the blast point. They erupt
+    // outward with the ripple, fade in, and spring to random homes so the
+    // field stays evenly filled as it grows.
+    spawnBurst(x, y, amount) {
+        for (let i = 0; i < amount; i++) {
+            if (this.particles.length >= this.maxParticles) break;
+            const p = this.spawnParticle(false);
+            p.x = x + (Math.random() - 0.5) * 24;
+            p.y = y + (Math.random() - 0.5) * 24;
+            p.hx = Math.random() * this.canvas.width;
+            p.hy = Math.random() * this.canvas.height;
+            p.opacity = 0; // fades in via the easing in updateParticles()
+            this.particles.push(p);
+        }
+    }
+
+    updateStartIndicator() {
+        if (!this.pressStartEl) return;
+        const span = Math.max(1, this.maxParticles - this.baseCount);
+        const fill = Math.max(0, Math.min(1, (this.particles.length - this.baseCount) / span));
+        this.pressStartEl.style.setProperty('--charge', fill.toFixed(3));
+        if (fill >= 1) {
+            this.pressStartEl.classList.add('charged');
+            this.pressStartEl.textContent = '▸ READY ◂';
+        } else {
+            this.pressStartEl.classList.remove('charged');
+            this.pressStartEl.textContent = '▸ PRESS START ◂';
+        }
+    }
+
+    flashCoin() {
+        if (!this.coinHintEl) return;
+        this.coinHintEl.textContent = '▼ CREDIT +1 ▼';
+        this.coinHintEl.classList.add('coin-pop');
+        clearTimeout(this.coinTimer);
+        this.coinTimer = setTimeout(() => {
+            this.coinHintEl.textContent = '▼ INSERT COIN ▼';
+            this.coinHintEl.classList.remove('coin-pop');
+        }, 800);
     }
 
     addEventListeners() {
@@ -204,6 +253,12 @@ class ParticleSystem {
             const held = performance.now() - this.charge.start;
             const t = Math.min(1, held / this.maxChargeMs); // 0 = tap, 1 = full charge
             const big = Math.max(this.canvas.width, this.canvas.height);
+            // Insert a coin: birth new stars scaled by charge (before the ripple,
+            // so the wavefront sweeps them outward), then tick the machine's HUD.
+            this.credits++;
+            this.spawnBurst(this.charge.x, this.charge.y, Math.round(3 + 10 * t));
+            this.updateStartIndicator();
+            this.flashCoin();
             // every ripple property scales with how long the button was held
             this.ripples.push({
                 x: this.charge.x,
