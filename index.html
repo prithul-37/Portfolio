@@ -3,130 +3,195 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Prithul Biswas - Portfolio</title>
+    <title>PRITHUL BISWAS // UNITY GAME DEV</title>
     <link rel="icon" type="image/png" href="Res/game-controller.png" />
     <link rel="stylesheet" href="styles.css" />
     <link
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
       rel="stylesheet"
     />
-    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800&family=Source+Sans+Pro:wght@300;400;600;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap"
       rel="stylesheet"
     />
   </head>
   <body>
-    <!-- Game Controller Icon -->
-    <div class="game-icon-corner">
-      <img
-        src="Res/game-controller.png"
-        alt="Game Controller"
-        class="corner-game-icon"
-      />
+    <!-- CRT overlays: scanlines, curvature, grain, flicker -->
+    <div class="crt-overlay" aria-hidden="true">
+      <div class="crt-scanlines"></div>
+      <div class="crt-vignette"></div>
+      <div class="crt-flicker"></div>
     </div>
 
-    <nav class="navbar">
+    <!-- Power-on boot flash -->
+    <div class="boot-flash" id="boot-flash" aria-hidden="true"></div>
+
+    <!-- Floating cabinet corner sticker -->
+    <div class="cabinet-corner" aria-hidden="true">
+      <img src="Res/game-controller.png" alt="" class="corner-pad" />
+    </div>
+
+    <nav class="navbar" id="navbar">
       <div class="nav-container">
-        <div class="nav-logo">
-          <h3 id="nav-logo-text">Portfolio</h3>
-        </div>
-        <button class="hamburger" onclick="toggleMobileMenu()">
+        <a href="#home" class="nav-logo">
+          <span class="coin-slot">◉</span>
+          <span id="nav-logo-text">1UP&nbsp;· PRITHUL</span>
+        </a>
+        <button class="hamburger" onclick="toggleMobileMenu()" aria-label="Menu">
           <span></span>
           <span></span>
           <span></span>
         </button>
         <ul class="nav-menu">
-          <li><a href="#home">Home</a></li>
-          <li><a href="#about">About</a></li>
-          <li><a href="#skills">Skills</a></li>
-          <li><a href="#experience">Experience</a></li>
-          <li><a href="#projects">Projects</a></li>
-          <li><a href="#contact">Contact</a></li>
+          <li><a href="#home">Start</a></li>
+          <li><a href="#about">Player</a></li>
+          <li><a href="#skills">Loadout</a></li>
+          <li><a href="#experience">Levels</a></li>
+          <li><a href="#projects">Games</a></li>
+          <li><a href="#contact">Continue</a></li>
           <li>
             <a href="Prithul Biswas CV202607.pdf" download class="cv-btn"
-              >Download CV</a
+              >▾ CV</a
             >
           </li>
         </ul>
       </div>
     </nav>
 
+    <!-- ================= HOME / TITLE SCREEN ================= -->
     <section id="home" class="hero">
       <canvas id="particles-canvas" class="particles-canvas"></canvas>
+      <div class="hero-grid" aria-hidden="true"></div>
       <div class="hero-content">
-        <h1>Hello, I'm <span>Prithul Biswas Dip</span></h1>
-        <p>Unity Game Developer</p>
-        <p class="location">📍 Dhaka, Bangladesh | Unity & C# Specialist</p>
+        <p class="hero-kicker" data-text="◄ UNITY · C# · MOBILE ►">
+          ◄ UNITY · C# · MOBILE ►
+        </p>
+        <h1 class="hero-title glitch" data-text="PRITHUL BISWAS">
+          PRITHUL BISWAS
+        </h1>
+        <p class="hero-sub">— UNITY GAME DEVELOPER —</p>
+        <p class="hero-loc">📍 DHAKA, BANGLADESH &nbsp;//&nbsp; PLAYER LVL 99</p>
+
+        <div class="hud-bar">
+          <div class="hud-stat">
+            <span class="hud-num" data-count="7">00</span>
+            <span class="hud-label">Titles Shipped</span>
+          </div>
+          <div class="hud-stat">
+            <span class="hud-num" data-count="2">00</span>
+            <span class="hud-label">Platforms</span>
+          </div>
+          <div class="hud-stat">
+            <span class="hud-num hud-text">C#</span>
+            <span class="hud-label">Main Weapon</span>
+          </div>
+          <div class="hud-stat">
+            <span class="hud-num hud-text online">ON</span>
+            <span class="hud-label">Status</span>
+          </div>
+        </div>
+
         <div class="hero-buttons">
-          <a href="#projects" class="btn primary">View My Games</a>
+          <a href="#projects" class="btn primary">▸ VIEW MY GAMES</a>
           <a href="Prithul Biswas CV202607.pdf" download class="btn secondary">
-            <i class="fas fa-download"></i> Download CV
+            <i class="fas fa-download"></i> DOWNLOAD CV
           </a>
         </div>
+
+        <p class="press-start">▸ PRESS START ◂</p>
       </div>
+      <div class="scroll-hint" aria-hidden="true">▼ INSERT COIN ▼</div>
     </section>
 
+    <!-- ================= ABOUT / PLAYER SELECT ================= -->
     <section id="about" class="about">
       <div class="container">
+        <h2 class="section-title" data-num="P1">PLAYER SELECT</h2>
         <div class="about-content">
-          <div class="about-text">
-            <h2 class="main-title">Unity Game Developer</h2>
-            <h3 class="subtitle">Unity & C# Specialist</h3>
-
-            <p class="description">
-              I'm Prithul Biswas Dip — professional game developer by day, avid
-              gamer/anime binger/movie marathoner by… well, also by day (and
-              night). Whether it's battling bosses, diving into new anime
-              worlds, or losing track of time in a good film, I'm always chasing
-              great stories and fun experiences.
-            </p>
-
-            <p class="description">
-              Unity Game Developer with end-to-end experience shipping mobile
-              games to both Google Play and the App Store. Core developer on
-              live hybrid-casual titles Pop'n Sort (with Supersonic) and
-              Supermarket Sort Factory (with Moonee), plus commercial games
-              like Ant March Adventure, Zen Merge Puzzle, Color Craft, and
-              Leaping Frog. I own the full client side—gameplay systems, UI,
-              data-driven content, SDK integrations, and store releases—and
-              use Claude Code daily in production, including custom AI-assisted
-              level design pipelines.
-            </p>
-
-            <div class="action-buttons">
-              <a href="#projects" class="btn-primary">View Projects</a>
-              <a href="#contact" class="btn-secondary">Get In Touch</a>
+          <div class="about-card">
+            <div class="about-image">
+              <div class="portrait-frame">
+                <img
+                  src="Res/Me.JPEG"
+                  alt="Prithul Biswas Dip"
+                  class="profile-img"
+                />
+                <div class="portrait-scan"></div>
+              </div>
+              <div class="availability-badge">
+                <span class="status-dot"></span>
+                AVAILABLE · READY P1
+              </div>
+              <div class="stat-lines">
+                <div class="stat-line">
+                  <span class="stat-key">ROLE</span>
+                  <span class="stat-bar"><i style="--w: 100%"></i></span>
+                  <span class="stat-val">DEV</span>
+                </div>
+                <div class="stat-line">
+                  <span class="stat-key">UNITY</span>
+                  <span class="stat-bar"><i style="--w: 95%"></i></span>
+                  <span class="stat-val">95</span>
+                </div>
+                <div class="stat-line">
+                  <span class="stat-key">C#</span>
+                  <span class="stat-bar"><i style="--w: 92%"></i></span>
+                  <span class="stat-val">92</span>
+                </div>
+                <div class="stat-line">
+                  <span class="stat-key">SHIP</span>
+                  <span class="stat-bar"><i style="--w: 98%"></i></span>
+                  <span class="stat-val">98</span>
+                </div>
+              </div>
             </div>
 
-            <div class="contact-email">
-              <span>prithuldip@gmail.com →</span>
-            </div>
-          </div>
+            <div class="about-text">
+              <h3 class="subtitle">▸ UNITY &amp; C# SPECIALIST</h3>
 
-          <div class="about-image">
-            <img
-              src="Res/Me.JPEG"
-              alt="Prithul Biswas Dip"
-              class="profile-img"
-            />
-            <div class="availability-badge">
-              <span class="status-dot"></span>
-              Available for opportunities
+              <p class="description">
+                I'm Prithul Biswas Dip — professional game developer by day,
+                avid gamer / anime binger / movie marathoner by… well, also by
+                day (and night). Whether it's battling bosses, diving into new
+                anime worlds, or losing track of time in a good film, I'm always
+                chasing great stories and fun experiences.
+              </p>
+
+              <p class="description">
+                Unity Game Developer with end-to-end experience shipping mobile
+                games to both Google Play and the App Store. Core developer on
+                live hybrid-casual titles Pop'n Sort (with Supersonic) and
+                Supermarket Sort Factory (with Moonee), plus commercial games
+                like Ant March Adventure, Zen Merge Puzzle, Color Craft, and
+                Leaping Frog. I own the full client side — gameplay systems, UI,
+                data-driven content, SDK integrations, and store releases — and
+                use Claude Code daily in production, including custom AI-assisted
+                level design pipelines.
+              </p>
+
+              <div class="action-buttons">
+                <a href="#projects" class="btn-primary">▸ VIEW PROJECTS</a>
+                <a href="#contact" class="btn-secondary">GET IN TOUCH</a>
+              </div>
+
+              <a href="mailto:prithuldip@gmail.com" class="contact-email">
+                <span>prithuldip@gmail.com &nbsp;<b class="blink">_</b></span>
+              </a>
             </div>
           </div>
         </div>
       </div>
     </section>
 
+    <!-- ================= SKILLS / LOADOUT ================= -->
     <section id="skills" class="skills">
       <div class="container">
-        <h2>Technical Skills</h2>
+        <h2 class="section-title" data-num="02">LOADOUT</h2>
         <div class="skills-list">
           <div class="skill-category">
-            <h3>Game Engines</h3>
+            <h3>▸ Game Engines</h3>
             <div class="skill-tags">
               <span>Unity</span>
               <span>Unreal Engine</span>
@@ -134,7 +199,7 @@
           </div>
 
           <div class="skill-category">
-            <h3>Programming Languages</h3>
+            <h3>▸ Programming Languages</h3>
             <div class="skill-tags">
               <span>C#</span>
               <span>C++</span>
@@ -144,13 +209,13 @@
           </div>
 
           <div class="skill-category">
-            <h3>Mobile Release & SDKs</h3>
+            <h3>▸ Mobile Release &amp; SDKs</h3>
             <div class="skill-tags">
               <span>Google Play Releases</span>
-              <span>iOS Provisioning & App Store Submission</span>
+              <span>iOS Provisioning &amp; App Store Submission</span>
               <span>Firebase</span>
               <span>RevenueCat (IAP)</span>
-              <span>Ad & Attribution SDKs</span>
+              <span>Ad &amp; Attribution SDKs</span>
               <span>Google Sign-In</span>
               <span>Unity Authentication</span>
               <span>Unity Relay</span>
@@ -158,7 +223,7 @@
           </div>
 
           <div class="skill-category">
-            <h3>AI-Assisted Development</h3>
+            <h3>▸ AI-Assisted Development</h3>
             <div class="skill-tags">
               <span>Claude Code (Daily Production Use)</span>
               <span>Custom Claude Code Skills</span>
@@ -168,7 +233,7 @@
           </div>
 
           <div class="skill-category">
-            <h3>What I Work With</h3>
+            <h3>▸ What I Work With</h3>
             <div class="skill-tags">
               <span>Gameplay Mechanics</span>
               <span>Data-Driven Design (ScriptableObjects)</span>
@@ -187,82 +252,76 @@
       </div>
     </section>
 
+    <!-- ================= EXPERIENCE / LEVEL MAP ================= -->
     <section id="experience" class="experience">
       <div class="container">
-        <h2>My Journey</h2>
+        <h2 class="section-title" data-num="03">LEVEL MAP</h2>
         <div class="timeline">
-          <!-- Oct 2025 - Present - Game Developer -->
           <div class="timeline-item left">
             <div class="timeline-dot"></div>
             <div class="timeline-content">
               <span class="timeline-year">Oct 2025 – Present</span>
-              <span class="timeline-badge work">Work</span>
+              <span class="timeline-badge work">WORK</span>
               <h3>Unity Game Developer</h3>
               <p>Riseup Labs</p>
             </div>
           </div>
 
-          <!-- June 2025 - Oct 2025 - Software Engineer II -->
           <div class="timeline-item right">
             <div class="timeline-dot"></div>
             <div class="timeline-content">
               <span class="timeline-year">June 2025 – Oct 2025</span>
-              <span class="timeline-badge work">Work</span>
+              <span class="timeline-badge work">WORK</span>
               <h3>Software Engineer II (Unity)</h3>
               <p>Nagorik Technologies Ltd.</p>
             </div>
           </div>
 
-          <!-- June 2024 - June 2025 - Junior SE -->
           <div class="timeline-item left">
             <div class="timeline-dot"></div>
             <div class="timeline-content">
               <span class="timeline-year">June 2024 – June 2025</span>
-              <span class="timeline-badge work">Work</span>
+              <span class="timeline-badge work">WORK</span>
               <h3>Junior Software Engineer (Unity)</h3>
               <p>Nagorik Technologies Ltd.</p>
             </div>
           </div>
 
-          <!-- Until June 2024 - Freelance -->
           <div class="timeline-item right">
             <div class="timeline-dot"></div>
             <div class="timeline-content">
               <span class="timeline-year">Until June 2024</span>
-              <span class="timeline-badge work">Work</span>
+              <span class="timeline-badge work">WORK</span>
               <h3>Freelance Game Developer</h3>
               <p>Remote — during B.Sc. studies</p>
             </div>
           </div>
 
-          <!-- 2018-2024 - BSc CSE -->
           <div class="timeline-item left">
             <div class="timeline-dot"></div>
             <div class="timeline-content">
               <span class="timeline-year">2018 – 2024</span>
-              <span class="timeline-badge education">Education</span>
-              <h3>BSc in Computer Science & Engineering</h3>
-              <p>Khulna University of Engineering & Technology (KUET)</p>
+              <span class="timeline-badge education">EDU</span>
+              <h3>BSc in Computer Science &amp; Engineering</h3>
+              <p>Khulna University of Engineering &amp; Technology (KUET)</p>
             </div>
           </div>
 
-          <!-- 2018 - HSC -->
           <div class="timeline-item right">
             <div class="timeline-dot"></div>
             <div class="timeline-content">
               <span class="timeline-year">2018</span>
-              <span class="timeline-badge education">Education</span>
+              <span class="timeline-badge education">EDU</span>
               <h3>HSC</h3>
               <p>Monipur High School And College Branch - 03</p>
             </div>
           </div>
 
-          <!-- 2016 - SSC -->
           <div class="timeline-item left">
             <div class="timeline-dot"></div>
             <div class="timeline-content">
               <span class="timeline-year">2016</span>
-              <span class="timeline-badge education">Education</span>
+              <span class="timeline-badge education">EDU</span>
               <h3>SSC</h3>
               <p>Monipur High School And College Branch - 03</p>
             </div>
@@ -271,11 +330,14 @@
       </div>
     </section>
 
+    <!-- ================= PROJECTS / SELECT YOUR GAME ================= -->
     <section id="projects" class="projects">
       <div class="container">
-        <h2>Game Projects</h2>
+        <h2 class="section-title" data-num="04">SELECT YOUR GAME</h2>
+        <p class="projects-hint">▸ tap a cartridge to view the gallery</p>
         <div class="projects-grid">
           <div class="project-card featured">
+            <div class="card-scan"></div>
             <div class="project-icon popn-sort">
               <img src="Icons/Pop n Sort icon.png" alt="Pop'n Sort" />
               <div class="icon-bg"></div>
@@ -314,7 +376,9 @@
               </a>
             </div>
           </div>
+
           <div class="project-card featured">
+            <div class="card-scan"></div>
             <div class="project-icon supermarket-sort">
               <img
                 src="Icons/Super Market Sort Factory.png"
@@ -326,8 +390,8 @@
             <span class="project-type">Hybrid-Casual Game</span>
             <p>
               Live sorting/matching hybrid-casual game published with Moonee.
-              Implemented core game logic, UI systems, and gameplay features
-              in a fast-paced production environment.
+              Implemented core game logic, UI systems, and gameplay features in
+              a fast-paced production environment.
             </p>
             <div class="tech-stack">
               <span>Unity</span>
@@ -346,7 +410,10 @@
               </a>
             </div>
           </div>
+
           <div class="project-card featured" onclick="openGallery('ant-march')">
+            <div class="card-scan"></div>
+            <div class="play-badge">▶ GALLERY</div>
             <div class="project-icon ant-march">
               <img src="Icons/AntGameLogo.png" alt="Ant March Adventure" />
               <div class="icon-bg"></div>
@@ -355,9 +422,8 @@
             <span class="project-type">Roguelike Game</span>
             <p>
               Roguelike where players collect eggs to grow a line of ants,
-              protect them from bugs, and bring them to the nest. Features
-              unique obstacles, dynamic weather, skill system, and procedural
-              levels.
+              protect them from bugs, and bring them to the nest. Features unique
+              obstacles, dynamic weather, skill system, and procedural levels.
             </p>
             <div class="tech-stack">
               <span>Unity</span>
@@ -384,7 +450,10 @@
               </a>
             </div>
           </div>
+
           <div class="project-card featured" onclick="openGallery('zen-merge')">
+            <div class="card-scan"></div>
+            <div class="play-badge">▶ GALLERY</div>
             <div class="project-icon zen-merge">
               <img src="Icons/ZenMergeLogo.png" alt="Zen Merge Puzzle" />
               <div class="icon-bg"></div>
@@ -392,9 +461,9 @@
             <h3>Zen Merge Puzzle</h3>
             <span class="project-type">Puzzle Game</span>
             <p>
-              Control Yin & Yang as they move in mirrored paths. Solve
-              mind-bending puzzles to unite them on the Harmony Tile, with
-              unique mechanics and optimized visuals.
+              Control Yin &amp; Yang as they move in mirrored paths. Solve
+              mind-bending puzzles to unite them on the Harmony Tile, with unique
+              mechanics and optimized visuals.
             </p>
             <div class="tech-stack">
               <span>Unity</span>
@@ -420,7 +489,10 @@
               </a>
             </div>
           </div>
+
           <div class="project-card" onclick="openGallery('color-craft')">
+            <div class="card-scan"></div>
+            <div class="play-badge">▶ GALLERY</div>
             <div class="project-icon color-craft">
               <img src="Icons/ColorCraftLogo.png" alt="Color Craft" />
               <div class="icon-bg"></div>
@@ -456,7 +528,10 @@
               </a>
             </div>
           </div>
+
           <div class="project-card" onclick="openGallery('leaping-frog')">
+            <div class="card-scan"></div>
+            <div class="play-badge">▶ GALLERY</div>
             <div class="project-icon leaping-frog">
               <img src="Icons/FrogGamelogo.png" alt="Leaping Frog" />
               <div class="icon-bg"></div>
@@ -464,7 +539,7 @@
             <h3>Leaping Frog</h3>
             <span class="project-type">Endless Jumper</span>
             <p>
-              Leap between platforms as a daring frog—collect boosts, dodge
+              Leap between platforms as a daring frog — collect boosts, dodge
               hazards, and master physics-based challenges with procedurally
               generated levels.
             </p>
@@ -492,7 +567,9 @@
               </a>
             </div>
           </div>
+
           <div class="project-card">
+            <div class="card-scan"></div>
             <div class="project-icon tic-tac-toe">
               <span>⭕</span>
               <div class="icon-bg"></div>
@@ -514,14 +591,19 @@
       </div>
     </section>
 
+    <!-- ================= CONTACT / CONTINUE? ================= -->
     <section id="contact" class="contact">
       <div class="container">
-        <h2>Get In Touch</h2>
+        <h2 class="section-title" data-num="05">CONTINUE?</h2>
         <div class="contact-content">
           <p>
-            Open to opportunities, collaborations, and game dev conversations.
-            Whether you want to discuss a project, explore new ideas, or just chat about games—feel free to reach out!
+            Open to opportunities, collaborations, and game-dev conversations.
+            Whether you want to discuss a project, explore new ideas, or just
+            chat about games — feel free to reach out!
           </p>
+          <div class="continue-counter" aria-hidden="true">
+            INSERT COIN &nbsp;·&nbsp; <span id="continue-num">09</span>
+          </div>
           <div class="contact-info">
             <a href="mailto:prithuldip@gmail.com" class="contact-btn email">
               <i class="fas fa-envelope"></i>
@@ -545,12 +627,12 @@
             </a>
           </div>
           <div class="experience-section">
-            <h3>Current Position</h3>
+            <h3>▸ CURRENT POSITION</h3>
             <div class="job-info">
               <h4>Unity Game Developer</h4>
               <p>
                 <span class="company-link">Riseup Labs</span>
-                | Oct 2025 – Present
+                &nbsp;|&nbsp; Oct 2025 – Present
               </p>
             </div>
           </div>
@@ -568,7 +650,8 @@
 
     <footer>
       <div class="container">
-        <p>&copy; 2026 Prithul Biswas. All rights reserved.</p>
+        <p class="credits-blink">◆ GAME BY PRITHUL BISWAS ◆</p>
+        <p>&copy; 2026 Prithul Biswas. All rights reserved. · INSERT COIN</p>
       </div>
     </footer>
 
@@ -585,9 +668,7 @@
               Your browser does not support the video tag.
             </video>
           </div>
-          <div class="media-thumbnails" id="media-thumbnails">
-            <!-- Thumbnails will be populated by JavaScript -->
-          </div>
+          <div class="media-thumbnails" id="media-thumbnails"></div>
         </div>
         <div class="gallery-navigation">
           <button id="prev-media" class="nav-btn">‹</button>
@@ -599,4 +680,3 @@
     <script src="script.js"></script>
   </body>
 </html>
-
