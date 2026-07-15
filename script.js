@@ -1,4 +1,4 @@
-// Smooth scrolling for navigation links
+// Smooth scrolling for navigation links and close mobile menu
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
         e.preventDefault();
@@ -8,6 +8,13 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
                 behavior: 'smooth',
                 block: 'start'
             });
+            // Close mobile menu if open
+            const navMenu = document.querySelector('.nav-menu');
+            const hamburger = document.querySelector('.hamburger');
+            if (navMenu.classList.contains('open')) {
+                navMenu.classList.remove('open');
+                hamburger.classList.remove('active');
+            }
         }
     });
 });
@@ -68,10 +75,12 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 });
 
-// Mobile menu toggle (if needed for responsive design)
+// Mobile menu toggle
 function toggleMobileMenu() {
     const navMenu = document.querySelector('.nav-menu');
-    navMenu.classList.toggle('active');
+    const hamburger = document.querySelector('.hamburger');
+    navMenu.classList.toggle('open');
+    hamburger.classList.toggle('active');
 }
 
 // Add click event for CV download tracking (optional analytics)
