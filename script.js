@@ -635,3 +635,87 @@ document.querySelectorAll('.project-card[data-gallery]').forEach(function (card)
         }
     });
 });
+
+// ---- Total time-on-site counter (accumulates across visits) ---------------
+(function () {
+    const el = document.getElementById('playtime');
+    if (!el) return;
+    const KEY = 'sitePlaytimeMs';
+
+    let total = parseInt(localStorage.getItem(KEY) || '0', 10) || 0;
+    let last = performance.now();
+    let active = !document.hidden;
+
+    function fmt(ms) {
+        const s = Math.floor(ms / 1000);
+        const pad = function (n) { return String(n).padStart(2, '0'); };
+        return pad(Math.floor(s / 3600)) + ':' + pad(Math.floor((s % 3600) / 60)) + ':' + pad(s % 60);
+    }
+
+    // Fold elapsed visible time into the running total.
+    function accumulate() {
+        const now = performance.now();
+        if (active) total += now - last;
+        last = now;
+    }
+
+    function save() { localStorage.setItem(KEY, String(Math.round(total))); }
+
+    el.textContent = fmt(total);
+
+    setInterval(function () {
+        accumulate();
+        el.textContent = fmt(total);
+        save();
+    }, 1000);
+
+    // Pause counting while the tab is hidden.
+    document.addEventListener('visibilitychange', function () {
+        accumulate();
+        active = !document.hidden;
+        last = performance.now();
+    });
+
+    window.addEventListener('beforeunload', function () { accumulate(); save(); });
+})();
+
+// ---- Click-to-copy buttons (e.g. Discord username) ------------------------
+document.querySelectorAll('[data-copy]').forEach(function (btn) {
+    const label = btn.querySelector('.copy-label') || btn;
+    const original = label.textContent;
+    let resetTimer = null;
+
+    function flashCopied() {
+        btn.classList.add('copied');
+        label.textContent = 'Copied!';
+        clearTimeout(resetTimer);
+        resetTimer = setTimeout(function () {
+            label.textContent = original;
+            btn.classList.remove('copied');
+        }, 1400);
+    }
+
+    function fallbackCopy(text) {
+        const ta = document.createElement('textarea');
+        ta.value = text;
+        ta.style.position = 'fixed';
+        ta.style.opacity = '0';
+        document.body.appendChild(ta);
+        ta.select();
+        try { document.execCommand('copy'); } catch (e) { /* no-op */ }
+        ta.remove();
+    }
+
+    btn.addEventListener('click', function () {
+        const text = btn.dataset.copy;
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+            navigator.clipboard.writeText(text).then(flashCopied).catch(function () {
+                fallbackCopy(text);
+                flashCopied();
+            });
+        } else {
+            fallbackCopy(text);
+            flashCopied();
+        }
+    });
+});

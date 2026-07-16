@@ -691,26 +691,33 @@
             INSERT COIN &nbsp;·&nbsp; <span id="continue-num">09</span>
           </div>
           <div class="contact-info">
-            <a href="mailto:prithuldip@gmail.com" class="contact-btn email">
-              <i class="fas fa-envelope"></i>
-              <span>Email</span>
-            </a>
-            <a
-              href="https://linkedin.com/in/prithul-biswas"
-              target="_blank"
-              class="contact-btn linkedin"
-            >
-              <i class="fab fa-linkedin"></i>
-              <span>LinkedIn</span>
-            </a>
-            <a
-              href="https://discordapp.com/users/509020415868403761"
-              target="_blank"
-              class="contact-btn discord"
-            >
-              <i class="fab fa-discord"></i>
-              <span>Discord</span>
-            </a>
+            <span class="tip-wrap" data-tip="Send me an email">
+              <a href="mailto:prithuldip@gmail.com" class="contact-btn email">
+                <i class="fas fa-envelope"></i>
+                <span>Email</span>
+              </a>
+            </span>
+            <span class="tip-wrap" data-tip="Open my LinkedIn">
+              <a
+                href="https://linkedin.com/in/prithul-biswas"
+                target="_blank"
+                class="contact-btn linkedin"
+              >
+                <i class="fab fa-linkedin"></i>
+                <span>LinkedIn</span>
+              </a>
+            </span>
+            <span class="tip-wrap" data-tip="Click to copy · prithuldip">
+              <button
+                type="button"
+                class="contact-btn discord"
+                data-copy="prithuldip"
+                aria-label="Copy Discord username prithuldip"
+              >
+                <i class="fab fa-discord"></i>
+                <span class="copy-label">prithuldip</span>
+              </button>
+            </span>
           </div>
           <div class="experience-section">
             <h3>▸ CURRENT POSITION</h3>
@@ -737,7 +744,11 @@
     <footer>
       <div class="container">
         <p class="credits-blink">◆ GAME BY PRITHUL BISWAS ◆</p>
-        <p>&copy; 2026 Prithul Biswas. All rights reserved. · INSERT COIN</p>
+        <div class="playtime" aria-label="Total time on this site">
+          <span class="playtime-label">TIME PLAYED</span>
+          <span id="playtime" class="playtime-val">00:00:00</span>
+        </div>
+        <p>&copy; 2026 Prithul Biswas. All rights reserved.</p>
       </div>
     </footer>
 
