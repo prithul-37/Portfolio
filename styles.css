@@ -635,17 +635,16 @@ section { position: relative; }
 }
 
 .scroll-hint {
-  position: absolute;
-  bottom: 26px;
-  left: 0;
-  right: 0;
-  width: 100%;
-  text-align: center;           /* width-independent centering (font-load safe) */
   font-family: var(--font-display);
   font-size: 10px;
   color: var(--amber);
   letter-spacing: 0.2em;
-  text-shadow: 0 0 10px var(--amber);
+  text-align: center;
+  margin-top: 22px;
+  text-shadow:
+    0 0 10px var(--amber),
+    0 0 24px var(--amber),
+    0 0 48px rgba(255, 210, 63, 0.6);
   animation: bobDown 1.6s ease-in-out infinite;
   z-index: 2;
 }
@@ -656,7 +655,10 @@ section { position: relative; }
 /* coin-insert feedback flash on each blast */
 .scroll-hint.coin-pop {
   color: var(--cyan);
-  text-shadow: 0 0 16px var(--cyan);
+  text-shadow:
+    0 0 12px var(--cyan),
+    0 0 30px var(--cyan),
+    0 0 60px rgba(41, 242, 255, 0.6);
   opacity: 1;
   animation: coinPop 0.4s ease-out;
 }

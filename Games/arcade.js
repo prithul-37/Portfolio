@@ -291,11 +291,13 @@
             const x = fromLeft ? -size : w;
             const baseY = rand(h * 0.12, h * 0.78);
 
+            const HIT_PAD = 16; // transparent tap area around the visual coin
             const el = document.createElement('button');
             el.type = 'button';
             el.className = 'coin-float';
             el.setAttribute('aria-label', 'Collect coin');
-            el.style.width = el.style.height = size + 'px';
+            el.style.width = el.style.height = (size + HIT_PAD * 2) + 'px';
+            el.style.padding = HIT_PAD + 'px';
             el.innerHTML = '<span class="coin-ic"></span>';
             field.appendChild(el);
 
