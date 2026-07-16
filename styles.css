@@ -1597,6 +1597,81 @@ footer p:last-child { font-size: 17px; color: var(--text-mute); letter-spacing: 
   .section-title { font-size: 17px; }
 }
 
+/* ---- Landscape (phones / short-wide viewports where height is the limit) - */
+@media (orientation: landscape) and (max-height: 520px) {
+  .hero { padding: 64px 20px 10px; }
+
+  .hero-content {
+    display: grid;
+    grid-template-columns: 3fr 2fr;
+    grid-template-areas:
+      "kicker kicker"
+      "title  hud"
+      "sub    hud"
+      "loc    hud"
+      "start  btns"
+      "coins  btns";
+    column-gap: 28px;
+    row-gap: 4px;
+    text-align: left;
+    width: 100%;
+    max-width: 860px;
+  }
+
+  .hero-kicker {
+    grid-area: kicker;
+    text-align: center;
+    font-size: 8px;
+    margin-bottom: 6px;
+  }
+
+  .hero-title {
+    grid-area: title;
+    font-size: clamp(20px, 3.8vw, 32px);
+    margin-bottom: 4px;
+  }
+
+  .hero-sub {
+    grid-area: sub;
+    font-size: 16px;
+    letter-spacing: 0.18em;
+    margin-bottom: 2px;
+  }
+
+  .hero-loc {
+    grid-area: loc;
+    font-size: 13px;
+    margin-bottom: 0;
+  }
+
+  .hud-bar {
+    grid-area: hud;
+    flex-direction: column;
+    gap: 6px;
+    margin-bottom: 0;
+    align-self: center;
+  }
+
+  .hud-stat { min-width: unset; padding: 6px 10px; }
+  .hud-num { font-size: 18px; }
+  .hud-num.hud-text { font-size: 16px; }
+  .hud-label { font-size: 12px; margin-top: 2px; }
+
+  .hero-buttons {
+    grid-area: btns;
+    flex-direction: column;
+    gap: 6px;
+    margin-bottom: 0;
+    align-self: center;
+  }
+
+  .btn { padding: 10px 14px; font-size: 10px; gap: 6px; }
+
+  .press-start { grid-area: start; font-size: 9px; align-self: end; }
+
+  .scroll-hint { grid-area: coins; font-size: 8px; margin-top: 4px; align-self: start; }
+}
+
 /* Reduced motion */
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
