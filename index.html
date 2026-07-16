@@ -3,9 +3,79 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>PRITHUL BISWAS // UNITY GAME DEV</title>
+    <title>Prithul Biswas — Unity Game Developer</title>
+
+    <!-- SEO -->
+    <meta
+      name="description"
+      content="Unity game developer shipping mobile titles to Google Play & the App Store — Pop'n Sort, Supermarket Sort Factory, Ant March Adventure & more. C# · gameplay systems · live-ops."
+    />
+    <meta name="author" content="Prithul Biswas" />
+    <meta
+      name="keywords"
+      content="Prithul Biswas, Unity Game Developer, C#, mobile games, hybrid-casual, game programmer, Dhaka, Bangladesh"
+    />
+    <meta name="theme-color" content="#070510" />
+    <link rel="canonical" href="https://prithul-37.github.io/Portfolio/" />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Prithul Biswas — Portfolio" />
+    <meta property="og:url" content="https://prithul-37.github.io/Portfolio/" />
+    <meta property="og:title" content="Prithul Biswas — Unity Game Developer" />
+    <meta
+      property="og:description"
+      content="Shipping mobile games to Google Play & the App Store. Core dev on Pop'n Sort & Supermarket Sort Factory. C# · gameplay · live-ops."
+    />
+    <meta
+      property="og:image"
+      content="https://prithul-37.github.io/Portfolio/Res/og-image.jpg"
+    />
+    <meta property="og:image:type" content="image/jpeg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Prithul Biswas, Unity Game Developer" />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Prithul Biswas — Unity Game Developer" />
+    <meta
+      name="twitter:description"
+      content="Shipping mobile games to Google Play & the App Store. C# · gameplay · live-ops."
+    />
+    <meta
+      name="twitter:image"
+      content="https://prithul-37.github.io/Portfolio/Res/og-image.jpg"
+    />
+
     <link rel="icon" type="image/png" href="Res/game-controller.png" />
+    <link rel="apple-touch-icon" href="Res/game-controller.png" />
+
+    <!-- Structured data -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "Prithul Biswas",
+        "jobTitle": "Unity Game Developer",
+        "url": "https://prithul-37.github.io/Portfolio/",
+        "image": "https://prithul-37.github.io/Portfolio/Res/Me.JPEG",
+        "email": "mailto:prithuldip@gmail.com",
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Dhaka",
+          "addressCountry": "BD"
+        },
+        "sameAs": [
+          "https://linkedin.com/in/prithul-biswas",
+          "https://github.com/prithul-37"
+        ],
+        "knowsAbout": ["Unity", "C#", "Game Development", "Mobile Games", "Live-Ops"]
+      }
+    </script>
     <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="Games/arcade.css" />
+    <link rel="stylesheet" href="Games/Snake/snake.css" />
     <link
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
       rel="stylesheet"
@@ -28,10 +98,15 @@
     <!-- Power-on boot flash -->
     <div class="boot-flash" id="boot-flash" aria-hidden="true"></div>
 
-    <!-- Floating cabinet corner button (future game slot) -->
-    <button class="cabinet-corner" type="button" aria-label="More games — coming soon">
-      <img src="Res/game-controller.png" alt="" class="corner-pad" />
-      <span class="corner-tip">COMING SOON</span>
+    <!-- Live coin balance -->
+    <div class="coin-hud" aria-label="Arcade coins">
+      <span class="coin-ic coin-hud-icon"></span><b data-coin-count>0</b>
+    </div>
+
+    <!-- Floating cabinet corner button — opens the arcade -->
+    <button class="cabinet-corner" type="button" onclick="openArcade()" aria-label="Open arcade">
+      <img src="Res/game-controller.png" alt="" class="corner-pad" decoding="async" />
+      <span class="corner-tip">ENTER ARCADE</span>
     </button>
 
     <nav class="navbar" id="navbar">
@@ -81,6 +156,10 @@
             <span class="hud-label">Titles Shipped</span>
           </div>
           <div class="hud-stat">
+            <span class="hud-num" data-count="3" data-suffix="+">00</span>
+            <span class="hud-label">Years Exp</span>
+          </div>
+          <div class="hud-stat">
             <span class="hud-num" data-count="2">00</span>
             <span class="hud-label">Platforms</span>
           </div>
@@ -103,7 +182,7 @@
 
         <p class="press-start">▸ PRESS START ◂</p>
       </div>
-      <div class="scroll-hint" aria-hidden="true">▼ INSERT COIN ▼</div>
+      <div class="scroll-hint" aria-hidden="true">▼ COLLECT COINS ▼</div>
     </section>
 
     <!-- ================= ABOUT / PLAYER SELECT ================= -->
@@ -118,6 +197,10 @@
                   src="Res/Me.JPEG"
                   alt="Prithul Biswas Dip"
                   class="profile-img"
+                  width="600"
+                  height="600"
+                  loading="lazy"
+                  decoding="async"
                 />
                 <div class="portrait-scan"></div>
               </div>
@@ -340,7 +423,7 @@
           <div class="project-card featured">
             <div class="card-scan"></div>
             <div class="project-icon popn-sort">
-              <img src="Icons/Pop n Sort icon.png" alt="Pop'n Sort" />
+              <img src="Icons/Pop n Sort icon.png" alt="Pop'n Sort" loading="lazy" decoding="async" />
               <div class="icon-bg"></div>
             </div>
             <h3>Pop'n Sort</h3>
@@ -384,6 +467,8 @@
               <img
                 src="Icons/Super Market Sort Factory.png"
                 alt="Supermarket Sort Factory"
+                loading="lazy"
+                decoding="async"
               />
               <div class="icon-bg"></div>
             </div>
@@ -412,11 +497,11 @@
             </div>
           </div>
 
-          <div class="project-card featured" onclick="openGallery('ant-march')">
+          <div class="project-card featured" role="button" tabindex="0" data-gallery="ant-march" aria-label="Ant March Adventure — view screenshot gallery">
             <div class="card-scan"></div>
             <div class="play-badge">▶ GALLERY</div>
             <div class="project-icon ant-march">
-              <img src="Icons/AntGameLogo.png" alt="Ant March Adventure" />
+              <img src="Icons/AntGameLogo.png" alt="Ant March Adventure" loading="lazy" decoding="async" />
               <div class="icon-bg"></div>
             </div>
             <h3>Ant March Adventure</h3>
@@ -452,11 +537,11 @@
             </div>
           </div>
 
-          <div class="project-card featured" onclick="openGallery('zen-merge')">
+          <div class="project-card featured" role="button" tabindex="0" data-gallery="zen-merge" aria-label="Zen Merge Puzzle — view screenshot gallery">
             <div class="card-scan"></div>
             <div class="play-badge">▶ GALLERY</div>
             <div class="project-icon zen-merge">
-              <img src="Icons/ZenMergeLogo.png" alt="Zen Merge Puzzle" />
+              <img src="Icons/ZenMergeLogo.png" alt="Zen Merge Puzzle" loading="lazy" decoding="async" />
               <div class="icon-bg"></div>
             </div>
             <h3>Zen Merge Puzzle</h3>
@@ -491,11 +576,11 @@
             </div>
           </div>
 
-          <div class="project-card" onclick="openGallery('color-craft')">
+          <div class="project-card" role="button" tabindex="0" data-gallery="color-craft" aria-label="Color Craft — view screenshot gallery">
             <div class="card-scan"></div>
             <div class="play-badge">▶ GALLERY</div>
             <div class="project-icon color-craft">
-              <img src="Icons/ColorCraftLogo.png" alt="Color Craft" />
+              <img src="Icons/ColorCraftLogo.png" alt="Color Craft" loading="lazy" decoding="async" />
               <div class="icon-bg"></div>
             </div>
             <h3>Color Craft</h3>
@@ -530,11 +615,11 @@
             </div>
           </div>
 
-          <div class="project-card" onclick="openGallery('leaping-frog')">
+          <div class="project-card" role="button" tabindex="0" data-gallery="leaping-frog" aria-label="Leaping Frog — view screenshot gallery">
             <div class="card-scan"></div>
             <div class="play-badge">▶ GALLERY</div>
             <div class="project-icon leaping-frog">
-              <img src="Icons/FrogGamelogo.png" alt="Leaping Frog" />
+              <img src="Icons/FrogGamelogo.png" alt="Leaping Frog" loading="lazy" decoding="async" />
               <div class="icon-bg"></div>
             </div>
             <h3>Leaping Frog</h3>
@@ -678,6 +763,40 @@
       </div>
     </div>
 
+    <!-- Arcade Modal — lobby + game stage -->
+    <div id="arcade-modal" class="arcade-modal" aria-hidden="true">
+      <div class="arcade-cabinet" role="dialog" aria-label="Arcade">
+        <button class="arcade-close" type="button" onclick="closeArcade()" aria-label="Close arcade">&times;</button>
+
+        <!-- Lobby: pick a game -->
+        <div id="arcade-lobby" class="arcade-lobby">
+          <header class="lobby-head">
+            <div class="lobby-marquee">
+              <span class="lm-bulb"></span>
+              <span class="lm-title" data-text="ARCADE">ARCADE</span>
+              <span class="lm-bulb"></span>
+            </div>
+            <p class="lobby-select">▚&nbsp;SELECT&nbsp;GAME&nbsp;▞</p>
+            <div class="lobby-credit">
+              <span class="lc-label">CREDIT</span>
+              <span class="coin-ic"></span>
+              <b data-coin-count>0</b>
+            </div>
+          </header>
+          <div id="lobby-grid" class="lobby-grid"></div>
+          <p id="lobby-note" class="lobby-note">▸ Collect coins on the home screen to play</p>
+        </div>
+
+        <!-- Game stage: the selected game mounts here -->
+        <div id="arcade-game" class="arcade-game" hidden>
+          <button class="arcade-back" type="button">◂ ARCADE</button>
+          <div id="arcade-stage" class="arcade-stage"></div>
+        </div>
+      </div>
+    </div>
+
     <script src="script.js"></script>
+    <script src="Games/arcade.js"></script>
+    <script src="Games/Snake/snake.js"></script>
   </body>
 </html>

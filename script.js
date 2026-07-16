@@ -77,11 +77,13 @@ document.addEventListener('DOMContentLoaded', function () {
             if (!entry.isIntersecting) return;
             const el = entry.target;
             const target = parseInt(el.dataset.count, 10);
+            const suffix = el.dataset.suffix || '';
             let cur = 0;
             const tick = () => {
                 cur += Math.max(1, Math.ceil(target / 18));
                 if (cur >= target) cur = target;
-                el.textContent = String(cur).padStart(2, '0');
+                // pad plain counters to 2 digits ("07"); keep suffixed ones tight ("3+")
+                el.textContent = (suffix ? String(cur) : String(cur).padStart(2, '0')) + suffix;
                 if (cur < target) requestAnimationFrame(tick);
             };
             tick();
@@ -253,12 +255,10 @@ class ParticleSystem {
             const held = performance.now() - this.charge.start;
             const t = Math.min(1, held / this.maxChargeMs); // 0 = tap, 1 = full charge
             const big = Math.max(this.canvas.width, this.canvas.height);
-            // Insert a coin: birth new stars scaled by charge (before the ripple,
-            // so the wavefront sweeps them outward), then tick the machine's HUD.
-            this.credits++;
+            // Birth new stars scaled by charge (before the ripple, so the
+            // wavefront sweeps them outward). Coins are earned by collecting the
+            // floating coins, not by pressing — this is pure starfield candy.
             this.spawnBurst(this.charge.x, this.charge.y, Math.round(3 + 10 * t));
-            this.updateStartIndicator();
-            this.flashCoin();
             // every ripple property scales with how long the button was held
             this.ripples.push({
                 x: this.charge.x,
@@ -287,6 +287,19 @@ class ParticleSystem {
         }, { passive: true });
         heroSection.addEventListener('touchend', releaseCharge);
         heroSection.addEventListener('touchcancel', releaseCharge);
+
+        // PRESS START jumps to the Player section; swallow the press so it
+        // doesn't also fire a starfield blast.
+        if (this.pressStartEl) {
+            this.pressStartEl.style.cursor = 'pointer';
+            this.pressStartEl.addEventListener('click', (e) => {
+                e.stopPropagation();
+                const player = document.getElementById('about');
+                if (player) player.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            });
+            this.pressStartEl.addEventListener('mousedown', (e) => e.stopPropagation());
+            this.pressStartEl.addEventListener('touchstart', (e) => e.stopPropagation(), { passive: true });
+        }
     }
 
     drawConnections() {
@@ -604,6 +617,21 @@ document.addEventListener('DOMContentLoaded', function () {
                     break;
                 }
             }
+        }
+    });
+});
+
+// ---- Keyboard + click access for gallery project cards --------------------
+document.querySelectorAll('.project-card[data-gallery]').forEach(function (card) {
+    const open = function () { openGallery(card.dataset.gallery); };
+    card.addEventListener('click', function (e) {
+        if (e.target.closest('a')) return; // let store links behave normally
+        open();
+    });
+    card.addEventListener('keydown', function (e) {
+        if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            open();
         }
     });
 });
