@@ -1421,7 +1421,7 @@ footer p:last-child { font-size: 17px; color: var(--text-mute); letter-spacing: 
   background: linear-gradient(160deg, var(--panel), var(--bg-2));
   border: 3px solid var(--magenta);
   clip-path: var(--pixel-corner);
-  padding: 34px;
+  padding: 50px 34px 34px;
   box-shadow: 0 0 50px rgba(255, 46, 136, 0.4);
 }
 .gallery-close {
@@ -1446,7 +1446,6 @@ footer p:last-child { font-size: 17px; color: var(--text-mute); letter-spacing: 
 .media-viewer {
   position: relative;
   width: 100%;
-  aspect-ratio: 16 / 9;
   background: #000;
   border: 2px solid var(--line);
   clip-path: var(--pixel-corner);
@@ -1456,9 +1455,18 @@ footer p:last-child { font-size: 17px; color: var(--text-mute); letter-spacing: 
   justify-content: center;
   margin-bottom: 18px;
 }
-.media-viewer img, .media-viewer video {
+.media-viewer img {
+  display: block;
+  width: auto;
+  height: auto;
   max-width: 100%;
-  max-height: 100%;
+  max-height: 65vh;
+  object-fit: contain;
+}
+.media-viewer video {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  max-height: 65vh;
   object-fit: contain;
 }
 .media-thumbnails {
@@ -1558,6 +1566,27 @@ footer p:last-child { font-size: 17px; color: var(--text-mute); letter-spacing: 
 
   .cabinet-corner { bottom: 14px; left: 14px; }
   .corner-pad { width: 38px; }
+
+  /* --- Gallery modal --------------------------------------------------- */
+  .gallery-content {
+    width: 96%;
+    padding: 44px 16px 20px;
+    margin: 2vh auto;
+    max-height: 94vh;
+  }
+  .gallery-close {
+    font-size: 32px;
+    top: 10px;
+    right: 12px;
+  }
+  #gallery-title {
+    font-size: 12px;
+    padding-right: 30px;
+    word-break: break-word;
+    margin-bottom: 16px;
+  }
+  .thumbnail { width: 54px; height: 54px; }
+  .nav-btn { width: 48px; height: 42px; font-size: 16px; }
 }
 
 @media (max-width: 420px) {

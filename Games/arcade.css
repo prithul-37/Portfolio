@@ -98,7 +98,7 @@
   display: none;
   position: fixed;
   inset: 0;
-  z-index: 200;
+  z-index: 2000;
   background: rgba(4, 2, 10, 0.86);
   backdrop-filter: blur(4px);
   align-items: center;
@@ -115,7 +115,7 @@
   background: linear-gradient(160deg, var(--panel-2) 0%, var(--panel) 100%);
   border: 2px solid var(--line);
   clip-path: var(--pixel-corner);
-  padding: 22px 22px 20px;
+  padding: 46px 22px 20px;
   box-shadow: 0 0 40px rgba(255, 46, 136, 0.35), inset 0 0 30px rgba(41, 242, 255, 0.06);
   animation: fadeInUp 0.28s ease both;
 }
@@ -466,25 +466,14 @@
 }
 .arcade-hint { font-family: var(--font-body); font-size: 15px; color: var(--text-mute); }
 
-/* Touch d-pad — only shown on coarse pointers */
-.arcade-dpad { display: none; margin-top: 16px; flex-direction: column; align-items: center; gap: 8px; }
-.arcade-dpad .dpad-row { display: flex; gap: 56px; }
-.dpad-btn {
-  width: 52px;
-  height: 52px;
-  font-size: 18px;
-  color: var(--cyan);
-  background: rgba(41, 242, 255, 0.08);
-  border: 2px solid rgba(41, 242, 255, 0.3);
-  clip-path: var(--pixel-corner);
-  cursor: pointer;
-  transition: background 0.15s ease;
-  user-select: none;
-  -webkit-tap-highlight-color: transparent;
-}
-.dpad-btn:active { background: rgba(41, 242, 255, 0.25); }
-@media (hover: none) and (pointer: coarse) {
-  .arcade-dpad { display: flex; }
+@media (max-width: 768px) {
+  .arcade-modal { padding: 12px; }
+  .arcade-cabinet {
+    padding: 42px 16px 16px;
+    max-height: 92vh;
+  }
+  .arcade-close { font-size: 26px; top: 8px; right: 10px; }
+  .lm-title { font-size: 18px; }
 }
 
 @media (max-width: 420px) {

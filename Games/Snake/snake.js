@@ -21,16 +21,8 @@
                 '<div class="arcade-overlay snk-overlay">' +
                     '<p class="arcade-msg snk-msg">READY?</p>' +
                     '<button class="arcade-start snk-start" type="button">START</button>' +
-                    '<p class="arcade-hint">Arrow keys / WASD &middot; Swipe on mobile</p>' +
+                    '<p class="arcade-hint">Arrow keys / WASD &middot; Swipe to steer</p>' +
                 '</div>' +
-            '</div>' +
-            '<div class="arcade-dpad" aria-hidden="true">' +
-                '<button class="dpad-btn" type="button" data-dir="up">▲</button>' +
-                '<div class="dpad-row">' +
-                    '<button class="dpad-btn" type="button" data-dir="left">◀</button>' +
-                    '<button class="dpad-btn" type="button" data-dir="right">▶</button>' +
-                '</div>' +
-                '<button class="dpad-btn" type="button" data-dir="down">▼</button>' +
             '</div>';
 
         const canvas = root.querySelector('.snk-canvas');
@@ -210,16 +202,6 @@
         document.addEventListener('keydown', onKey);
 
         startBtn.addEventListener('click', onStart);
-
-        root.querySelectorAll('.arcade-dpad .dpad-btn').forEach(function (btn) {
-            btn.addEventListener('click', function () {
-                const d = btn.dataset.dir;
-                if (d === 'up') setDir(0, -1);
-                else if (d === 'down') setDir(0, 1);
-                else if (d === 'left') setDir(-1, 0);
-                else setDir(1, 0);
-            });
-        });
 
         let tsx = 0, tsy = 0;
         canvas.addEventListener('touchstart', function (e) {
