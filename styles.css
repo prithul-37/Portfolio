@@ -1236,9 +1236,71 @@ section { position: relative; }
   background: linear-gradient(160deg, var(--panel), var(--bg-2));
   border: 2px solid var(--line);
   clip-path: var(--pixel-corner);
+  cursor: pointer;
+  position: relative;
   transition: transform 0.14s ease, box-shadow 0.22s ease, border-color 0.2s ease, color 0.2s ease;
 }
 .contact-btn i { font-size: 18px; }
+.contact-btn.copied {
+  color: var(--green);
+  border-color: var(--green);
+  box-shadow: 0 0 22px rgba(87, 255, 143, 0.4);
+}
+
+/* Neon arcade tooltip (matches the gamepad launcher tip).
+   Lives on an unclipped wrapper because .contact-btn's clip-path
+   would otherwise cut the bubble off. */
+.tip-wrap {
+  position: relative;
+  display: inline-flex;
+}
+.tip-wrap > .contact-btn { flex: 1; }
+.tip-wrap[data-tip]::after {
+  content: attr(data-tip);
+  position: absolute;
+  bottom: calc(100% + 10px);
+  left: 50%;
+  transform: translateX(-50%) translateY(6px);
+  font-family: var(--font-display);
+  font-size: 9px;
+  letter-spacing: 0.06em;
+  color: #0a0510;
+  background: var(--amber);
+  padding: 9px 12px;
+  clip-path: var(--pixel-corner);
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  box-shadow: 0 0 16px rgba(255, 210, 63, 0.55);
+  transition: opacity 0.18s ease, transform 0.18s ease;
+  z-index: 5;
+}
+/* little amber stem under the bubble */
+.tip-wrap[data-tip]::before {
+  content: "";
+  position: absolute;
+  bottom: calc(100% + 4px);
+  left: 50%;
+  width: 6px;
+  height: 6px;
+  background: var(--amber);
+  transform: translateX(-50%) translateY(6px) rotate(45deg);
+  opacity: 0;
+  pointer-events: none;
+  box-shadow: 0 0 10px rgba(255, 210, 63, 0.5);
+  transition: opacity 0.18s ease, transform 0.18s ease;
+  z-index: 5;
+}
+.tip-wrap[data-tip]:hover::after,
+.tip-wrap[data-tip]:focus-within::after {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+.tip-wrap[data-tip]:hover::before,
+.tip-wrap[data-tip]:focus-within::before {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0) rotate(45deg);
+}
 .contact-btn.email:hover { color: var(--amber); border-color: var(--amber); box-shadow: 0 6px 0 rgba(255,210,63,0.25), 0 0 26px rgba(255, 210, 63, 0.4); transform: translateY(-4px); }
 .contact-btn.linkedin:hover { color: var(--cyan); border-color: var(--cyan); box-shadow: 0 6px 0 rgba(41,242,255,0.25), 0 0 26px rgba(41, 242, 255, 0.4); transform: translateY(-4px); }
 .contact-btn.discord:hover { color: var(--purple); border-color: var(--purple); box-shadow: 0 6px 0 rgba(168,107,255,0.25), 0 0 26px rgba(168, 107, 255, 0.4); transform: translateY(-4px); }
@@ -1314,6 +1376,26 @@ footer {
   animation: blinkSlow 1.4s steps(1) infinite;
 }
 footer p:last-child { font-size: 17px; color: var(--text-mute); letter-spacing: 0.06em; }
+
+.playtime {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  margin: 0 0 14px;
+  padding: 8px 16px;
+  font-family: var(--font-display);
+  background: rgba(0, 0, 0, 0.35);
+  border: 2px solid rgba(41, 242, 255, 0.3);
+  clip-path: var(--pixel-corner);
+  box-shadow: inset 0 0 14px rgba(41, 242, 255, 0.08);
+}
+.playtime-label { color: var(--text-mute); font-size: 9px; letter-spacing: 0.1em; }
+.playtime-val {
+  font-size: 12px;
+  color: var(--cyan);
+  letter-spacing: 0.08em;
+  text-shadow: 0 0 10px rgba(41, 242, 255, 0.6);
+}
 
 /* =========================================================================
    GALLERY MODAL
