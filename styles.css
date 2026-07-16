@@ -1301,6 +1301,9 @@ section { position: relative; }
   opacity: 1;
   transform: translateX(-50%) translateY(0) rotate(45deg);
 }
+/* keep the tooltip suppressed right after a copy, even while hovered */
+.tip-wrap.tip-hide::after,
+.tip-wrap.tip-hide::before { opacity: 0 !important; }
 .contact-btn.email:hover { color: var(--amber); border-color: var(--amber); box-shadow: 0 6px 0 rgba(255,210,63,0.25), 0 0 26px rgba(255, 210, 63, 0.4); transform: translateY(-4px); }
 .contact-btn.linkedin:hover { color: var(--cyan); border-color: var(--cyan); box-shadow: 0 6px 0 rgba(41,242,255,0.25), 0 0 26px rgba(41, 242, 255, 0.4); transform: translateY(-4px); }
 .contact-btn.discord:hover { color: var(--purple); border-color: var(--purple); box-shadow: 0 6px 0 rgba(168,107,255,0.25), 0 0 26px rgba(168, 107, 255, 0.4); transform: translateY(-4px); }

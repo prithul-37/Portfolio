@@ -682,12 +682,20 @@ document.querySelectorAll('.project-card[data-gallery]').forEach(function (card)
 // ---- Click-to-copy buttons (e.g. Discord username) ------------------------
 document.querySelectorAll('[data-copy]').forEach(function (btn) {
     const label = btn.querySelector('.copy-label') || btn;
+    const wrap = btn.closest('.tip-wrap');
     const original = label.textContent;
     let resetTimer = null;
+
+    // Re-enable the tooltip once the pointer leaves after a copy.
+    if (wrap) {
+        wrap.addEventListener('mouseleave', function () { wrap.classList.remove('tip-hide'); });
+    }
 
     function flashCopied() {
         btn.classList.add('copied');
         label.textContent = 'Copied!';
+        if (wrap) wrap.classList.add('tip-hide'); // hide tooltip while still hovered
+        btn.blur();                               // drop focus after copying
         clearTimeout(resetTimer);
         resetTimer = setTimeout(function () {
             label.textContent = original;
@@ -718,4 +726,10 @@ document.querySelectorAll('[data-copy]').forEach(function (btn) {
             flashCopied();
         }
     });
+});
+
+// Drop focus after activating a contact button so its tooltip doesn't linger
+// (e.g. after returning from a mailto / LinkedIn tab keeps :focus-within).
+document.querySelectorAll('.contact-info .contact-btn').forEach(function (btn) {
+    btn.addEventListener('click', function () { btn.blur(); });
 });
