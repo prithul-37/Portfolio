@@ -219,11 +219,11 @@ img {
 .cabinet-corner:focus-visible .corner-pad {
   filter: drop-shadow(0 0 14px var(--cyan)) saturate(1.5);
 }
-/* hover tooltip — reveals the future game slot */
+/* hover tooltip — slides out to the right so it clears the coin HUD above */
 .corner-tip {
   position: absolute;
-  left: 0;
-  bottom: calc(100% + 6px);
+  left: calc(100% + 10px);
+  bottom: 12px;
   font-family: var(--font-display);
   font-size: 9px;
   letter-spacing: 0.08em;
@@ -233,7 +233,7 @@ img {
   clip-path: var(--pixel-corner);
   white-space: nowrap;
   opacity: 0;
-  transform: translateY(6px);
+  transform: translateX(-6px);
   pointer-events: none;
   box-shadow: 0 0 16px rgba(255, 210, 63, 0.55);
   transition: opacity 0.18s ease, transform 0.18s ease;
@@ -241,7 +241,7 @@ img {
 .cabinet-corner:hover .corner-tip,
 .cabinet-corner:focus-visible .corner-tip {
   opacity: 1;
-  transform: translateY(0);
+  transform: translateX(0);
 }
 @keyframes bob {
   0%, 100% { transform: translateY(0) rotate(-6deg); }
@@ -637,8 +637,10 @@ section { position: relative; }
 .scroll-hint {
   position: absolute;
   bottom: 26px;
-  left: 50%;
-  transform: translateX(-50%);
+  left: 0;
+  right: 0;
+  width: 100%;
+  text-align: center;           /* width-independent centering (font-load safe) */
   font-family: var(--font-display);
   font-size: 10px;
   color: var(--amber);
@@ -648,8 +650,8 @@ section { position: relative; }
   z-index: 2;
 }
 @keyframes bobDown {
-  0%, 100% { transform: translate(-50%, 0); opacity: 0.5; }
-  50% { transform: translate(-50%, 8px); opacity: 1; }
+  0%, 100% { transform: translateY(0); opacity: 0.5; }
+  50% { transform: translateY(8px); opacity: 1; }
 }
 /* coin-insert feedback flash on each blast */
 .scroll-hint.coin-pop {
@@ -659,9 +661,9 @@ section { position: relative; }
   animation: coinPop 0.4s ease-out;
 }
 @keyframes coinPop {
-  0% { transform: translate(-50%, 0) scale(1); }
-  35% { transform: translate(-50%, -5px) scale(1.35); }
-  100% { transform: translate(-50%, 0) scale(1); }
+  0% { transform: translateY(0) scale(1); }
+  35% { transform: translateY(-5px) scale(1.35); }
+  100% { transform: translateY(0) scale(1); }
 }
 
 @keyframes fadeUp {
@@ -827,11 +829,14 @@ section { position: relative; }
    ========================================================================= */
 .skills { padding: 110px 0; }
 .skills-list {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
   gap: 22px;
 }
 .skill-category {
+  flex: 1 1 320px;
+  max-width: 400px;
   background: linear-gradient(160deg, var(--panel), var(--bg-2));
   border: 2px solid var(--line);
   clip-path: var(--pixel-corner);
@@ -978,13 +983,16 @@ section { position: relative; }
   margin: -34px 0 44px;
 }
 .projects-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
   gap: 24px;
 }
 
 .project-card {
   position: relative;
+  flex: 1 1 300px;
+  max-width: 360px;
   background: linear-gradient(165deg, var(--panel-2), var(--bg-2));
   border: 2px solid var(--line);
   clip-path: var(--pixel-corner);
@@ -994,7 +1002,7 @@ section { position: relative; }
   overflow: hidden;
   transition: transform 0.22s ease, box-shadow 0.28s ease, border-color 0.22s ease;
 }
-.project-card[onclick] { cursor: pointer; }
+.project-card[onclick], .project-card[data-gallery] { cursor: pointer; }
 .project-card::after {
   /* top neon strip */
   content: "";
@@ -1463,7 +1471,8 @@ footer p:last-child { font-size: 17px; color: var(--text-mute); letter-spacing: 
   .contact-info { flex-direction: column; align-items: stretch; }
   .contact-btn { justify-content: center; }
 
-  .cabinet-corner { display: none; }
+  .cabinet-corner { bottom: 14px; left: 14px; }
+  .corner-pad { width: 38px; }
 }
 
 @media (max-width: 420px) {
