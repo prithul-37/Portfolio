@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-This is a personal portfolio website for a game developer. It's a **static site** built with vanilla HTML, CSS, and JavaScript (no build tools or dependencies). The site showcases game development projects and professional information.
+Personal portfolio for a Unity game developer, styled as an **arcade/CRT cabinet** (scanlines, coin economy, pixel particles). Static site — vanilla HTML, CSS, and JavaScript with no build tools.
 
 ## Architecture
 
@@ -12,129 +12,134 @@ This is a personal portfolio website for a game developer. It's a **static site*
 
 ```
 Portfolio/
-├── index.html           # Main page structure (all sections in one file)
-├── script.js            # JavaScript functionality
-├── styles.css           # All CSS (1250+ lines, organized by section)
-├── /Res/                # Resources (background image, profile photo, icons)
+├── index.html           # All sections in one file
+├── script.js            # Particle system, gallery modal, utilities
+├── styles.css           # All CSS (1300+ lines, organized by section)
+├── Games/               # Arcade subsystem
+│   ├── arcade.js        # Coin economy, game registry, lobby
+│   ├── arcade.css       # Arcade modal + lobby styles
+│   └── Snake/           # Snake game (snake.js, snake.css)
+├── /Res/                # Background, profile photo, controller icon, OG image
 ├── /Icons/              # Game project logos
-└── /GameMedia/          # Game screenshots and video trailers
+└── /GameMedia/          # Screenshots and video trailers per game
 ```
 
-### Key Sections (in index.html)
+### Sections (index.html)
 
-Each section is a self-contained `<section>` element with an ID for navigation:
-- **#home** - Hero section with particle animation
-- **#about** - Profile, bio, and action buttons
-- **#skills** - Technical skills organized by category
-- **#projects** - Game projects grid with modals
-- **#contact** - Social links and job information
+Nav labels use arcade theming; IDs are the anchor targets:
+- **#home** ("Start") — Hero with pixel particle canvas, HUD stats, charge-blast mechanic
+- **#about** ("Player") — Profile card with stat bars
+- **#skills** ("Loadout") — Skill categories as tag clouds
+- **#experience** ("Levels") — Alternating-side timeline of work/education
+- **#projects** ("Games") — Project card grid opening gallery modals
+- **#contact** ("Continue") — Social links, countdown timer, playtime counter
 
-### CSS Organization (styles.css)
+### JavaScript (script.js)
 
-CSS is organized by section with clear comments. Responsive design uses `@media (max-width: 768px)` as the primary breakpoint. Key animations include:
-- `@keyframes fadeInUp` - Element entrance animation
-- `@keyframes pulse` - Status badge pulse
-- `@keyframes glitch` - Hover effect on hero title
-- `@keyframes subtlePulse` - Project icon pulse
-- `@keyframes float` - Game controller corner icon
+**ParticleSystem class**: Canvas-based pixel starfield on `#particles-canvas`.
+- Press-and-hold on `#home` charges a blast; release fires a ripple that pushes particles
+- Ripples scale in size/strength with hold duration (up to `maxChargeMs` = 1400 ms)
+- `spawnBurst()` births new particles at the blast point (field grows up to `maxParticles` ≈ 2× base)
+- Mouse proximity draws neon connection lines to nearby particles
 
-### JavaScript Functionality (script.js)
+**Gallery system**: `gameMedia` object maps game IDs to `{ title, media[] }`.
+- Gallery cards use `data-gallery="game-id"` attribute (not onclick) — event wired in the `querySelectorAll` block at the bottom of script.js
+- `openGallery(gameId)` / `showMedia(index)` / `closeGallery()` are global functions for the modal
+- Keyboard navigation: Arrow keys to step, Escape to close; video auto-pauses on close
 
-**ParticleSystem class** (lines 100-264): Canvas-based particle animation
-- 150 particles with color cycling and neon glow
-- Mouse interaction: draws connections to nearby particles
-- Click interaction: particles repel from click point
-- Respects canvas bounds with velocity clamping
+**Other utilities**:
+- HUD stat counters: `[data-count]` elements animate to their target value on scroll into view
+- Playtime counter: accumulates visible-tab time in `localStorage` key `sitePlaytimeMs`, displayed in the footer
+- Click-to-copy: buttons with `[data-copy]` copy the attribute value; label flashes "Copied!" with fallback for old browsers
+- "CONTINUE?" countdown loop auto-resets from 9 → 0 on a 1 s interval
+- `[data-tip]` on `.tip-wrap` elements drives CSS tooltips (no JS)
 
-**Gallery system** (lines 280-462): Modal for game media
-- Data structure `gameMedia` maps game IDs to images/videos
-- `openGallery(gameId)` - Opens modal with thumbnails
-- `showMedia(index)` - Displays image or video
-- Keyboard navigation (arrow keys, escape)
-- Video auto-pause on close
+### Arcade subsystem (Games/arcade.js)
 
-**Utility functions**:
-- `typeWriter()` - Unused typing effect (commented out)
-- Smooth scroll on anchor links
-- Navbar logo change on scroll position
-- IntersectionObserver for fade-in animations on project cards
-- CV download tracking (console.log only)
+`arcade.js` manages a coin economy and a pluggable game registry:
+- Coins stored in `localStorage` key `arcadeCoins`; first visit grants 3 welcome coins
+- `[data-coin-count]` elements anywhere in the DOM stay in sync via `coinListeners`
+- Coins are earned by clicking on the hero section (each click flings an animated coin to the HUD)
+- Games self-register with `Arcade.register({ id, title, cost, thumb, mount })`. `mount(rootEl, api)` builds the game UI and returns an optional `{ destroy() }` controller
+- `openArcade()` / `closeArcade()` are global, called from HTML
 
 ## Common Development Tasks
 
 ### Adding a New Game Project
 
-1. **Add project data to gallery** (script.js, line 281):
+1. **Add project data** (script.js, inside `gameMedia`):
    ```javascript
    'game-id': {
        title: 'Game Name',
        media: [
-           { type: 'image', src: 'GameMedia/FolderName/file.jpg', thumb: 'GameMedia/FolderName/thumb.jpg' },
-           // more media items...
+           { type: 'image', src: 'GameMedia/Folder/screenshot1.jpg', thumb: 'GameMedia/Folder/Thumb.png' },
+           { type: 'video', src: 'GameMedia/Folder/trailer.mp4',    thumb: 'GameMedia/Folder/Thumb.png' },
        ]
    }
    ```
 
-2. **Add project card** (index.html, projects section):
+2. **Add project card** (index.html, inside `.projects-grid`):
    ```html
-   <div class="project-card featured" onclick="openGallery('game-id')">
-       <div class="project-icon game-id">
-           <img src="Icons/GameLogo.png" alt="Game Name" />
-           <div class="icon-bg"></div>
-       </div>
-       <!-- project details -->
+   <div class="project-card featured" role="button" tabindex="0"
+        data-gallery="game-id" aria-label="Game Name — view screenshot gallery">
+     <div class="card-scan"></div>
+     <div class="play-badge">▶ GALLERY</div>
+     <div class="project-icon game-id">
+       <img src="Icons/GameLogo.png" alt="Game Name" loading="lazy" decoding="async" />
+       <div class="icon-bg"></div>
+     </div>
+     <h3>Game Name</h3>
+     <span class="project-type">Genre</span>
+     <p>Description.</p>
+     <div class="tech-stack"><span>Unity</span><span>C#</span></div>
    </div>
    ```
+   Cards without a gallery (store-link only) omit `data-gallery` and the `play-badge`.
 
-3. **Add icon styling** (styles.css, around line 720):
+3. **Add icon background** (styles.css, in the project icons section):
    ```css
    .game-id .icon-bg {
        background: linear-gradient(135deg, #colorA 0%, #colorB 100%);
    }
    ```
 
-4. **Create media folders**: `GameMedia/GameName/` with screenshots and a `Thumb.jpg/png`
+4. **Create media folder**: `GameMedia/GameName/` with screenshots and a `Thumb.png`
 
-### Updating Skills Section
+### Adding a Playable Arcade Game
 
-Edit the skill categories in index.html (lines 116-166). Each category is a `<div class="skill-category">` with a heading and `<div class="skill-tags">` containing `<span>` elements.
+1. Create `Games/GameName/game.js` and `Games/GameName/game.css`
+2. Call `Arcade.register({ id, title, cost, thumb, mount })` at the end of the game file — `mount(rootEl, api)` builds DOM into `rootEl`, returns `{ destroy() }`
+3. Add `<link>` and `<script>` tags in index.html (after the existing arcade scripts)
 
-### Changing Colors/Theme
+### Adding a Contact Method
 
-Primary colors are defined in CSS as gradients and RGBA values. Key color variables used:
-- `#6b7280` - Primary gray (buttons, accents)
-- `#f59e0b` - Accent gold (hover states, featured borders)
-- `#1f2937` - Dark backgrounds
-- `#111827` - Darker backgrounds
-- `#e5e7eb` - Light text
-
-### Adding Contact Method
-
-In the contact section (index.html, lines 334-355), add a new contact button:
+Add a button in the contact section (`#contact`, `.contact-info`):
 ```html
-<a href="..." target="_blank" class="contact-btn CLASS-NAME">
-    <i class="fab fa-ICON"></i>
+<span class="tip-wrap" data-tip="Tooltip text">
+  <a href="..." target="_blank" class="contact-btn class-name">
+    <i class="fab fa-icon"></i>
     <span>Label</span>
-</a>
+  </a>
+</span>
 ```
+For a copy button instead of a link, use `<button type="button" data-copy="value">` with a `.copy-label` child span.
 
-Then add hover styling in styles.css (around line 945):
+Then add hover styling in styles.css (contact buttons section):
 ```css
-.contact-btn.CLASS-NAME:hover {
+.contact-btn.class-name:hover {
     background: rgba(R, G, B, 0.2);
     border-color: #RRGGBB;
 }
 ```
 
-## Important Notes
+## Key Design Constraints
 
-- **No build process** - This is a static site. Changes to HTML/CSS/JS take effect immediately
-- **Single HTML file** - All sections and content are in index.html for simplicity
-- **Canvas performance** - The particle system animates 150 particles with requestAnimationFrame
-- **Mobile responsive** - Test changes at 768px and below breakpoints
-- **Gallery modal** - Renders dynamically from gameMedia data structure; ensure image paths are correct
-- **External dependencies** - Only Font Awesome icons (CDN) and Google Fonts (CDN) are external
+- **Arcade/CRT aesthetic** — scanlines, pixel fonts (Press Start 2P, VT323), neon palette `#ff2e88 / #29f2ff / #ffd23f / #57ff8f / #a86bff`. New UI elements should fit this theme.
+- **No build process** — changes take effect immediately on file save
+- **Mobile responsive** — primary breakpoint `@media (max-width: 768px)`; test the particle canvas, project grid, and arcade modal at narrow widths
+- **Gallery modal** — driven entirely by `gameMedia` in script.js; mismatched IDs between `data-gallery` and `gameMedia` keys cause silent no-ops
+- **External dependencies** — Font Awesome 6 (CDN) and Google Fonts (CDN) only
 
-## Hosting and Deployment
+## Hosting
 
-The site is a plain static site ready to serve as-is. No build step needed. All media paths are relative (`GameMedia/...`, `Icons/...`, etc.), so ensure the folder structure is preserved in deployment.
+Plain static site served as-is from GitHub Pages at `https://prithol-37.github.io/Portfolio/`. All asset paths are relative; preserve folder structure on deploy.

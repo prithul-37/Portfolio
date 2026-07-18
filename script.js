@@ -101,8 +101,11 @@ function toggleMobileMenu() {
     hamburger.classList.toggle('active');
 }
 
-// ---- CV download tracking --------------------------------------------------
+// ---- CV file (single source of truth) --------------------------------------
+// Change this one line to swap the CV; every download link updates automatically.
+const CV_FILE = 'Prithul_Biswas_Dip_CV.pdf';
 document.querySelectorAll('a[download]').forEach(link => {
+    link.setAttribute('href', CV_FILE);
     link.addEventListener('click', () => console.log('CV downloaded'));
 });
 
