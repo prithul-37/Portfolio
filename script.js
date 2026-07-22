@@ -2,6 +2,11 @@
    PRITHUL BISWAS — Studio Dossier · behaviour
    ========================================================================= */
 
+// ---- CV file (single source of truth) -------------------------------------
+// Update this one line to change the CV everywhere it's linked.
+const CV_FILE = 'cv/Prithul Biswas CV202607.pdf';
+document.querySelectorAll('[data-cv]').forEach(a => { a.href = CV_FILE; });
+
 // ---- Theme toggle (light / dark) ------------------------------------------
 // Initial theme is set pre-paint by the inline <head> script. Here we only
 // handle switching, persistence, and keeping the browser UI colour in sync.
