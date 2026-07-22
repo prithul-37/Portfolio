@@ -74,6 +74,17 @@
       }
     </script>
 
+    <!-- Set theme before paint to avoid a flash of the wrong mode -->
+    <script>
+      (function () {
+        var theme = "light";
+        try {
+          if (localStorage.getItem("pb-theme") === "dark") theme = "dark";
+        } catch (e) {}
+        document.documentElement.setAttribute("data-theme", theme);
+      })();
+    </script>
+
     <link rel="stylesheet" href="styles.css" />
     <link
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
@@ -93,6 +104,10 @@
           <span class="wm-mark">PB</span>
           <span class="wm-name">Prithul&nbsp;Biswas</span>
         </a>
+        <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle dark mode" title="Toggle dark mode">
+          <i class="fas fa-moon icon-moon" aria-hidden="true"></i>
+          <i class="fas fa-sun icon-sun" aria-hidden="true"></i>
+        </button>
         <button class="hamburger" onclick="toggleMobileMenu()" aria-label="Menu" aria-expanded="false">
           <span></span><span></span>
         </button>

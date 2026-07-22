@@ -27,6 +27,28 @@
   --gutter: clamp(1.25rem, 4vw, 3rem);
   --ease: cubic-bezier(0.34, 1.4, 0.5, 1);
   --ease-soft: cubic-bezier(0.22, 1, 0.36, 1);
+
+  --dot: rgba(23, 20, 13, 0.42);
+  color-scheme: light;
+}
+
+/* -------------------------------------------------------------------------
+   DARK MODE — same PLAYSET character, paper/ink flipped to warm near-black.
+   Accents are nudged brighter so they still pop; the brutalist offset
+   shadow (built on --ink) becomes a light echo, which reads great on dark.
+   ------------------------------------------------------------------------- */
+:root[data-theme="dark"] {
+  --paper:   #15120b;
+  --paper-2: #201b12;
+  --ink:     #f3ede0;
+  --ink-2:   #b1a892;
+  --blue:    #6076ff;
+  --coral:   #ff6a4d;
+  --yellow:  #ffce4d;
+  --green:   #24d488;
+
+  --dot: rgba(243, 237, 224, 0.07);
+  color-scheme: dark;
 }
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -35,7 +57,7 @@ html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
 
 body {
   background-color: var(--paper);
-  background-image: radial-gradient(var(--ink) 0.6px, transparent 0.6px);
+  background-image: radial-gradient(var(--dot) 0.6px, transparent 0.6px);
   background-size: 22px 22px;
   background-position: -11px -11px;
   color: var(--ink);
@@ -145,7 +167,72 @@ img { max-width: 100%; display: block; }
 .hamburger.active span:first-child { transform: translateY(7px) rotate(45deg); }
 .hamburger.active span:last-child { transform: translateY(-7px) rotate(-45deg); }
 
+/* Theme toggle — brutalist square, sun/moon swap by data-theme */
+.wordmark { margin-right: auto; }
+.nav-menu { order: 1; }
+.theme-toggle { order: 2; }
+.hamburger { order: 3; }
+.theme-toggle {
+  position: relative;
+  width: 42px; height: 42px;
+  flex-shrink: 0;
+  display: grid;
+  place-items: center;
+  background: var(--yellow);
+  color: var(--ink);
+  border: var(--border);
+  border-radius: 10px;
+  box-shadow: var(--shadow-sm);
+  cursor: pointer;
+  overflow: hidden;
+  transition: transform 0.18s var(--ease), box-shadow 0.18s, background 0.25s;
+}
+.theme-toggle:hover { transform: translate(-2px, -2px) rotate(-4deg); box-shadow: 6px 6px 0 var(--ink); }
+.theme-toggle:active { transform: translate(2px, 2px); box-shadow: 2px 2px 0 var(--ink); }
+.theme-toggle:focus-visible { outline: 3px solid var(--blue); outline-offset: 3px; }
+.theme-toggle i {
+  position: absolute;
+  font-size: 1rem;
+  transition: transform 0.4s var(--ease), opacity 0.3s;
+}
+.theme-toggle .icon-sun  { transform: translateY(140%) rotate(-90deg); opacity: 0; }
+.theme-toggle .icon-moon { transform: translateY(0) rotate(0); opacity: 1; }
+:root[data-theme="dark"] .theme-toggle { background: var(--blue); color: #fff; }
+:root[data-theme="dark"] .theme-toggle .icon-sun  { transform: translateY(0) rotate(0); opacity: 1; }
+:root[data-theme="dark"] .theme-toggle .icon-moon { transform: translateY(-140%) rotate(90deg); opacity: 0; }
+
 .nav-backdrop { display: none; }
+
+/* -------------------------------------------------------------------------
+   DARK MODE — repaint the few hardcoded whites so nothing glows on dark.
+   ------------------------------------------------------------------------- */
+:root[data-theme="dark"] .game-card.featured { background: var(--paper-2); }
+:root[data-theme="dark"] .portrait-frame,
+:root[data-theme="dark"] .media-viewer { background: var(--paper-2); }
+:root[data-theme="dark"] .stat.s-paper { background: var(--paper-2); }
+
+/* Yellow stays light in both themes, so text on it must stay dark —
+   otherwise --ink (now near-white) is unreadable on yellow. */
+:root[data-theme="dark"] .stat.s-yellow,
+:root[data-theme="dark"] .portrait-badge,
+:root[data-theme="dark"] .inline-flag,
+:root[data-theme="dark"] .gallery-flag,
+:root[data-theme="dark"] .path-kind.edu,
+:root[data-theme="dark"] .contact-btn.cb-yellow,
+:root[data-theme="dark"] .hero-lede strong,
+:root[data-theme="dark"] .path-card.now .path-kind.work,
+:root[data-theme="dark"] .nav-menu a:hover { color: #17140d; }
+
+/* Cross-fade surfaces during a theme switch (removed after ~450ms via JS).
+   Placed before the reduced-motion block so that override still wins. */
+:root.theme-anim, :root.theme-anim *, :root.theme-anim *::before, :root.theme-anim *::after {
+  transition: background-color 0.4s var(--ease-soft),
+              background 0.4s var(--ease-soft),
+              border-color 0.4s var(--ease-soft),
+              color 0.4s var(--ease-soft),
+              box-shadow 0.4s var(--ease-soft),
+              fill 0.4s var(--ease-soft) !important;
+}
 
 /* =========================================================================
    HERO
@@ -164,25 +251,58 @@ img { max-width: 100%; display: block; }
   z-index: 0;
   border: var(--border);
   border-radius: 50%;
-  will-change: transform;
+  will-change: transform, border-radius;
+  /* float + wobble, composed with scroll parallax via --py inside the keyframe */
+  animation: blobDrift 10s ease-in-out infinite;
 }
 .blob-coral {
   width: 22vw; height: 22vw; max-width: 300px; max-height: 300px;
   background: var(--coral);
   top: 12%; right: 8%;
   transform: translateY(var(--py, 0px));
+  animation-duration: 11s;
 }
 .blob-blue {
   width: 14vw; height: 14vw; max-width: 190px; max-height: 190px;
   background: var(--blue);
   bottom: 20%; right: 26%;
   transform: translateY(var(--py, 0px));
+  animation-duration: 8s;
+  animation-direction: alternate-reverse;
 }
 .blob-yellow {
   width: 9vw; height: 9vw; max-width: 130px; max-height: 130px;
   background: var(--yellow);
   top: 24%; left: 4%;
   transform: translateY(var(--py, 0px));
+  animation-duration: 9.5s;
+  animation-delay: -3.5s;
+}
+
+/* Liquid float: drifts, breathes, and softly morphs its outline.
+   Every keyframe carries the parallax offset (--py) so scrolling still
+   pushes the balls independently of this idle motion. */
+@keyframes blobDrift {
+  0% {
+    transform: translate(0, var(--py, 0px)) rotate(0deg) scale(1);
+    border-radius: 50%;
+  }
+  25% {
+    transform: translate(-9px, calc(var(--py, 0px) - 14px)) rotate(4deg) scale(1.03);
+    border-radius: 54% 46% 49% 51% / 48% 52% 48% 52%;
+  }
+  50% {
+    transform: translate(6px, calc(var(--py, 0px) - 22px)) rotate(-2deg) scale(1.05);
+    border-radius: 47% 53% 55% 45% / 53% 47% 53% 47%;
+  }
+  75% {
+    transform: translate(10px, calc(var(--py, 0px) - 10px)) rotate(3deg) scale(1.02);
+    border-radius: 52% 48% 46% 54% / 47% 53% 47% 53%;
+  }
+  100% {
+    transform: translate(0, var(--py, 0px)) rotate(0deg) scale(1);
+    border-radius: 50%;
+  }
 }
 .star {
   position: absolute;

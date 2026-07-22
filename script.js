@@ -2,6 +2,35 @@
    PRITHUL BISWAS — Studio Dossier · behaviour
    ========================================================================= */
 
+// ---- Theme toggle (light / dark) ------------------------------------------
+// Initial theme is set pre-paint by the inline <head> script. Here we only
+// handle switching, persistence, and keeping the browser UI colour in sync.
+(function () {
+    const root = document.documentElement;
+    const THEME_COLORS = { light: '#f5f0e6', dark: '#15120b' };
+
+    function syncMeta(theme) {
+        const meta = document.querySelector('meta[name="theme-color"]');
+        if (meta) meta.setAttribute('content', THEME_COLORS[theme] || THEME_COLORS.light);
+    }
+    syncMeta(root.getAttribute('data-theme') || 'light');
+
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    let animTimer = null;
+
+    window.toggleTheme = function () {
+        const next = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+        if (!reduceMotion) {
+            root.classList.add('theme-anim');
+            clearTimeout(animTimer);
+            animTimer = setTimeout(() => root.classList.remove('theme-anim'), 450);
+        }
+        root.setAttribute('data-theme', next);
+        syncMeta(next);
+        try { localStorage.setItem('pb-theme', next); } catch (e) { /* no-op */ }
+    };
+})();
+
 // ---- Smooth scroll + close mobile menu ------------------------------------
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
@@ -279,24 +308,7 @@ document.querySelectorAll('[data-copy]').forEach(function (btn) {
         }, 1400);
     }
 
-    function fallbackCopy(text) {
-        const ta = document.createElement('textarea');
-        ta.value = text;
-        ta.style.position = 'fixed';
-        ta.style.opacity = '0';
-        document.body.appendChild(ta);
-        ta.select();
-        try { document.execCommand('copy'); } catch (e) { /* no-op */ }
-        ta.remove();
-    }
-
     btn.addEventListener('click', function () {
-        const text = btn.dataset.copy;
-        if (navigator.clipboard && navigator.clipboard.writeText) {
-            navigator.clipboard.writeText(text).then(flashCopied).catch(() => { fallbackCopy(text); flashCopied(); });
-        } else {
-            fallbackCopy(text);
-            flashCopied();
-        }
+        navigator.clipboard.writeText(btn.dataset.copy).then(flashCopied);
     });
 });
