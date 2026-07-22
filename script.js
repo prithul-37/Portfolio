@@ -4,7 +4,7 @@
 
 // ---- CV file (single source of truth) -------------------------------------
 // Update this one line to change the CV everywhere it's linked.
-const CV_FILE = 'cv/Prithul_Biswas_Dip_CV.pdf';
+const CV_FILE = 'CV/Prithul_Biswas_Dip_CV.pdf';
 document.querySelectorAll('[data-cv]').forEach(a => { a.href = CV_FILE; });
 
 // ---- Theme toggle (light / dark) ------------------------------------------
