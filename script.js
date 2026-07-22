@@ -15,6 +15,30 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     });
 });
 
+// ---- Scroll parallax -------------------------------------------------------
+// Elements with data-parallax="<speed>" get a translateY of scrollY * speed,
+// exposed as the CSS var --py so it composes with any existing transform.
+// Negative speed = moves opposite to scroll (foreground exits faster).
+(function () {
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    const items = document.querySelectorAll('[data-parallax]');
+    if (!items.length) return;
+
+    let ticking = false;
+    function update() {
+        const y = window.scrollY;
+        items.forEach(el => {
+            const speed = parseFloat(el.dataset.parallax) || 0;
+            el.style.setProperty('--py', (y * speed).toFixed(1) + 'px');
+        });
+        ticking = false;
+    }
+    window.addEventListener('scroll', () => {
+        if (!ticking) { requestAnimationFrame(update); ticking = true; }
+    }, { passive: true });
+    update();
+})();
+
 // ---- Navbar background on scroll -------------------------------------------
 window.addEventListener('scroll', function () {
     const navbar = document.getElementById('navbar');

@@ -15,7 +15,7 @@
       name="keywords"
       content="Prithul Biswas, Unity Game Developer, C#, mobile games, hybrid-casual, game programmer, Dhaka, Bangladesh"
     />
-    <meta name="theme-color" content="#0c0b0d" />
+    <meta name="theme-color" content="#f5f0e6" />
     <link rel="canonical" href="https://prithul-37.github.io/Portfolio/" />
 
     <!-- Open Graph -->
@@ -82,20 +82,16 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&family=Space+Mono:wght@400;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&family=Familjen+Grotesk:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap"
       rel="stylesheet"
     />
   </head>
   <body>
-    <!-- Grain + ambient glow atmosphere -->
-    <div class="grain" aria-hidden="true"></div>
-
     <nav class="navbar" id="navbar">
       <div class="nav-inner">
         <a href="#home" class="wordmark">
           <span class="wm-mark">PB</span>
           <span class="wm-name">Prithul&nbsp;Biswas</span>
-          <span class="wm-role">Unity&nbsp;Dev</span>
         </a>
         <button class="hamburger" onclick="toggleMobileMenu()" aria-label="Menu" aria-expanded="false">
           <span></span><span></span>
@@ -103,12 +99,12 @@
         <ul class="nav-menu">
           <li><a href="#work">Work</a></li>
           <li><a href="#about">About</a></li>
-          <li><a href="#skills">Craft</a></li>
+          <li><a href="#skills">Stack</a></li>
           <li><a href="#experience">Path</a></li>
           <li><a href="#contact">Contact</a></li>
           <li>
             <a href="Prithul Biswas CV202607.pdf" download class="cv-btn">
-              CV <i class="fas fa-arrow-down"></i>
+              Grab CV <i class="fas fa-arrow-down"></i>
             </a>
           </li>
         </ul>
@@ -118,86 +114,78 @@
 
     <!-- ================= HERO ================= -->
     <header id="home" class="hero">
-      <div class="hero-glow" aria-hidden="true"></div>
+      <span class="blob blob-coral" data-parallax="0.12" aria-hidden="true"></span>
+      <span class="blob blob-blue" data-parallax="0.2" aria-hidden="true"></span>
+      <span class="blob blob-yellow" data-parallax="0.16" aria-hidden="true"></span>
+      <span class="star" aria-hidden="true">✦</span>
+
       <div class="container hero-inner">
-        <p class="hero-kicker reveal-load" style="--d: 0">
-          <span class="tick"></span> Available for work · Dhaka, Bangladesh
+        <p class="hero-eyebrow">
+          <span class="dot-live"></span> Portfolio ’26 — Dhaka, Bangladesh
         </p>
 
         <h1 class="hero-title">
-          <span class="reveal-load line" style="--d: 1">Unity</span>
-          <span class="reveal-load line accent" style="--d: 2">Game Developer</span>
-          <span class="reveal-load line thin" style="--d: 3">who ships.</span>
+          <span class="line">Prithul</span>
+          <span class="line outline">Biswas</span>
+          <span class="line">Dip</span>
         </h1>
 
-        <p class="hero-lede reveal-load" style="--d: 4">
-          I'm <strong>Prithul Biswas</strong> — I build and release mobile games
-          end to end. Core developer on live hybrid-casual titles
-          <em>Pop'n Sort</em> and <em>Supermarket Sort Factory</em>, plus a shelf
-          of shipped commercial games on Google Play &amp; the App Store.
+        <div class="hero-tagrow">
+          <span class="sticker sticker-blue">Unity Game Developer</span>
+          <span class="hero-since">// shipping since 2021</span>
+        </div>
+
+        <p class="hero-lede">
+          I build and release mobile games end to end. Core dev on the live
+          hybrid-casual hits <strong>Pop'n Sort</strong> &amp;
+          <strong>Supermarket Sort Factory</strong>, plus a whole shelf of games
+          on Google Play &amp; the App Store.
         </p>
 
-        <div class="hero-actions reveal-load" style="--d: 5">
-          <a href="#work" class="btn primary">See the work <i class="fas fa-arrow-right"></i></a>
+        <div class="hero-actions">
+          <a href="#work" class="btn primary">See the games <i class="fas fa-arrow-right"></i></a>
           <a href="Prithul Biswas CV202607.pdf" download class="btn ghost">
             <i class="fas fa-download"></i> Download CV
           </a>
         </div>
 
-        <dl class="hero-stats reveal-load" style="--d: 6">
-          <div class="stat">
+        <dl class="hero-stats">
+          <div class="stat s-blue">
             <dt class="stat-num" data-count="7">0</dt>
             <dd class="stat-label">Titles shipped</dd>
           </div>
-          <div class="stat">
+          <div class="stat s-coral">
             <dt class="stat-num" data-count="3" data-suffix="+">0</dt>
-            <dd class="stat-label">Years in production</dd>
+            <dd class="stat-label">Years in prod</dd>
           </div>
-          <div class="stat">
+          <div class="stat s-yellow">
             <dt class="stat-num" data-count="2">0</dt>
             <dd class="stat-label">Live platforms</dd>
           </div>
-          <div class="stat">
+          <div class="stat s-paper">
             <dt class="stat-num stat-text">C#</dt>
-            <dd class="stat-label">Weapon of choice</dd>
+            <dd class="stat-label">Main weapon</dd>
           </div>
         </dl>
       </div>
 
-      <!-- Marquee of shipped titles -->
-      <div class="marquee reveal-load" style="--d: 7" aria-hidden="true">
-        <div class="marquee-track">
-          <span>Pop'n Sort</span><span class="dot">✦</span>
-          <span>Supermarket Sort Factory</span><span class="dot">✦</span>
-          <span>Ant March Adventure</span><span class="dot">✦</span>
-          <span>Zen Merge Puzzle</span><span class="dot">✦</span>
-          <span>Color Craft</span><span class="dot">✦</span>
-          <span>Leaping Frog</span><span class="dot">✦</span>
-          <span>Pop'n Sort</span><span class="dot">✦</span>
-          <span>Supermarket Sort Factory</span><span class="dot">✦</span>
-          <span>Ant March Adventure</span><span class="dot">✦</span>
-          <span>Zen Merge Puzzle</span><span class="dot">✦</span>
-          <span>Color Craft</span><span class="dot">✦</span>
-          <span>Leaping Frog</span><span class="dot">✦</span>
-        </div>
-      </div>
     </header>
 
-    <!-- ================= WORK / PROJECTS ================= -->
+    <!-- ================= WORK ================= -->
     <section id="work" class="work">
       <div class="container">
         <div class="section-head reveal">
           <span class="section-index">01</span>
-          <h2 class="section-title">Selected&nbsp;Work</h2>
+          <h2 class="section-title">Selected Work</h2>
           <p class="section-note">
-            Shipped titles &amp; systems. Tap a card with screenshots to open its
-            gallery.
+            Shipped titles &amp; systems. Tap a card marked
+            <span class="inline-flag">Gallery</span> to see the screenshots.
           </p>
         </div>
 
         <div class="work-grid">
-          <!-- Pop'n Sort (featured) -->
           <article class="game-card featured reveal">
+            <span class="game-live">LIVE</span>
             <div class="game-head">
               <div class="game-logo">
                 <img src="Icons/Pop n Sort icon.png" alt="Pop'n Sort" loading="lazy" decoding="async" />
@@ -206,7 +194,6 @@
                 <h3>Pop'n Sort</h3>
                 <span class="game-tag">Hybrid-Casual · with Supersonic</span>
               </div>
-              <span class="game-live">LIVE</span>
             </div>
             <p class="game-desc">
               Live sorting/matching hybrid-casual title. I own core game logic and
@@ -226,8 +213,8 @@
             </div>
           </article>
 
-          <!-- Supermarket Sort Factory (featured) -->
           <article class="game-card featured reveal">
+            <span class="game-live">LIVE</span>
             <div class="game-head">
               <div class="game-logo">
                 <img src="Icons/Super Market Sort Factory.png" alt="Supermarket Sort Factory" loading="lazy" decoding="async" />
@@ -236,7 +223,6 @@
                 <h3>Supermarket Sort Factory</h3>
                 <span class="game-tag">Hybrid-Casual · with Moonee</span>
               </div>
-              <span class="game-live">LIVE</span>
             </div>
             <p class="game-desc">
               Live sorting/matching hybrid-casual title. Implemented core game
@@ -253,7 +239,6 @@
             </div>
           </article>
 
-          <!-- Ant March Adventure (gallery) -->
           <article class="game-card reveal" role="button" tabindex="0" data-gallery="ant-march" aria-label="Ant March Adventure — view screenshot gallery">
             <span class="gallery-flag"><i class="fas fa-images"></i> Gallery</span>
             <div class="game-head">
@@ -283,7 +268,6 @@
             </div>
           </article>
 
-          <!-- Zen Merge (gallery) -->
           <article class="game-card reveal" role="button" tabindex="0" data-gallery="zen-merge" aria-label="Zen Merge Puzzle — view screenshot gallery">
             <span class="gallery-flag"><i class="fas fa-images"></i> Gallery</span>
             <div class="game-head">
@@ -313,7 +297,6 @@
             </div>
           </article>
 
-          <!-- Color Craft (gallery) -->
           <article class="game-card reveal" role="button" tabindex="0" data-gallery="color-craft" aria-label="Color Craft — view screenshot gallery">
             <span class="gallery-flag"><i class="fas fa-images"></i> Gallery</span>
             <div class="game-head">
@@ -342,7 +325,6 @@
             </div>
           </article>
 
-          <!-- Leaping Frog (gallery) -->
           <article class="game-card reveal" role="button" tabindex="0" data-gallery="leaping-frog" aria-label="Leaping Frog — view screenshot gallery">
             <span class="gallery-flag"><i class="fas fa-images"></i> Gallery</span>
             <div class="game-head">
@@ -372,7 +354,6 @@
             </div>
           </article>
 
-          <!-- Tic Tac Toe (no store / gallery) -->
           <article class="game-card reveal">
             <div class="game-head">
               <div class="game-logo game-logo--glyph">⭕</div>
@@ -408,14 +389,15 @@
               decoding="async"
             />
           </div>
+          <span class="portrait-badge">That's me 👋</span>
           <div class="portrait-caption">
-            <span class="status-dot"></span> Open to opportunities
+            <span class="dot-live"></span> Open to opportunities
           </div>
         </div>
 
         <div class="about-body reveal">
           <span class="section-index">02</span>
-          <h2 class="section-title">The developer<br />behind the work</h2>
+          <h2 class="section-title">The dev behind<br />the games</h2>
 
           <p class="prose">
             I'm Prithul Biswas Dip — a professional game developer by day, and an
@@ -454,12 +436,12 @@
       </div>
     </section>
 
-    <!-- ================= SKILLS / CRAFT ================= -->
+    <!-- ================= SKILLS / STACK ================= -->
     <section id="skills" class="skills">
       <div class="container">
         <div class="section-head reveal">
           <span class="section-index">03</span>
-          <h2 class="section-title">The&nbsp;Craft</h2>
+          <h2 class="section-title">The Stack</h2>
           <p class="section-note">The tools, systems, and patterns I build with.</p>
         </div>
 
@@ -511,68 +493,82 @@
       <div class="container">
         <div class="section-head reveal">
           <span class="section-index">04</span>
-          <h2 class="section-title">The&nbsp;Path</h2>
+          <h2 class="section-title">The Path</h2>
           <p class="section-note">Where I've worked and studied.</p>
         </div>
 
-        <ol class="timeline">
-          <li class="tl-item reveal">
-            <span class="tl-year">Oct 2025 — Present</span>
-            <div class="tl-body">
-              <span class="tl-kind work">Work</span>
-              <h3>Unity Game Developer</h3>
-              <p>Riseup Labs</p>
+        <div class="path-grid">
+          <article class="path-card now reveal">
+            <span class="now-badge"><span class="dot-live"></span> Now playing</span>
+            <div class="path-top">
+              <span class="path-kind work">Work</span>
+              <span class="path-no">01</span>
             </div>
-          </li>
-          <li class="tl-item reveal">
-            <span class="tl-year">Jun 2025 — Oct 2025</span>
-            <div class="tl-body">
-              <span class="tl-kind work">Work</span>
-              <h3>Software Engineer II (Unity)</h3>
-              <p>Nagorik Technologies Ltd.</p>
+            <h3 class="path-role">Unity Game Developer</h3>
+            <p class="path-org">Riseup Labs</p>
+            <span class="path-year">Oct 2025 — Present</span>
+          </article>
+
+          <article class="path-card reveal">
+            <div class="path-top">
+              <span class="path-kind work">Work</span>
+              <span class="path-no">02</span>
             </div>
-          </li>
-          <li class="tl-item reveal">
-            <span class="tl-year">Jun 2024 — Jun 2025</span>
-            <div class="tl-body">
-              <span class="tl-kind work">Work</span>
-              <h3>Junior Software Engineer (Unity)</h3>
-              <p>Nagorik Technologies Ltd.</p>
+            <h3 class="path-role">Software Engineer II (Unity)</h3>
+            <p class="path-org">Nagorik Technologies Ltd.</p>
+            <span class="path-year">Jun 2025 — Oct 2025</span>
+          </article>
+
+          <article class="path-card reveal">
+            <div class="path-top">
+              <span class="path-kind work">Work</span>
+              <span class="path-no">03</span>
             </div>
-          </li>
-          <li class="tl-item reveal">
-            <span class="tl-year">Until Jun 2024</span>
-            <div class="tl-body">
-              <span class="tl-kind work">Work</span>
-              <h3>Freelance Game Developer</h3>
-              <p>Remote — during B.Sc. studies</p>
+            <h3 class="path-role">Junior Software Engineer (Unity)</h3>
+            <p class="path-org">Nagorik Technologies Ltd.</p>
+            <span class="path-year">Jun 2024 — Jun 2025</span>
+          </article>
+
+          <article class="path-card reveal">
+            <div class="path-top">
+              <span class="path-kind work">Work</span>
+              <span class="path-no">04</span>
             </div>
-          </li>
-          <li class="tl-item reveal">
-            <span class="tl-year">2018 — 2024</span>
-            <div class="tl-body">
-              <span class="tl-kind edu">Edu</span>
-              <h3>B.Sc. in Computer Science &amp; Engineering</h3>
-              <p>Khulna University of Engineering &amp; Technology (KUET)</p>
+            <h3 class="path-role">Freelance Game Developer</h3>
+            <p class="path-org">Remote — during B.Sc. studies</p>
+            <span class="path-year">Until Jun 2024</span>
+          </article>
+
+          <article class="path-card reveal">
+            <div class="path-top">
+              <span class="path-kind edu">Edu</span>
+              <span class="path-no">05</span>
             </div>
-          </li>
-          <li class="tl-item reveal">
-            <span class="tl-year">2018</span>
-            <div class="tl-body">
-              <span class="tl-kind edu">Edu</span>
-              <h3>HSC</h3>
-              <p>St. Joseph Higher Secondary School</p>
+            <h3 class="path-role">B.Sc. in Computer Science &amp; Engineering</h3>
+            <p class="path-org">Khulna University of Engineering &amp; Technology (KUET)</p>
+            <span class="path-year">2018 — 2024</span>
+          </article>
+
+          <article class="path-card reveal">
+            <div class="path-top">
+              <span class="path-kind edu">Edu</span>
+              <span class="path-no">06</span>
             </div>
-          </li>
-          <li class="tl-item reveal">
-            <span class="tl-year">2016</span>
-            <div class="tl-body">
-              <span class="tl-kind edu">Edu</span>
-              <h3>SSC</h3>
-              <p>Monipur High School And College Branch - 03</p>
+            <h3 class="path-role">HSC</h3>
+            <p class="path-org">St. Joseph Higher Secondary School</p>
+            <span class="path-year">2018</span>
+          </article>
+
+          <article class="path-card reveal">
+            <div class="path-top">
+              <span class="path-kind edu">Edu</span>
+              <span class="path-no">07</span>
             </div>
-          </li>
-        </ol>
+            <h3 class="path-role">SSC</h3>
+            <p class="path-org">Monipur High School And College Branch - 03</p>
+            <span class="path-year">2016</span>
+          </article>
+        </div>
       </div>
     </section>
 
@@ -580,24 +576,24 @@
     <section id="contact" class="contact">
       <div class="container contact-inner reveal">
         <span class="section-index">05</span>
-        <h2 class="contact-title">Let's build<br />something <span class="accent">worth shipping.</span></h2>
+        <h2 class="contact-title">Let's build<br />something <span class="outline">fun.</span></h2>
         <p class="contact-lede">
           Open to opportunities, collaborations, and game-dev conversations —
           projects, ideas, or just talking shop about games. Reach out.
         </p>
 
         <div class="contact-btns">
-          <a href="mailto:prithuldip@gmail.com" class="contact-btn">
+          <a href="mailto:prithuldip@gmail.com" class="contact-btn cb-blue">
             <i class="fas fa-envelope"></i>
             <span class="cb-label">Email</span>
             <span class="cb-sub">prithuldip@gmail.com</span>
           </a>
-          <a href="https://linkedin.com/in/prithul-biswas" target="_blank" rel="noopener" class="contact-btn">
+          <a href="https://linkedin.com/in/prithul-biswas" target="_blank" rel="noopener" class="contact-btn cb-coral">
             <i class="fab fa-linkedin"></i>
             <span class="cb-label">LinkedIn</span>
             <span class="cb-sub">in/prithul-biswas</span>
           </a>
-          <button type="button" class="contact-btn" data-copy="prithuldip" aria-label="Copy Discord username prithuldip">
+          <button type="button" class="contact-btn cb-yellow" data-copy="prithuldip" aria-label="Copy Discord username prithuldip">
             <i class="fab fa-discord"></i>
             <span class="cb-label">Discord</span>
             <span class="cb-sub copy-label">prithuldip</span>
@@ -605,7 +601,7 @@
         </div>
 
         <div class="contact-now">
-          <span class="status-dot"></span>
+          <span class="dot-live"></span>
           Currently <strong>Unity Game Developer</strong> at Riseup Labs · since Oct 2025
         </div>
       </div>
@@ -614,12 +610,11 @@
     <footer>
       <div class="container footer-inner">
         <span class="foot-mark">Prithul&nbsp;Biswas</span>
-        <span class="foot-copy">&copy; 2026 · Built with vanilla HTML, CSS &amp; JS</span>
+        <span class="foot-copy">&copy; 2026 · Handbuilt with HTML, CSS &amp; JS</span>
         <a href="#home" class="foot-top">Back to top <i class="fas fa-arrow-up"></i></a>
       </div>
     </footer>
 
-    <!-- Floating CV -->
     <a href="Prithul Biswas CV202607.pdf" download class="fab-cv" aria-label="Download CV">
       <i class="fas fa-download"></i><span>CV</span>
     </a>
