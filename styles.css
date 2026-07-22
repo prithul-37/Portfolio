@@ -211,6 +211,12 @@ img { max-width: 100%; display: block; }
 :root[data-theme="dark"] .media-viewer { background: var(--paper-2); }
 :root[data-theme="dark"] .stat.s-paper { background: var(--paper-2); }
 
+/* --ink flips to near-white in dark, so anything with an --ink background +
+   white text becomes white-on-white. Give those dark text instead. */
+:root[data-theme="dark"] .section-index,
+:root[data-theme="dark"] .about-email,
+:root[data-theme="dark"] .store-btn:hover { color: var(--paper); }
+
 /* Yellow stays light in both themes, so text on it must stay dark —
    otherwise --ink (now near-white) is unreadable on yellow. */
 :root[data-theme="dark"] .stat.s-yellow,
