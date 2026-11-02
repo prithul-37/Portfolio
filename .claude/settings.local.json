@@ -20,7 +20,18 @@
       "Bash(ffmpeg -y -loglevel error -i \"Res/Me.JPEG\" -vf \"scale=600:600:force_original_aspect_ratio=increase,crop=600:600\" -q:v 3 \"Res/_m.jpg\")",
       "Bash(mv -f \"Res/_m.jpg\" \"Res/Me.JPEG\")",
       "Bash(ffprobe -v error -select_streams v:0 -show_entries stream=width,height -of csv=p=0 \"Res/Me.JPEG\")",
-      "Bash(xargs echo \"Me.JPEG now:\")"
+      "Bash(xargs echo \"Me.JPEG now:\")",
+      "Bash(npx --yes skills add https://github.com/vercel-labs/agent-skills --skill web-design-guidelines)",
+      "Bash(kill %1)",
+      "PowerShell($c = Get-NetTCPConnection -LocalPort 8899 -State Listen -ErrorAction SilentlyContinue; if \\($c\\) { $c | ForEach-Object { Stop-Process -Id $_.OwningProcess -Force }; \"server stopped\" } else { \"port 8899 already free\" })",
+      "Bash(awk '{s+=$5; printf \"%-45s %8.0f KB\\\\n\", $9, $5/1024} END {printf \"\\\\nTOTAL %.1f MB across %d files\\\\n\", s/1048576, NR}')",
+      "Bash(python -c \"import PIL; print\\('PIL', PIL.__version__\\)\")",
+      "Bash(curl --version)",
+      "Bash(python -)",
+      "Bash(python *)",
+      "Bash(awk '{printf \"%-46s %8.1f KB\\\\n\", $9, $5/1024}')",
+      "PowerShell($c = Get-NetTCPConnection -LocalPort 8899 -State Listen -ErrorAction SilentlyContinue; if \\($c\\) { $c | ForEach-Object { Stop-Process -Id $_.OwningProcess -Force }; \"server stopped\" } else { \"already free\" })",
+      "PowerShell($c = Get-NetTCPConnection -LocalPort 8901 -State Listen -ErrorAction SilentlyContinue; if \\($c\\) { $c | ForEach-Object { Stop-Process -Id $_.OwningProcess -Force }; \"stopped\" } else { \"free\" })"
     ],
     "deny": []
   }

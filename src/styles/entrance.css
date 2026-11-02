@@ -1,0 +1,145 @@
+/* ---- Load-in choreography -------------------------------------------------
+   Runs once on load, after the welcome intro (--intro-delay, set in
+   intro.css; 0s when there is no intro). D below means --intro-delay.
+
+     Nav     wordmark letters drop in one by one; the nav pill, its links,
+             the CV button and the theme toggle scale up one by one
+     Hero    eyebrow slides in from the left; each name line slides out from
+             behind its own left edge (a clip-path mask, as on chichingo.com),
+             then the lede slides
+             down out of the name and the two CTAs pop up
+     Stats   rise from below, in parallel with the lede and CTAs
+
+   No opacity fades or blur: things appear solid and move.
+   Keyframes use the individual `translate` / `scale` properties, never
+   `transform`: a forwards-filled `transform` would override the buttons'
+   own :hover / :active transforms for good. */
+
+/* No fades: an element is hidden (opacity 0) until its delay ends, then
+   shows solid and moves. Each start state is off-screen, masked or scaled
+   to zero, so nothing pops into view mid-air. */
+/* Down from behind the wordmark's top edge (.wordmark clips) */
+@keyframes enter-drop {
+  from { opacity: 1; translate: 0 -110%; }
+  to   { opacity: 1; translate: none; }
+}
+@keyframes enter-pop {
+  0%   { opacity: 1; scale: 0; }
+  60%  { opacity: 1; scale: 1.06; }
+  100% { opacity: 1; scale: 1; }
+}
+/* Out from behind a left edge: .line masks it; the eyebrow is clipped by
+   .hero's overflow: hidden */
+@keyframes enter-mask-left {
+  from { opacity: 1; translate: -101% 0; }
+  to   { opacity: 1; translate: none; }
+}
+@keyframes enter-from-left {
+  from { opacity: 1; translate: -60vw 0; }
+  to   { opacity: 1; translate: none; }
+}
+/* Unrolls downward out of the name above it */
+@keyframes enter-slide-down {
+  from { opacity: 1; translate: 0 -36px; clip-path: inset(-10px -10px 100% -10px); }
+  to   { opacity: 1; translate: none;    clip-path: inset(-10px -10px -10px -10px); }
+}
+/* Up from behind the stat row's bottom edge (.hero-stats clips) */
+@keyframes enter-rise {
+  from { opacity: 1; translate: 0 100%; }
+  to   { opacity: 1; translate: none; }
+}
+
+/* Shared: start hidden, hold the end state */
+.wordmark span,
+.theme-toggle,
+.hero-copy .eyebrow,
+.hero-title .line-in,
+.hero-lede,
+.hero-actions > *,
+.stat {
+  opacity: 0;
+  animation-duration: 0.9s;
+  animation-timing-function: var(--ease);
+  animation-fill-mode: forwards;
+}
+
+/* ---- Nav ---- */
+.wordmark { clip-path: inset(0 -0.5em -0.5em -0.5em); }
+.wordmark span {
+  display: inline-block;
+  animation-name: enter-drop;
+  animation-duration: 0.7s;
+  animation-delay: calc(var(--intro-delay, 0s) + var(--i) * 0.045s);
+}
+
+.theme-toggle {
+  animation-name: enter-pop;
+  animation-duration: 0.6s;
+  animation-delay: calc(var(--intro-delay, 0s) + 0.68s);
+}
+
+/* Desktop only: below 768px the links live in the full-screen sheet, whose
+   own staggered reveal must not be overridden by a filled animation. */
+@media (min-width: 769px) {
+  .nav-links,
+  .nav-links li,
+  .nav-menu .cv-btn {
+    opacity: 0;
+    animation: enter-pop 0.6s var(--ease) forwards;
+  }
+  .nav-links { animation-delay: calc(var(--intro-delay, 0s) + 0.05s); }
+  .nav-links li:nth-child(1) { animation-delay: calc(var(--intro-delay, 0s) + 0.15s); }
+  .nav-links li:nth-child(2) { animation-delay: calc(var(--intro-delay, 0s) + 0.23s); }
+  .nav-links li:nth-child(3) { animation-delay: calc(var(--intro-delay, 0s) + 0.31s); }
+  .nav-links li:nth-child(4) { animation-delay: calc(var(--intro-delay, 0s) + 0.39s); }
+  .nav-links li:nth-child(5) { animation-delay: calc(var(--intro-delay, 0s) + 0.47s); }
+  .nav-menu .cv-btn { animation-delay: calc(var(--intro-delay, 0s) + 0.58s); }
+}
+@media (max-width: 768px) {
+  .hamburger {
+    opacity: 0;
+    animation: enter-pop 0.6s var(--ease) forwards;
+    animation-delay: calc(var(--intro-delay, 0s) + 0.76s);
+  }
+}
+
+/* ---- Hero ---- */
+.hero-copy .eyebrow {
+  animation-name: enter-from-left;
+  animation-delay: calc(var(--intro-delay, 0s) + 0.15s);
+}
+.hero-title .line {
+  /* The mask: clips only on the left; generous elsewhere for ascenders,
+     descenders and the italic overhang of "Dip" */
+  clip-path: inset(-0.35em -0.5em -0.35em -0.04em);
+}
+.hero-title .line-in {
+  display: inline-block;
+  animation-name: enter-mask-left;
+  animation-duration: 1.1s;
+}
+.hero-title .line:nth-child(1) .line-in { animation-delay: calc(var(--intro-delay, 0s) + 0.25s); }
+.hero-title .line:nth-child(2) .line-in { animation-delay: calc(var(--intro-delay, 0s) + 0.37s); }
+
+/* Once the name has landed: the lede slides down out of it... */
+.hero-lede {
+  animation-name: enter-slide-down;
+  animation-delay: calc(var(--intro-delay, 0s) + 1s);
+}
+/* ...and the CTAs pop up */
+.hero-actions > * {
+  animation-name: enter-pop;
+  animation-duration: 0.6s;
+}
+.hero-actions > :nth-child(1) { animation-delay: calc(var(--intro-delay, 0s) + 1.25s); }
+.hero-actions > :nth-child(2) { animation-delay: calc(var(--intro-delay, 0s) + 1.37s); }
+
+/* ---- Stats, in parallel with the lede ---- */
+.hero-stats { overflow: hidden; }
+.stat {
+  animation-name: enter-rise;
+  animation-delay: calc(var(--intro-delay, 0s) + 1s + var(--stat-i, 0) * 0.1s);
+}
+.stat:nth-child(2) { --stat-i: 1; }
+.stat:nth-child(3) { --stat-i: 2; }
+.stat:nth-child(4) { --stat-i: 3; }

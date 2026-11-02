@@ -1,0 +1,56 @@
+/* ---- Contact -------------------------------------------------------------- */
+.contact-inner { text-align: center; display: flex; flex-direction: column; align-items: center; }
+.contact-title {
+  font-family: var(--font-display);
+  font-weight: 320;
+  font-size: clamp(2.6rem, 7vw, 5.4rem);
+  line-height: 1.02;
+  letter-spacing: -0.03em;
+  font-variation-settings: 'opsz' 144;
+  max-width: 14ch;
+  margin: 1rem 0 1.4rem;
+}
+.contact-lede { color: var(--ink-2); max-width: 50ch; font-size: 1.1rem; }
+
+.contact-btns {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1.6rem;
+  width: 100%;
+  max-width: 800px;
+  margin-top: 3rem;
+}
+.contact-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.15rem;
+  padding: 1.3rem 1.4rem;
+  text-align: center;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  box-shadow: var(--bezel);
+  outline: 1px solid var(--line-soft);
+  outline-offset: 6px;
+  transition: transform 0.6s var(--ease), box-shadow 0.6s var(--ease), border-color 0.6s var(--ease);
+}
+.contact-btn i { font-size: 1.5rem; color: var(--accent); margin-bottom: 0.7rem; }
+.contact-btn .brand-icon { width: 1.6rem; height: 1.6rem; margin-bottom: 0.7rem; flex: none; }
+.brand-icon--gmail    { color: var(--brand-gmail); }
+.brand-icon--linkedin { color: var(--brand-linkedin); }
+.brand-icon--discord  { color: var(--brand-discord); }
+.contact-btn:hover { transform: translateY(-4px); box-shadow: var(--bezel), var(--shadow); border-color: var(--line-strong); }
+.contact-btn:active { transform: scale(0.98); }
+.cb-label { font-weight: 600; }
+.cb-sub { font-size: 0.88rem; color: var(--muted); overflow-wrap: anywhere; }
+.contact-btn.copied { border-color: var(--accent-2); }
+.contact-btn.copied .cb-sub { color: var(--accent); }
+
+.contact-now {
+  margin-top: 2.6rem;
+  font-size: 0.95rem;
+  color: var(--ink-2);
+}
+/* block, not flex: flex would turn each text run into a gapped item */
+.contact-now .dot-live { display: inline-block; margin-right: 0.7rem; vertical-align: 0.1em; }

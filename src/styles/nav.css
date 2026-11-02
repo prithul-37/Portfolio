@@ -1,0 +1,104 @@
+/* ---- Navbar --------------------------------------------------------------- */
+#nav-sentinel {
+  position: absolute;
+  top: 40px;
+  left: 0;
+  width: 1px;
+  height: 1px;
+  pointer-events: none;
+}
+
+/* Full-width bar, after chichingo.com: wordmark left, the section links
+   grouped in one pill, then the CV button. No backdrop-filter here: on an
+   ancestor it would trap the fixed mobile sheet inside the bar. */
+.navbar {
+  position: fixed;
+  inset: 0 0 auto 0;
+  z-index: 100;
+  padding-inline: var(--gutter);
+  border-bottom: 1px solid transparent;
+  transition: border-color 0.6s var(--ease), background-color 0.6s var(--ease);
+}
+/* Clear over the hero's glow, solid paper once the page moves */
+.navbar.scrolled { background: var(--bg); border-bottom-color: var(--line); }
+
+.nav-inner {
+  max-width: calc(var(--container) - 2 * var(--gutter));
+  height: 5.5rem;
+  margin-inline: auto;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.wordmark {
+  font-family: var(--font-display);
+  font-size: 1.6rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  margin-right: auto;
+}
+
+/* Rolling label: two stacked copies; hover slides the second up into place */
+.roll { display: inline-grid; overflow: hidden; vertical-align: top; }
+.roll > span { grid-area: 1 / 1; transition: transform 0.5s var(--ease); }
+.roll > span + span { transform: translateY(100%); }
+a:hover > .roll > span:first-child,
+a:focus-visible > .roll > span:first-child { transform: translateY(-100%); }
+a:hover > .roll > span + span,
+a:focus-visible > .roll > span + span { transform: none; }
+
+.nav-menu { display: flex; align-items: center; gap: 0.75rem; order: 1; }
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 1.75rem;
+  height: 3rem;
+  padding: 0 1.75rem;
+  border-radius: 999px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+}
+.nav-links a {
+  display: block;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--ink);
+}
+.nav-menu .cv-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  height: 3rem;
+  padding: 0 1.25rem;
+  border-radius: 10px;
+  background: var(--ink);
+  color: var(--on-ink);
+  font-size: 0.95rem;
+  font-weight: 600;
+  transition: transform 0.4s var(--ease), box-shadow 0.4s var(--ease);
+}
+.nav-menu .cv-btn i { font-size: 1em; }
+.nav-menu .cv-btn:hover { box-shadow: var(--shadow-sm); }
+.nav-menu .cv-btn:active { transform: scale(0.98); }
+
+.theme-toggle {
+  order: 2;
+  width: 3rem;
+  height: 3rem;
+  flex: none;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  font-size: 1.15rem;
+  color: var(--ink-2);
+  border: 1px solid var(--line);
+  transition: color 0.3s var(--ease), border-color 0.3s var(--ease), background-color 0.3s var(--ease);
+}
+.theme-toggle:hover { color: var(--ink); border-color: var(--line-strong); background: var(--surface); }
+.theme-toggle .icon-sun { display: none; }
+:root[data-theme="dark"] .theme-toggle .icon-sun { display: block; }
+:root[data-theme="dark"] .theme-toggle .icon-moon { display: none; }
+
+.hamburger { display: none; }
+.nav-backdrop { display: none; }

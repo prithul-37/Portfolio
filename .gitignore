@@ -68,9 +68,8 @@ jspm_packages/
 .nuxt
 dist
 
-# Gatsby files
+# Gatsby files (note: public/ is Vite's static folder and IS tracked)
 .cache/
-public
 
 # Storybook build outputs
 .out

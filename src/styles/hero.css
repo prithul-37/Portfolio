@@ -1,0 +1,77 @@
+/* ---- Hero ----------------------------------------------------------------- */
+.hero {
+  position: relative;
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+  padding-top: 6rem;
+  overflow: hidden;
+  isolation: isolate;
+}
+/* One quiet sage glow — static, no parallax */
+.hero::before {
+  content: '';
+  position: absolute;
+  z-index: -1;
+  width: min(80vw, 900px);
+  aspect-ratio: 1;
+  top: -22%;
+  right: -16%;
+  border-radius: 50%;
+  background: radial-gradient(closest-side, var(--glow), transparent 72%);
+  pointer-events: none;
+}
+
+/* .hero-inner absorbs the free height and centres its content inside it,
+   so the stat rail lands on the fold instead of floating mid-screen. */
+.hero-inner {
+  flex: 1 1 auto;
+  display: grid;
+  align-content: center;
+  padding-block: 2rem 3rem;
+}
+
+.hero-title {
+  font-family: var(--font-display);
+  font-weight: 320;
+  font-size: clamp(3.2rem, 10vw, 8rem);
+  line-height: 0.98;
+  letter-spacing: -0.035em;
+  font-variation-settings: 'opsz' 144;
+  margin: 1.6rem 0 1.8rem;
+}
+.hero-title .line { display: block; }
+
+.hero-lede {
+  max-width: 40ch;
+  font-size: clamp(1.1rem, 1.6vw, 1.3rem);
+  line-height: 1.6;
+  color: var(--ink-2);
+}
+
+.hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-top: 2.4rem;
+}
+
+.statband { padding: 0 0 2.5rem; }
+.hero-stats {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  border-top: 1px solid var(--line);
+}
+.stat { padding: 1.5rem 1.5rem 0 0; }
+.stat + .stat { padding-left: 1.5rem; border-left: 1px solid var(--line); }
+.stat-num {
+  font-family: var(--font-display);
+  font-weight: 350;
+  font-size: clamp(2rem, 3.6vw, 2.75rem);
+  line-height: 1;
+  letter-spacing: -0.02em;
+  font-variant-numeric: tabular-nums;
+}
+.stat-label { margin-top: 0.5rem; font-size: 0.9rem; color: var(--muted); }
+
+/* The load-in choreography for the nav and hero lives in entrance.css */

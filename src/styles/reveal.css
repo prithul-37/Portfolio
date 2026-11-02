@@ -1,0 +1,7 @@
+/* ---- Reveal on scroll -----------------------------------------------------
+   No fade: content is always fully visible and just glides up into place. */
+.reveal {
+  transform: translateY(24px);
+  transition: transform 0.9s var(--ease);
+}
+.reveal.in { transform: none; }

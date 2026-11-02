@@ -1,0 +1,195 @@
+/* ---- Game popup ------------------------------------------------------------
+   A native <dialog> per game (templates/work.js), opened with showModal(), so
+   it sits in the top layer above the nav and grain. It opens instantly: no
+   fade. The dialog box itself is the full-screen dimmed backdrop. */
+html.modal-open { overflow: hidden; }
+
+.game-modal {
+  width: 100%;
+  height: 100%;
+  max-width: none;
+  max-height: none;
+  margin: 0;
+  padding: var(--gutter);
+  border: 0;
+  background: var(--overlay);
+  color: var(--ink);
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
+}
+.game-modal[open] { display: grid; place-items: center; }
+.game-modal::backdrop { background: transparent; }
+
+.gm-panel {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr);
+  width: min(1080px, 100%);
+  height: min(720px, 100%);
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: calc(var(--radius) + 6px);
+  overflow: hidden;
+  box-shadow: inset 0 1px 0 var(--highlight), var(--shadow);
+}
+
+.gm-close {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  z-index: 2;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  font-size: 1.25rem;
+  background: var(--surface);
+  color: var(--ink);
+  border: 1px solid var(--line-strong);
+  transition: background-color 0.3s var(--ease), color 0.3s var(--ease);
+}
+.gm-close:hover { background: var(--ink); color: var(--on-ink); border-color: var(--ink); }
+
+/* ---- Left: the gallery ---- */
+.gm-media { position: relative; min-height: 0; background: var(--surface-2); }
+.gm-gallery { position: absolute; inset: 0; }
+.gm-track {
+  display: flex;
+  height: 100%;
+  overflow-x: auto;
+  overflow-y: hidden;
+  scroll-snap-type: x mandatory;
+  overscroll-behavior-x: contain;
+  scrollbar-width: none;
+}
+.gm-track::-webkit-scrollbar { display: none; }
+.gm-track:focus-visible { outline: 2px solid var(--accent); outline-offset: -4px; }
+.gm-slide {
+  flex: 0 0 100%;
+  min-width: 0;
+  display: grid;
+  place-items: center;
+  padding: 3.5rem 1.5rem 4rem;   /* clear the studio pill above and the dots below */
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
+}
+/* Fill the slide and letterbox. Not max-height: 100%, which doesn't resolve
+   in a grid cell and lets tall phone screenshots overflow. */
+.gm-slide img, .gm-slide video {
+  display: block;
+  width: 100%;
+  height: 100%;
+  min-height: 0;
+  object-fit: contain;
+}
+
+.gm-step {
+  position: absolute;
+  top: 50%;
+  translate: 0 -50%;
+  z-index: 1;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  font-size: 1.2rem;
+  background: var(--surface);
+  color: var(--ink);
+  border: 1px solid var(--line);
+  box-shadow: var(--shadow-sm);
+  transition: background-color 0.3s var(--ease), color 0.3s var(--ease), opacity 0.3s var(--ease);
+}
+.gm-prev { left: 0.9rem; }
+.gm-next { right: 0.9rem; }
+.gm-step:hover:not(:disabled) { background: var(--ink); color: var(--on-ink); border-color: var(--ink); }
+.gm-step:disabled { opacity: 0; pointer-events: none; }
+
+.gm-dots {
+  position: absolute;
+  bottom: 1.1rem;
+  left: 50%;
+  translate: -50% 0;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  padding: 0.2rem 0.45rem;
+  border-radius: 999px;
+  background: var(--surface);
+  box-shadow: var(--shadow-sm);
+}
+/* A roomy hit area around a small dot; the current one stretches into a pill */
+.gm-dot { padding: 0.5rem 0.25rem; display: grid; place-items: center; }
+.gm-dot::before {
+  content: '';
+  display: block;
+  width: 7px;
+  height: 7px;
+  border-radius: 999px;
+  background: var(--line-strong);
+  transition: width 0.5s var(--ease), background-color 0.3s var(--ease);
+}
+.gm-dot:hover::before { background: var(--muted); }
+.gm-dot[aria-current='true']::before { width: 22px; background: var(--accent); }
+
+/* ---- Right: the details ---- */
+.gm-info {
+  min-height: 0;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem;
+  padding: clamp(2rem, 4vw, 3.25rem) clamp(1.5rem, 3.5vw, 3rem);
+  padding-top: 4.5rem;   /* clear the close button */
+}
+.gm-platforms { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+.gm-platforms li {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.28rem 0.7rem;
+  border-radius: 999px;
+  border: 1px solid var(--line-strong);
+  font-size: 0.8rem;
+  color: var(--ink-2);
+}
+.gm-platforms i { font-size: 1.05em; }
+.gm-title {
+  font-family: var(--font-display);
+  font-variation-settings: 'opsz' 96;
+  font-weight: 400;
+  font-size: clamp(2.1rem, 3.6vw, 2.9rem);
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+}
+.gm-genre {
+  font-size: 0.74rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.gm-summary { font-size: 1.08rem; color: var(--ink); }
+.gm-heading { margin-top: 0.5rem; font-size: 0.95rem; font-weight: 600; }
+.gm-contrib { display: grid; gap: 0.5rem; color: var(--ink-2); }
+.gm-contrib li { position: relative; padding-left: 1.2rem; }
+.gm-contrib li::before {
+  content: '';
+  position: absolute;
+  left: 0.15rem;
+  top: 0.62em;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--accent-2);
+}
+.gm-note { font-size: 0.85rem; color: var(--muted); }
+/* Description text is justified; hyphenation (lang="en" on <html>) keeps
+   the word gaps even in the narrow column */
+.gm-summary, .gm-note { text-align: justify; hyphens: auto; -webkit-hyphens: auto; }
+.gm-tech { padding-top: 1rem; border-top: 1px solid var(--line); font-size: 0.88rem; color: var(--muted); }
+.gm-tech span { color: var(--ink-2); font-weight: 600; margin-right: 0.3rem; }
+.gm-links { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: auto; padding-top: 0.4rem; }
+.gm-links .store-btn:first-child { background: var(--ink); border-color: var(--ink); color: var(--on-ink); }
+.gm-links .store-btn:first-child:hover { background: var(--accent); border-color: var(--accent); }

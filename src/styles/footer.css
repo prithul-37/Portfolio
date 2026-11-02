@@ -1,0 +1,29 @@
+/* ---- Footer --------------------------------------------------------------- */
+footer { border-top: 1px solid var(--line); padding-block: 2rem; }
+.footer-inner {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  font-size: 0.9rem;
+  color: var(--muted);
+}
+.foot-mark { font-family: var(--font-display); font-size: 1.1rem; color: var(--ink); }
+
+/* Footer name: like the navbar wordmark, the letters drop in one by one from
+   behind the top edge (the clip-path), but only once the footer scrolls into
+   view (`.in` is added by initReveal). Start state only applies under html.js
+   so the name is never stuck hidden without JS. */
+.foot-mark { display: inline-block; clip-path: inset(0 -0.5em -0.5em -0.5em); }
+.foot-mark span {
+  display: inline-block;
+  transition: translate 0.7s var(--ease);
+  transition-delay: calc(var(--i) * 0.045s);
+}
+html.js .foot-mark:not(.in) span { translate: 0 -110%; }
+.foot-top { display: inline-flex; align-items: center; gap: 0.45rem; transition: color 0.2s var(--ease); }
+.foot-top:hover { color: var(--ink); }
+
+/* Floating CV button — mobile only */
+.fab-cv { display: none; }

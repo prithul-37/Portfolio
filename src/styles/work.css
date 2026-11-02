@@ -1,0 +1,204 @@
+/* ---- Work ----------------------------------------------------------------- */
+.work-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 2rem;   /* room for each card's 7px outer tray */
+}
+
+/* A card: cover on top, text below. The whole card is clickable through the
+   "View details" button, whose ::after is stretched over the card. */
+.game-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  padding: 0.55rem;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  box-shadow: var(--bezel);
+  outline: 1px solid var(--line-soft);
+  outline-offset: 6px;
+}
+/* hover overrides the .reveal transition via higher specificity */
+.work-grid .game-card {
+  transition: transform 0.7s var(--ease), box-shadow 0.7s var(--ease), border-color 0.7s var(--ease);
+}
+.work-grid .game-card.in:hover { transform: translateY(-4px); box-shadow: var(--bezel), var(--shadow); border-color: var(--line-strong); }
+.game-card:has(.card-open:focus-visible) { outline: 2px solid var(--accent); outline-offset: 6px; }
+
+.card-media {
+  position: relative;
+  aspect-ratio: 4 / 3;
+  border-radius: calc(var(--radius) - 0.55rem);
+  overflow: hidden;
+  background: var(--surface-2);
+}
+
+/* Three phone screenshots side by side fill the cover */
+.card-cover:not(.logo-panel, .art-panel) {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 4px;
+}
+.card-cover:not(.logo-panel, .art-panel) img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top;
+  transition: scale 0.9s var(--ease);
+}
+.game-card:hover .card-cover:not(.logo-panel, .art-panel) img { scale: 1.03; }
+
+/* Key art (`art` in games.js): one image filling the cover or popup side */
+.art-panel { position: absolute; inset: 0; overflow: hidden; }
+.art-panel img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 50% 40%;
+  transition: scale 0.9s var(--ease);
+}
+.game-card:hover .art-panel img { scale: 1.03; }
+
+/* Logo on a soft, blurred copy of itself: cards and popups without media */
+.logo-panel {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  background: var(--accent-soft);
+}
+.logo-panel-bg {
+  position: absolute;
+  inset: -15%;
+  width: 130%;
+  height: 130%;
+  object-fit: cover;
+  filter: blur(36px) saturate(1.15);
+  opacity: 0.6;
+}
+.logo-panel-mark {
+  position: relative;
+  width: clamp(96px, 30%, 168px);
+  aspect-ratio: 1;
+  object-fit: cover;
+  border-radius: 24%;
+  box-shadow: 0 0 0 1px var(--line), var(--shadow);
+  transition: scale 0.9s var(--ease);
+}
+.game-card:hover .logo-panel-mark { scale: 1.04; }
+
+/* Pills over the cover: studio on the left, arrow on the right */
+.card-label {
+  position: absolute;
+  top: 0.8rem;
+  left: 0.8rem;
+  z-index: 1;
+  padding: 0.3rem 0.7rem;
+  border-radius: 999px;
+  background: var(--surface);
+  color: var(--ink);
+  font-size: 0.74rem;
+  font-weight: 600;
+  box-shadow: var(--shadow-sm);
+}
+.card-arrow {
+  position: absolute;
+  top: 0.7rem;
+  right: 0.7rem;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  background: var(--surface);
+  color: var(--ink);
+  font-size: 1.1rem;
+  box-shadow: var(--shadow-sm);
+  transition: translate 0.5s var(--ease), background-color 0.4s var(--ease), color 0.4s var(--ease);
+}
+.game-card:hover .card-arrow { translate: 2px -2px; background: var(--ink); color: var(--on-ink); }
+
+.card-body {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+  padding: 1.15rem 0.9rem 0.85rem;
+}
+.card-kicker {
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.card-titlerow { display: flex; align-items: center; justify-content: space-between; gap: 1rem; }
+.card-title {
+  font-family: var(--font-display);
+  font-weight: 450;
+  font-size: 1.6rem;
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+}
+.card-status {
+  flex: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.25rem 0.7rem;
+  border-radius: 999px;
+  border: 1px solid var(--line-strong);
+  font-size: 0.78rem;
+  color: var(--ink-2);
+}
+.card-status.is-live { border-color: transparent; background: var(--accent-soft); color: var(--accent); }
+.card-status.is-live::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: currentColor; }
+.card-summary { color: var(--ink-2); max-width: 52ch; }
+
+.card-open {
+  align-self: flex-start;
+  margin-top: auto;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.6rem 0 0.3rem;
+  border-bottom: 1px solid var(--line-strong);
+  font-weight: 600;
+  font-size: 0.95rem;
+  transition: border-color 0.4s var(--ease);
+}
+.card-open i { transition: translate 0.5s var(--ease); }
+.card-open::after { content: ''; position: absolute; inset: 0; border-radius: var(--radius); cursor: pointer; }
+.card-open:focus-visible { outline: none; }
+.game-card:hover .card-open { border-color: var(--ink); }
+.game-card:hover .card-open i { translate: 2px -2px; }
+
+/* Featured: spans both columns, cover left and text right */
+.game-card.featured {
+  grid-column: span 2;
+  display: grid;
+  grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr);
+  align-items: stretch;
+}
+.game-card.featured .card-body { justify-content: center; padding: clamp(1.25rem, 3vw, 2.5rem); }
+.game-card.featured .card-title { font-size: clamp(1.8rem, 3vw, 2.4rem); }
+.game-card.featured .card-open { margin-top: 0.6rem; }
+
+.store-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.6rem 1.05rem;
+  border-radius: 999px;
+  border: 1px solid var(--line-strong);
+  font-size: 0.9rem;
+  font-weight: 600;
+  transition: background-color 0.4s var(--ease), border-color 0.4s var(--ease), color 0.4s var(--ease);
+}
+.store-btn i { font-size: 1.15em; }
+.store-btn:active { transform: scale(0.98); }
+.store-btn:hover { background: var(--ink); border-color: var(--ink); color: var(--on-ink); }

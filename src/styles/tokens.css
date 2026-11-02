@@ -1,0 +1,79 @@
+/* ---- Tokens ------------------------------------------------------------- */
+:root {
+  --bg:          #f6f3ec;
+  --surface:     #fbf9f4;
+  --surface-2:   #efebe2;
+  --ink:         #1f2a24;
+  --ink-2:       #4a554e;
+  --muted:       #6f7871;
+  --line:        rgba(31, 42, 36, 0.12);
+  --line-strong: rgba(31, 42, 36, 0.22);
+  --accent:      #4f6f58;   /* text-safe sage */
+  --accent-2:    #7a9a82;   /* decorative sage */
+  --accent-soft: #e3eae1;
+  --on-ink:      #f6f3ec;   /* text on an --ink or --accent fill */
+  --glow:        rgba(122, 154, 130, 0.22);
+  --overlay:     rgba(20, 26, 22, 0.55);
+  --shell:       rgba(31, 42, 36, 0.028);
+  --line-soft:   rgba(31, 42, 36, 0.08);  /* outer tray of a double-bezel surface */
+  --highlight:   rgba(255, 255, 255, 0.7); /* inner top-edge light on a surface */
+  --grain:       0.035;
+  /* Brand logo colours (contact buttons); the same in both themes */
+  --brand-gmail:    #ea4335;
+  --brand-linkedin: #0a66c2;
+  --brand-discord:  #5865f2;
+  /* One green per section band (bands.css), in page order */
+  --band-1:      #edf3ea;
+  --band-2:      #dce8d8;
+  --band-3:      #e9f0e5;
+  --band-4:      #d5e3d1;
+  --band-5:      #e4ede0;
+
+  --shadow-sm: 0 1px 2px rgba(31, 42, 36, 0.04), 0 4px 12px -6px rgba(31, 42, 36, 0.08);
+  --shadow:    0 1px 2px rgba(31, 42, 36, 0.04), 0 18px 40px -22px rgba(31, 42, 36, 0.22);
+  /* Double bezel: a hairline core sitting in a faint outer tray. Spread shadows
+     and outlines both follow border-radius, so the corners stay concentric.
+     Pair --bezel with `outline: 1px solid var(--line-soft); outline-offset: 6px`
+     for the tray's outer edge (a second spread shadow would fill the tray). */
+  --bezel:     inset 0 1px 0 var(--highlight), 0 0 0 6px var(--shell);
+
+  --font-display: 'Fraunces', Georgia, 'Times New Roman', serif;
+  --font-body:    'Familjen Grotesk', system-ui, -apple-system, 'Segoe UI', sans-serif;
+
+  --radius:    22px;
+  --radius-sm: 12px;
+  /* One curve for everything: quick to start, long soft settle (no linear / ease-in-out) */
+  --ease:      cubic-bezier(0.32, 0.72, 0, 1);
+  --container: 1120px;
+  --gutter:    clamp(1.25rem, 4vw, 2.5rem);
+  --section-y: clamp(6rem, 12vw, 10rem);
+}
+
+:root[data-theme="dark"] {
+  --bg:          #141916;
+  --surface:     #1a201c;
+  --surface-2:   #232a25;
+  --ink:         #e9e6dd;
+  --ink-2:       #bcc2b9;
+  --muted:       #8f9890;
+  --line:        rgba(233, 230, 221, 0.10);
+  --line-strong: rgba(233, 230, 221, 0.20);
+  --accent:      #a3c4aa;
+  --accent-2:    #7fa287;
+  --accent-soft: #232e27;
+  --on-ink:      #141916;
+  --glow:        rgba(127, 162, 135, 0.14);
+  --overlay:     rgba(6, 9, 7, 0.72);
+  --shell:       rgba(233, 230, 221, 0.03);
+  --line-soft:   rgba(233, 230, 221, 0.07);
+  --highlight:   rgba(255, 255, 255, 0.06);
+  --grain:       0.05;
+  --band-1:      #161e19;
+  --band-2:      #1e2a22;
+  --band-3:      #19221c;
+  --band-4:      #223228;
+  --band-5:      #1c2620;
+
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.3), 0 4px 12px -6px rgba(0, 0, 0, 0.4);
+  --shadow:    0 1px 2px rgba(0, 0, 0, 0.3), 0 22px 44px -24px rgba(0, 0, 0, 0.7);
+}

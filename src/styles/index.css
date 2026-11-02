@@ -1,0 +1,30 @@
+/* =========================================================================
+   PRITHUL BISWAS | Portfolio
+   Design system: "SOFT EDITORIAL"
+   Warm paper, deep green-black ink, one muted sage accent. Serif display
+   (Fraunces) over a quiet grotesk body (Familjen Grotesk). Hairline rules,
+   soft radii, low diffuse shadows. Calm by default; motion is slow and small.
+   ========================================================================= */
+
+/* Entry stylesheet. The partials are imported in the original cascade order:
+   tokens first, page sections top to bottom, then the breakpoint overrides,
+   with reduced-motion last so it wins. Vite inlines these into one file. */
+@import './fonts.css';
+@import './tokens.css';
+@import './base.css';
+@import './buttons.css';
+@import './nav.css';
+@import './hero.css';
+@import './work.css';
+@import './about.css';
+@import './stack.css';
+@import './path.css';
+@import './contact.css';
+@import './footer.css';
+@import './bands.css';
+@import './reveal.css';
+@import './gallery.css';
+@import './intro.css';
+@import './entrance.css';
+@import './responsive.css';
+@import './reduced-motion.css';

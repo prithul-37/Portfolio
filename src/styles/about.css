@@ -1,0 +1,67 @@
+/* ---- About ---------------------------------------------------------------- */
+.about-inner {
+  display: grid;
+  grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
+  gap: clamp(2.5rem, 6vw, 5.5rem);
+  align-items: start;
+}
+
+.about-portrait { position: sticky; top: 6.5rem; }
+.portrait-img {
+  width: 100%;
+  aspect-ratio: 1;
+  object-fit: cover;
+  border-radius: calc(var(--radius) + 6px);
+  box-shadow: 0 0 0 1px var(--line), 0 0 0 8px var(--shell), var(--shadow);
+  outline: 1px solid var(--line-soft);
+  outline-offset: 8px;
+}
+.portrait-caption {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  margin-top: 1.1rem;
+  font-size: 0.92rem;
+  color: var(--muted);
+}
+
+.about-body .section-title { margin-bottom: 1.8rem; }
+.prose {
+  color: var(--ink-2);
+  font-size: 1.1rem;
+  line-height: 1.8;
+  margin-bottom: 1.3rem;
+  max-width: 62ch;
+  text-align: justify;
+  /* Hyphenation keeps justified lines from opening wide gaps, mainly on phones */
+  hyphens: auto;
+  -webkit-hyphens: auto;
+}
+
+.about-meta { margin: 2.2rem 0; border-top: 1px solid var(--line); }
+.meta-item {
+  display: grid;
+  grid-template-columns: 8.5rem 1fr;
+  gap: 1rem;
+  padding: 1rem 0;
+  border-bottom: 1px solid var(--line);
+}
+.meta-key { font-size: 0.8rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); padding-top: 0.15rem; }
+.meta-val { color: var(--ink); }
+
+.about-email {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.7rem;
+  font-family: var(--font-display);
+  font-size: clamp(1.3rem, 2.4vw, 1.7rem);
+  font-weight: 380;
+  letter-spacing: -0.01em;
+  border-bottom: 1px solid var(--line-strong);
+  padding-bottom: 0.2rem;
+  overflow-wrap: anywhere;
+  transition: border-color 0.25s var(--ease), color 0.25s var(--ease);
+}
+.about-email i { font-size: 0.7em; color: var(--accent); transition: transform 0.25s var(--ease); }
+.about-email:hover { color: var(--accent); border-color: var(--accent-2); }
+.about-email:hover i { transform: translateX(4px); }

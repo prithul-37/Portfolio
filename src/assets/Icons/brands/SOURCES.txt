@@ -1,0 +1,15 @@
+Brand logos used on the contact buttons (inlined by brandIcon() in src/templates/html.js).
+
+gmail.svg, discord.svg
+  Simple Icons 16.36.0, https://simpleicons.org  (CC0 1.0, public domain)
+
+linkedin.svg
+  Bootstrap Icons 1.11.3, https://icons.getbootstrap.com
+  The MIT License (MIT). Copyright (c) 2019-2024 The Bootstrap Authors.
+  Permission is hereby granted, free of charge, to any person obtaining a copy
+  of this software and associated documentation files, to deal in the Software
+  without restriction, subject to including this copyright and permission
+  notice in all copies or substantial portions of the Software.
+
+The logos are trademarks of their owners (Google, LinkedIn, Discord) and are
+used only to label links to those services.

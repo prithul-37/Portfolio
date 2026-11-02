@@ -1,0 +1,57 @@
+/* ---- Welcome intro ---------------------------------------------------------
+   A sage sheet over the page on load. "Welcome" builds letter by letter from
+   one of three directions (chosen at random by the inline script in
+   index.html, which sets html[data-intro]), holds, then the sheet slides up.
+   Timeline: letters 0.1s to ~1.15s, short hold, sheet leaves 1.35s to 2.15s. */
+.intro { display: none; }
+
+html[data-intro] {
+  --intro-delay: 1.6s;   /* the page load-in waits for the sheet (entrance.css) */
+}
+
+html[data-intro] .intro {
+  position: fixed;
+  inset: 0;
+  z-index: 300;          /* above the nav, grain and gallery modal */
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  background: var(--accent);
+  color: var(--on-ink);
+  pointer-events: none;
+  animation: intro-out 0.8s var(--ease) 1.35s forwards;
+}
+
+.intro-word {
+  font-family: var(--font-display);
+  font-weight: 320;
+  font-size: clamp(3.5rem, 15vw, 11rem);
+  line-height: 1;
+  letter-spacing: -0.035em;
+  font-variation-settings: 'opsz' 144;
+}
+.intro-word span {
+  display: inline-block;
+  opacity: 0;
+  animation: 0.7s var(--ease) forwards;
+  animation-delay: calc(0.1s + var(--i) * 0.06s);
+}
+html[data-intro="right"]  .intro-word span { animation-name: intro-from-right; }
+html[data-intro="top"]    .intro-word span { animation-name: intro-from-top; }
+html[data-intro="bottom"] .intro-word span { animation-name: intro-from-bottom; }
+
+@keyframes intro-from-right {
+  from { opacity: 1; transform: translateX(100vw); }
+  to   { opacity: 1; transform: none; }
+}
+@keyframes intro-from-top {
+  from { opacity: 1; transform: translateY(-100vh); }
+  to   { opacity: 1; transform: none; }
+}
+@keyframes intro-from-bottom {
+  from { opacity: 1; transform: translateY(100vh); }
+  to   { opacity: 1; transform: none; }
+}
+@keyframes intro-out {
+  to { transform: translateY(-100%); visibility: hidden; }
+}

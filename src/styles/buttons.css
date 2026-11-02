@@ -1,0 +1,32 @@
+/* ---- Buttons -------------------------------------------------------------- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.85rem;
+  padding: 0.45rem 0.45rem 0.45rem 1.5rem;
+  border-radius: 999px;
+  font-weight: 600;
+  font-size: 0.98rem;
+  border: 1px solid transparent;
+  transition: transform 0.5s var(--ease), background-color 0.5s var(--ease),
+              border-color 0.5s var(--ease), box-shadow 0.5s var(--ease);
+}
+/* Button-in-button: the trailing icon gets its own circle, flush to the inner edge */
+.btn-icon {
+  width: 2.25rem;
+  height: 2.25rem;
+  flex: none;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  font-size: 1.05rem;
+  transition: transform 0.5s var(--ease), background-color 0.5s var(--ease);
+}
+.btn:hover .btn-icon { transform: translate(2px, -1px) scale(1.06); }
+.btn:active { transform: scale(0.98); }
+.btn.primary { background: var(--ink); color: var(--on-ink); box-shadow: var(--shadow-sm); }
+.btn.primary .btn-icon { background: color-mix(in srgb, var(--on-ink) 14%, transparent); }
+.btn.primary:hover { box-shadow: var(--shadow); }
+.btn.ghost { border-color: var(--line-strong); color: var(--ink); background: var(--surface); }
+.btn.ghost .btn-icon { background: var(--surface-2); }
+.btn.ghost:hover { border-color: var(--ink-2); }

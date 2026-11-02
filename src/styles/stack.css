@@ -1,0 +1,24 @@
+/* ---- Stack ---------------------------------------------------------------- */
+.craft-rows { border-top: 1px solid var(--line); }
+.craft-row {
+  display: grid;
+  grid-template-columns: 14rem 1fr;
+  gap: 1.5rem;
+  padding: 1.6rem 0;
+  border-bottom: 1px solid var(--line);
+}
+.craft-label {
+  font-family: var(--font-display);
+  font-weight: 420;
+  font-size: 1.2rem;
+  letter-spacing: -0.005em;
+  padding-top: 0.25rem;
+}
+.tags { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+.tags span {
+  padding: 0.4rem 0.85rem;
+  border-radius: 999px;
+  background: var(--surface-2);
+  color: var(--ink-2);
+  font-size: 0.92rem;
+}

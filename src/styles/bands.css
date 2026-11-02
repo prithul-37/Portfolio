@@ -1,0 +1,38 @@
+/* ---- Section bands ---------------------------------------------------------
+   Each top-level section is a band of its own green (--band-1..5, in page
+   order) that slides in sideways when scrolled to, alternating: odd sections
+   from the left, even ones from the right. No fade.
+
+   The <section> box itself never moves: its background is drawn on ::before
+   and that slides together with the content. So the IntersectionObserver in
+   features/reveal.js (initBands) watches an element that stays put, and
+   overflow-x: clip keeps the travel from making the page scroll sideways
+   (clip, not hidden, so the sticky About portrait still sticks). */
+body > section {
+  position: relative;
+  isolation: isolate;
+  overflow-x: clip;
+}
+body > section::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: var(--band);
+}
+body > section:nth-of-type(1) { --band: var(--band-1); }
+body > section:nth-of-type(2) { --band: var(--band-2); }
+body > section:nth-of-type(3) { --band: var(--band-3); }
+body > section:nth-of-type(4) { --band: var(--band-4); }
+body > section:nth-of-type(5) { --band: var(--band-5); }
+
+/* The slide. Only with JS (html.js, set by the inline head script), so the
+   bands are never stuck off-screen if scripts fail. */
+html.js body > section::before,
+html.js body > section > .container {
+  transition: translate 1.1s var(--ease), transform 0.9s var(--ease);   /* transform: a .container can also be .reveal */
+}
+html.js body > section:nth-of-type(odd):not(.band-in)::before,
+html.js body > section:nth-of-type(odd):not(.band-in) > .container { translate: -100vw 0; }
+html.js body > section:nth-of-type(even):not(.band-in)::before,
+html.js body > section:nth-of-type(even):not(.band-in) > .container { translate: 100vw 0; }
