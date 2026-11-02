@@ -1,14 +1,14 @@
-// Rows in the "Stack" section, top to bottom.
+// Rows in the "Stack" section, top to bottom. Main rows list only what the
+// games on the page back up; `also: true` is a quieter row for the rest.
 export const stack = [
-  { label: 'Engines', tags: ['Unity', 'Unreal Engine'] },
-  { label: 'Languages', tags: ['C#', 'C++', 'Python', 'JavaScript'] },
+  { label: 'Engine & Language', tags: ['Unity', 'C#'] },
   { label: 'Platforms', tags: ['Android', 'iOS', 'PC'] },
   {
     label: 'Systems & Patterns',
     tags: [
       'Data-Driven Design (ScriptableObjects)', 'Observer · State/FSM · Command',
       'Dynamic Difficulty Adjustment', 'Procedural Generation',
-      'Multiplayer Netcode (Unity NGO)', 'Unity Job System',
+      'Unity Job System',
       'Mobile Performance Optimization',
     ],
   },
@@ -29,4 +29,9 @@ export const stack = [
     ],
   },
   { label: 'Tools', tags: ['Git', 'Blender', 'Shader Graph', 'DOTween'] },
+  {
+    label: 'Also worked with',
+    also: true,
+    tags: ['Unreal Engine', 'C++', 'Python', 'JavaScript', 'Multiplayer Netcode (Unity NGO)'],
+  },
 ];

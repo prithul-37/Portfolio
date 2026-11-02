@@ -18,6 +18,20 @@ function setupGallery(dialog) {
   const videos = [...track.querySelectorAll('video')];
   let index = 0;
 
+  // A trailer that fails to load says so, instead of leaving a dead player.
+  // The error fires on <source>, since the video gets its file from there.
+  videos.forEach((v) => {
+    v.querySelector('source')?.addEventListener('error', () => {
+      const slide = v.closest('.gm-slide');
+      if (!slide || slide.classList.contains('is-broken')) return;
+      slide.classList.add('is-broken');
+      const note = document.createElement('p');
+      note.className = 'gm-video-error';
+      note.textContent = "The trailer didn't load. Try again later, or see the game on its store page.";
+      slide.append(note);
+    });
+  });
+
   const go = (i, smooth = true) => {
     const target = Math.min(Math.max(i, 0), slides.length - 1);
     track.scrollTo({ left: target * track.clientWidth, behavior: smooth && !reduceMotion() ? 'smooth' : 'auto' });

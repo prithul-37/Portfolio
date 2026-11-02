@@ -107,7 +107,6 @@ strong { font-weight: 600; color: var(--ink); }
   color: var(--accent);
 }
 
-.section-note { color: var(--ink-2); max-width: 52ch; }
 
 section { padding-block: var(--section-y); }
 /* The hero ends on </header>, so section + section alone would miss Work */

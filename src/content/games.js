@@ -53,28 +53,6 @@ export const games = [
     media: [{ type: 'video', src: 'GameMedia/ColorFarm/gameplay.mp4' }],
   },
   {
-    id: 'churchill-solitaire',
-    title: 'Churchill Solitaire',
-    logo: 'Icons/ChurchillSolitaireLogo-160.jpg',
-    genre: 'Card',
-    studio: 'Riseup Labs',
-    status: 'In development',
-    summary: 'The two-deck solitaire variant Winston Churchill played, originally built in Flutter and now moving to Unity.',
-    about: 'The two-deck solitaire variant Winston Churchill played. The original game was built in Flutter, and I worked on moving it to Unity.',
-    contribution: [
-      'Rebuilt the full gameplay logic and UI logic in Unity in about a week, migrating from the original Flutter game.',
-      'Added an automatic level generator, which the original game didn\'t have. It takes a seed, shuffles the deck with it, and keeps only the deals the solver proves can be won.',
-      'Wrote the solver: a depth-first backtracking search that checks whether a deal can be won. Optimizing it was the hardest part. A check takes from under a second to two or three minutes, depending on the deal and the device.',
-      'Added smoother card animations, which the original game was missing.',
-    ],
-    note: 'The Unity version is still in progress and not yet released. The store links point to the current version.',
-    tech: ['Unity', 'C#', 'Flutter', 'Procedural Generation'],
-    stores: {
-      play: 'https://play.google.com/store/apps/details?id=com.productiveedge.churchill&hl=en',
-      appStore: 'https://apps.apple.com/us/app/churchill-solitaire/id1030804846',
-    },
-  },
-  {
     id: 'ant-march',
     title: 'Ant March Adventure',
     logo: 'Icons/AntGameLogo-160.jpg',
@@ -95,6 +73,27 @@ export const games = [
     },
     cover: coverShots('AntMarch'),
     media: [{ type: 'video', src: 'GameMedia/AntMarch/gameplay.mp4' }, ...screens('AntMarch', 6)],
+  },
+  {
+    id: 'zen-merge',
+    title: 'Zen Merge Puzzle',
+    logo: 'Icons/ZenMergeLogo-160.jpg',
+    genre: 'Puzzle',
+    studio: 'Nagorik Technologies',
+    summary: 'Guide Yin and Yang along mirrored paths and solve mind-bending puzzles to unite them on the Harmony Tile.',
+    about: 'Swipe to send Yin and Yang sliding across a grid of tiles floating on a forest pond. They move at the same time in mirrored directions, and each slides until something stops it. Use crates and gaps to steer both onto the Harmony Tile, where they merge into one. Marked tiles show where you can move next. Levels unlock along an island map.',
+    contribution: [
+      'As the core developer, built every system in the game, from the mirrored sliding mechanics to the puzzle tiles, going from a 3 to 4 day prototype to a finished release in 15 days.',
+      'Designed some of the levels as well as building the game.',
+      'Optimized the 3D game to run on a wide range of devices, reaching 55 to 60+ FPS depending on the device. This was the hardest part of the project, and where I learned most of my optimization techniques.',
+    ],
+    tech: ['Unity', 'C#', 'Blender'],
+    stores: {
+      play: 'https://play.google.com/store/apps/details?id=tech.atm.zenmergepuzzle',
+      appStore: 'https://apps.apple.com/us/app/zen-match-saga/id6745928396',
+    },
+    cover: coverShots('ZenMerge'),
+    media: [{ type: 'video', src: 'GameMedia/ZenMerge/Zen_Merg_trailer.mp4' }, ...screens('ZenMerge', 6)],
   },
   {
     id: 'pop-n-sort',
@@ -119,27 +118,6 @@ export const games = [
     },
     // Trailer only: the gameplay video shows everything the screenshots did
     media: [{ type: 'video', src: 'GameMedia/PopnSort/trailer.mp4' }],
-  },
-  {
-    id: 'zen-merge',
-    title: 'Zen Merge Puzzle',
-    logo: 'Icons/ZenMergeLogo-160.jpg',
-    genre: 'Puzzle',
-    studio: 'Nagorik Technologies',
-    summary: 'Guide Yin and Yang along mirrored paths and solve mind-bending puzzles to unite them on the Harmony Tile.',
-    about: 'Swipe to send Yin and Yang sliding across a grid of tiles floating on a forest pond. They move at the same time in mirrored directions, and each slides until something stops it. Use crates and gaps to steer both onto the Harmony Tile, where they merge into one. Marked tiles show where you can move next. Levels unlock along an island map.',
-    contribution: [
-      'As the core developer, built every system in the game, from the mirrored sliding mechanics to the puzzle tiles, going from a 3 to 4 day prototype to a finished release in 15 days.',
-      'Designed some of the levels as well as building the game.',
-      'Optimized the 3D game to run on a wide range of devices, reaching 55 to 60+ FPS depending on the device. This was the hardest part of the project, and where I learned most of my optimization techniques.',
-    ],
-    tech: ['Unity', 'C#', 'Blender'],
-    stores: {
-      play: 'https://play.google.com/store/apps/details?id=tech.atm.zenmergepuzzle',
-      appStore: 'https://apps.apple.com/us/app/zen-match-saga/id6745928396',
-    },
-    cover: coverShots('ZenMerge'),
-    media: [{ type: 'video', src: 'GameMedia/ZenMerge/Zen_Merg_trailer.mp4' }, ...screens('ZenMerge', 6)],
   },
   {
     id: 'color-craft',
@@ -196,6 +174,28 @@ export const games = [
     tech: ['Unity', 'C#'],
     stores: {
       appStore: 'https://apps.apple.com/us/app/%D8%B3%D9%86%D8%A7%D9%85-%D8%B1%D8%A7%D8%B9%D9%8A-%D8%A7%D9%84%D9%86%D8%B8%D8%B1/id6755181382',
+    },
+  },
+  {
+    id: 'churchill-solitaire',
+    title: 'Churchill Solitaire',
+    logo: 'Icons/ChurchillSolitaireLogo-160.jpg',
+    genre: 'Card',
+    studio: 'Riseup Labs',
+    status: 'In development',
+    summary: 'The two-deck solitaire variant Winston Churchill played, originally built in Flutter and now moving to Unity.',
+    about: 'The two-deck solitaire variant Winston Churchill played. The original game was built in Flutter, and I worked on moving it to Unity.',
+    contribution: [
+      'Rebuilt the full gameplay logic and UI logic in Unity in about a week, migrating from the original Flutter game.',
+      'Added an automatic level generator, which the original game didn\'t have. It takes a seed, shuffles the deck with it, and keeps only the deals the solver proves can be won.',
+      'Wrote the solver: a depth-first backtracking search that checks whether a deal can be won. Optimizing it was the hardest part. A check takes from under a second to two or three minutes, depending on the deal and the device.',
+      'Added smoother card animations, which the original game was missing.',
+    ],
+    note: 'The Unity version is still in progress and not yet released. The store links point to the current version.',
+    tech: ['Unity', 'C#', 'Flutter', 'Procedural Generation'],
+    stores: {
+      play: 'https://play.google.com/store/apps/details?id=com.productiveedge.churchill&hl=en',
+      appStore: 'https://apps.apple.com/us/app/churchill-solitaire/id1030804846',
     },
   },
 ];

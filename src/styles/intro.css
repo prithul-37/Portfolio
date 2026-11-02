@@ -52,6 +52,11 @@ html[data-intro="bottom"] .intro-word span { animation-name: intro-from-bottom; 
   from { opacity: 1; transform: translateY(100vh); }
   to   { opacity: 1; transform: none; }
 }
+/* Skipped (click or key, features/intro.js): the sheet leaves right away and
+   the page load-in starts with it */
+html[data-intro].intro-skip { --intro-delay: 0.25s; }
+html[data-intro].intro-skip .intro { animation: intro-out 0.5s var(--ease) forwards; }
+
 @keyframes intro-out {
   to { transform: translateY(-100%); visibility: hidden; }
 }

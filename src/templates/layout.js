@@ -50,7 +50,7 @@ export function renderFooter() {
   return `
     <footer>
       <div class="container footer-inner">
-        <span class="foot-mark" role="img" aria-label="${esc(profile.shortName)}">${letters(`${profile.firstName} ${profile.lastName}`)}</span>
+        <span class="foot-mark" role="img" aria-label="${esc(profile.fullName)}">${letters(profile.fullName)}</span>
         <span class="foot-copy">&copy; ${new Date().getFullYear()} · ${esc(profile.tagline)}</span>
         <a href="#home" class="foot-top">Back to top ${icon('arrow-up')}</a>
       </div>

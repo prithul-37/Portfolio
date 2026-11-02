@@ -59,9 +59,9 @@ export const seo = {
 
 export const hero = {
   eyebrow: 'Unity game developer · Co-founder, Chichingo',
-  ledeHtml: `I build mobile games end to end, from the first playable
-    prototype to live updates on the stores, and I take on indie
-    PC games too.<br />
+  ledeHtml: `I take mobile games from the first playable prototype to
+    live updates on the stores, and I build the tools that make the
+    levels: editors, AI level generators and automated playtesting.<br />
     Co-founder of the game studio ${chichingoLink}.`,
 };
 
@@ -69,13 +69,13 @@ export const hero = {
 export const stats = [
   { count: 10, suffix: '+', label: 'Titles shipped' },
   { count: 3, suffix: '+', label: 'Years in production' },
-  { count: 2, label: 'Live platforms' },
-  { text: 'C#', label: 'Core language' },
+  { count: 4, label: 'Studios shipped with' },
+  { text: '3-5', label: 'Days to a playable prototype' },
 ];
 
 export const about = {
   titleHtml: 'The dev behind <em>the games</em>',
-  caption: 'Open to collaborations',
+  caption: 'Making games in Dhaka',
   paragraphsHtml: [
     `I'm Prithul Biswas Dip, a Unity game developer who's just as happy
     shipping a live title as I am getting lost in a boss fight, a fresh
@@ -83,7 +83,8 @@ export const about = {
     playful experiences is exactly what got me making games in the first
     place.`,
     `Today I'm co-founder and lead game developer at ${chichingoLink},
-    a game studio I co-founded in 2026.`,
+    a small game studio in Dhaka that I co-founded in 2026. We make
+    casual puzzle games for mobile, and Color Farm is our first release.`,
     `Previously, as a core Unity developer at Riseup Labs, I worked on two
     live hybrid-casual titles prototyped in partnership with Supersonic and
     Moonee. I owned client-side development end to end, including gameplay
@@ -98,7 +99,6 @@ export const about = {
     tools sped up content production on Pop'n Sort.`,
   ],
   meta: [
-    { key: 'Based in', valueHtml: 'Dhaka, Bangladesh' },
     { key: 'Now', valueHtml: `Co-Founder · ${chichingoLink}` },
     { key: 'Platforms', valueHtml: 'Mobile first · Indie PC' },
     { key: 'Focus', valueHtml: 'Hybrid-casual · Puzzle · Live-ops' },

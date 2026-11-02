@@ -22,3 +22,8 @@
   color: var(--ink-2);
   font-size: 0.92rem;
 }
+/* The "Also worked with" row: outlined instead of filled, so it reads as secondary */
+.craft-row.also .tags span {
+  background: transparent;
+  box-shadow: inset 0 0 0 1px var(--line);
+}

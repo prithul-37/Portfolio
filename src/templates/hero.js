@@ -13,13 +13,22 @@ function renderStat(stat) {
             </div>`;
 }
 
+// The eyebrow's parts after the first " · " drop on phones (see responsive.css):
+// the full line can't fit one row there, and the lede repeats it right below.
+function renderEyebrow(text) {
+  const [first, ...rest] = text.split(' · ');
+  return rest.length
+    ? `${esc(first)}<span class="eyebrow-more"> · ${esc(rest.join(' · '))}</span>`
+    : esc(first);
+}
+
 export function renderHero() {
   return `
     <header id="home" class="hero">
       <div class="container hero-inner">
         <div class="hero-copy">
           <p class="eyebrow">
-            <span class="dot-live"></span> ${esc(hero.eyebrow)}
+            <span class="dot-live"></span> ${renderEyebrow(hero.eyebrow)}
           </p>
 
           <h1 class="hero-title">
