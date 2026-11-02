@@ -30,7 +30,8 @@ export const profile = {
   discord: 'prithuldip',
 
   // The PDF itself is imported in src/features/links.js; this is the name it saves as
-  cv: { downloadName: 'Prithul_Biswas_Dip_CV.pdf' },
+  // show: false hides every Download CV button (hero, navbar, mobile pill)
+  cv: { show: false, downloadName: 'Prithul_Biswas_Dip_CV.pdf' },
   portrait: 'Res/Me.JPEG',
   // Cartoon of me: SVG for modern browsers, PNG fallback, opaque PNG for iOS
   favicon: { svg: 'Res/avatar.svg', png: 'Res/avatar-32.png', touch: 'Res/avatar-touch-180.png' },

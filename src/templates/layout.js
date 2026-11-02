@@ -39,7 +39,7 @@ export function renderNav(sections) {
           <ul class="nav-links">
             ${join(links, '\n            ')}
           </ul>
-          <a download data-cv class="cv-btn">${roll('Download CV')} ${icon('arrow-down')}</a>
+          ${profile.cv.show ? `<a download data-cv class="cv-btn">${roll('Download CV')} ${icon('arrow-down')}</a>` : ''}
         </div>
       </div>
     </nav>
@@ -55,8 +55,8 @@ export function renderFooter() {
         <a href="#home" class="foot-top">Back to top ${icon('arrow-up')}</a>
       </div>
     </footer>
-
+${profile.cv.show ? `
     <a download data-cv class="fab-cv" aria-label="Download CV">
       ${icon('download-simple')}<span>CV</span>
-    </a>`;
+    </a>` : ''}`;
 }

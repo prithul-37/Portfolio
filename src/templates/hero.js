@@ -33,7 +33,7 @@ export function renderHero() {
 
           <div class="hero-actions">
             <a href="#work" class="btn primary">See the games <span class="btn-icon">${icon('arrow-right')}</span></a>
-            <a download data-cv class="btn ghost">Download CV <span class="btn-icon">${icon('download-simple')}</span></a>
+            ${profile.cv.show ? `<a download data-cv class="btn ghost">Download CV <span class="btn-icon">${icon('download-simple')}</span></a>` : ''}
           </div>
         </div>
       </div>
