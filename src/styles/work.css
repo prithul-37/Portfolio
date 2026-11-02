@@ -118,9 +118,10 @@
   color: var(--ink);
   font-size: 1.1rem;
   box-shadow: var(--shadow-sm);
-  transition: translate 0.5s var(--ease), background-color 0.4s var(--ease), color 0.4s var(--ease);
+  transition: rotate 0.5s var(--ease), background-color 0.4s var(--ease), color 0.4s var(--ease);
 }
-.game-card:hover .card-arrow { translate: 2px -2px; background: var(--ink); color: var(--on-ink); }
+/* A plus, not an outward arrow: the card opens details in place, it doesn't leave the page */
+.game-card:hover .card-arrow { rotate: 90deg; background: var(--ink); color: var(--on-ink); }
 
 .card-body {
   flex: 1;
@@ -157,7 +158,7 @@
 }
 .card-status.is-live { border-color: transparent; background: var(--accent-soft); color: var(--accent); }
 .card-status.is-live::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: currentColor; }
-.card-summary { color: var(--ink-2); max-width: 52ch; }
+.card-summary { color: var(--ink-2); max-width: 52ch; text-wrap: pretty; }
 
 .card-open {
   align-self: flex-start;
@@ -175,7 +176,7 @@
 .card-open::after { content: ''; position: absolute; inset: 0; border-radius: var(--radius); cursor: pointer; }
 .card-open:focus-visible { outline: none; }
 .game-card:hover .card-open { border-color: var(--ink); }
-.game-card:hover .card-open i { translate: 2px -2px; }
+.game-card:hover .card-open i { translate: 3px 0; }
 
 /* Featured: spans both columns, cover left and text right */
 .game-card.featured {

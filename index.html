@@ -18,9 +18,17 @@
         document.documentElement.setAttribute("data-theme", theme);
         document.documentElement.classList.add("js");   // gates JS-driven motion in CSS
 
+        // Hold the load-in animations at their first frame until the fonts
+        // are in (src/main.js releases it); on a cold first visit they would
+        // otherwise play while the text is still invisible. Safety net in
+        // case the module script never runs.
+        document.documentElement.classList.add("anim-wait");
+        setTimeout(function () { document.documentElement.classList.remove("anim-wait"); }, 4000);
+
         // Welcome intro: pick one of the three letter entrances at random.
-        // Skipped for reduced motion; without the attribute the intro never shows.
-        if (!matchMedia("(prefers-reduced-motion: reduce)").matches) {
+        // Skipped for reduced motion and for links straight to a section
+        // (#contact etc.); without the attribute the intro never shows.
+        if (!matchMedia("(prefers-reduced-motion: reduce)").matches && !location.hash) {
           var dirs = ["right", "top", "bottom"];
           document.documentElement.setAttribute("data-intro", dirs[Math.floor(Math.random() * 3)]);
         }

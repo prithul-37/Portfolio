@@ -46,6 +46,8 @@
 .cb-sub { font-size: 0.88rem; color: var(--muted); overflow-wrap: anywhere; }
 .contact-btn.copied { border-color: var(--accent-2); }
 .contact-btn.copied .cb-sub { color: var(--accent); }
+/* The small copy icon after the Discord name: says the tile copies, not links */
+.contact-btn .cb-sub i { font-size: 1em; margin: 0 0 0 0.15rem; vertical-align: -0.12em; color: inherit; }
 
 .contact-now {
   margin-top: 2.6rem;

@@ -5,7 +5,7 @@
   --surface-2:   #efebe2;
   --ink:         #1f2a24;
   --ink-2:       #4a554e;
-  --muted:       #6f7871;
+  --muted:       #5a635c;   /* ≥4.5:1 on paper, surfaces and every band */
   --line:        rgba(31, 42, 36, 0.12);
   --line-strong: rgba(31, 42, 36, 0.22);
   --accent:      #4f6f58;   /* text-safe sage */

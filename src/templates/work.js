@@ -42,7 +42,7 @@ function renderCard(game) {
           <article class="${join(['game-card', game.featured && 'featured', 'reveal'], ' ')}">
             <div class="card-media">${cover}
               <span class="card-label">${esc(game.studio)}</span>
-              <span class="card-arrow" aria-hidden="true">${icon('arrow-up-right')}</span>
+              <span class="card-arrow" aria-hidden="true">${icon('plus')}</span>
             </div>
             <div class="card-body">
               <p class="card-kicker">${esc(game.genre)} · ${esc(platformsOf(game).join(' & '))}</p>
@@ -53,7 +53,7 @@ function renderCard(game) {
               <p class="card-summary">${esc(game.summary)}</p>
               <button type="button" class="card-open" data-game="${esc(game.id)}" aria-haspopup="dialog"
                 aria-label="${esc(game.title)}: view details">
-                View details ${icon('arrow-up-right')}
+                View details ${icon('arrow-right')}
               </button>
             </div>
           </article>`;
@@ -103,7 +103,7 @@ function renderModal(game) {
   return `
     <dialog class="game-modal" id="game-${esc(game.id)}" aria-labelledby="${titleId}">
       <div class="gm-panel">
-        <button type="button" class="gm-close" aria-label="Close">${icon('x')}</button>
+        <button type="button" class="gm-close" aria-label="Close ${esc(game.title)} details">${icon('x')}</button>
         <div class="gm-media">${gallery}
           <span class="card-label">${esc(game.studio)}</span>
         </div>
@@ -112,14 +112,14 @@ function renderModal(game) {
           <h2 class="gm-title" id="${titleId}">${splitLetters(game.title)}</h2>
           <p class="gm-genre">${esc(game.genre)} · ${esc(game.studio)}</p>
           <p class="gm-summary">${esc(game.about || game.summary)}</p>
+          ${stores ? `<div class="gm-links">${stores}
+          </div>` : ''}
           <h3 class="gm-heading">My contribution</h3>
           <ul class="gm-contrib">
             ${game.contribution.map((c) => `<li>${esc(c)}</li>`).join('\n            ')}
           </ul>
           ${game.note ? `<p class="gm-note">${esc(game.note)}</p>` : ''}
           <p class="gm-tech"><span>Built with</span> ${esc(game.tech.join(' · '))}</p>
-          <div class="gm-links">${stores}
-          </div>
         </div>
       </div>
     </dialog>`;
@@ -135,7 +135,7 @@ export function renderWork(n) {
       <div class="container">
         <div class="section-head reveal">
           ${eyebrow(n, 'Work')}
-          <h2 class="section-title">Selected work</h2>
+          <h2 class="section-title">Selected <em>work</em></h2>
         </div>
 
         <div class="work-grid">${join(games.map(renderCard), '\n')}

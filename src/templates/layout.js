@@ -28,7 +28,7 @@ export function renderNav(sections) {
     <nav class="navbar" id="navbar">
       <div class="nav-inner">
         <a href="#home" class="wordmark" aria-label="${esc(profile.shortName)}">${letters(`${profile.firstName} ${profile.lastName}`)}</a>
-        <button class="theme-toggle" type="button" aria-label="Toggle dark mode" title="Toggle dark mode">
+        <button class="theme-toggle" type="button" aria-label="Dark mode" aria-pressed="false" title="Switch to dark mode">
           <i class="ph-light ph-moon icon-moon" aria-hidden="true"></i>
           <i class="ph-light ph-sun icon-sun" aria-hidden="true"></i>
         </button>
@@ -50,7 +50,7 @@ export function renderFooter() {
   return `
     <footer>
       <div class="container footer-inner">
-        <span class="foot-mark" role="img" aria-label="${esc(profile.shortName)}">${letters(`${profile.firstName} ${profile.lastName}`)}</span>
+        <span class="foot-mark" role="img" aria-label="${esc(profile.fullName)}">${letters(profile.fullName)}</span>
         <span class="foot-copy">&copy; ${new Date().getFullYear()} · ${esc(profile.tagline)}</span>
         <a href="#home" class="foot-top">Back to top ${icon('arrow-up')}</a>
       </div>

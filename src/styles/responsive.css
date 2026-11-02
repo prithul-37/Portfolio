@@ -17,6 +17,7 @@
   .gm-panel { grid-template-columns: minmax(0, 1fr); grid-template-rows: auto auto; overflow-y: auto; height: 100%; }
   .gm-media { height: min(62svh, 560px); }
   .gm-info { overflow: visible; padding-top: 1.75rem; }
+  .gm-info::before { display: none; }   /* the whole panel scrolls here */
 
   .about-inner { grid-template-columns: minmax(0, 1fr); }
   .about-portrait { position: static; max-width: 340px; }
@@ -173,4 +174,10 @@
 
 @media (max-width: 420px) {
   .hero-actions .btn { flex: 1 1 auto; justify-content: center; }
+}
+
+/* The full hero eyebrow needs ~450px on one line; below that, keep only its
+   first part (the lede under the name repeats the rest) */
+@media (max-width: 480px) {
+  .eyebrow-more { display: none; }
 }

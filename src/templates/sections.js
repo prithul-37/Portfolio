@@ -42,7 +42,7 @@ export function renderAbout(n) {
 
 export function renderStack(n) {
   const rows = stack.map((row) => `
-          <div class="craft-row reveal">
+          <div class="craft-row${row.also ? ' also' : ''} reveal">
             <h3 class="craft-label">${esc(row.label)}</h3>
             <div class="tags">
               ${row.tags.map((t) => `<span>${esc(t)}</span>`).join('')}
@@ -54,8 +54,7 @@ export function renderStack(n) {
       <div class="container">
         <div class="section-head reveal">
           ${eyebrow(n, 'Stack')}
-          <h2 class="section-title">The stack</h2>
-          <p class="section-note">The tools, systems, and patterns I build with.</p>
+          <h2 class="section-title">The <em>stack</em></h2>
         </div>
 
         <div class="craft-rows">${rows.join('')}
@@ -66,7 +65,8 @@ export function renderStack(n) {
 
 export function renderPath(n) {
   const rows = path.map((row) => {
-    const label = row.now ? 'Now' : row.kind === 'edu' ? 'Education' : 'Work';
+    // Only the rows that differ get a chip; "Work" on every job said nothing
+    const label = row.now ? 'Now' : row.kind === 'edu' ? 'Education' : '';
     return `
           <li class="path-card${row.now ? ' now' : ''} reveal">
             <span class="path-year">${esc(row.years)}</span>
@@ -74,7 +74,7 @@ export function renderPath(n) {
               <h3 class="path-role">${esc(row.role)}</h3>
               <p class="path-org">${esc(row.org)}</p>
             </div>
-            <span class="path-kind ${esc(row.kind)}">${label}</span>
+            ${label ? `<span class="path-kind ${esc(row.kind)}">${label}</span>` : ''}
           </li>`;
   });
 
@@ -83,8 +83,7 @@ export function renderPath(n) {
       <div class="container">
         <div class="section-head reveal">
           ${eyebrow(n, 'Path')}
-          <h2 class="section-title">The path</h2>
-          <p class="section-note">Where I've worked and studied.</p>
+          <h2 class="section-title">The <em>path</em></h2>
         </div>
 
         <ol class="path-list">${rows.join('')}
@@ -97,7 +96,9 @@ function renderContactButton(b) {
   const inner = `
             ${b.brand ? brandIcon(b.brand) : icon(b.icon)}
             <span class="cb-label">${esc(b.label)}</span>
-            <span class="cb-sub${b.copy ? ' copy-label' : ''}">${esc(b.sub)}</span>`;
+            ${b.copy
+              ? `<span class="cb-sub"><span class="copy-label" aria-live="polite">${esc(b.sub)}</span> ${icon('copy')}</span>`
+              : `<span class="cb-sub">${esc(b.sub)}</span>`}`;
   if (b.copy) {
     return `
           <button type="button" class="contact-btn" data-copy="${esc(b.copy)}" aria-label="${esc(b.ariaLabel || b.label)}">${inner}

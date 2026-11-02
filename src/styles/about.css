@@ -32,10 +32,8 @@
   line-height: 1.8;
   margin-bottom: 1.3rem;
   max-width: 62ch;
-  text-align: justify;
-  /* Hyphenation keeps justified lines from opening wide gaps, mainly on phones */
-  hyphens: auto;
-  -webkit-hyphens: auto;
+  /* Ragged right: justified text opened rivers and forced breaks like "hy-brid" */
+  text-wrap: pretty;
 }
 
 .about-meta { margin: 2.2rem 0; border-top: 1px solid var(--line); }

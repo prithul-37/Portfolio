@@ -11,7 +11,9 @@
   border-radius: var(--radius-sm);
 }
 .path-list .path-card {
-  transition: background-color 0.5s var(--ease), transform 0.9s var(--ease);
+  /* Hover background is instant on purpose: any fade left a trail of rows
+     behind a quick cursor sweep. The 0.9s transform is the reveal glide. */
+  transition: transform 0.9s var(--ease);
 }
 .path-card:hover { background: var(--surface); }
 .path-year { font-size: 0.92rem; color: var(--muted); font-variant-numeric: tabular-nums; }

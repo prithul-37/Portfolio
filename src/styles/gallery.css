@@ -83,6 +83,9 @@ html.modal-open { overflow: hidden; }
   min-height: 0;
   object-fit: contain;
 }
+/* A trailer that failed to load (features/gallery.js): the note replaces it */
+.gm-slide.is-broken video { display: none; }
+.gm-video-error { max-width: 30ch; text-align: center; color: var(--ink-2); text-wrap: pretty; }
 
 .gm-step {
   position: absolute;
@@ -141,7 +144,19 @@ html.modal-open { overflow: hidden; }
   flex-direction: column;
   gap: 0.9rem;
   padding: clamp(2rem, 4vw, 3.25rem) clamp(1.5rem, 3.5vw, 3rem);
-  padding-top: 4.5rem;   /* clear the close button */
+  padding-top: 0;
+}
+/* A solid band that clears the close button and stays put while the details
+   scroll, so the text slides under it instead of under the button */
+.gm-info::before {
+  content: '';
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  flex: none;
+  height: 4.5rem;
+  margin-bottom: -0.9rem;   /* cancel the column gap after it */
+  background: var(--surface);
 }
 .gm-platforms { display: flex; flex-wrap: wrap; gap: 0.4rem; }
 .gm-platforms li {
@@ -187,10 +202,11 @@ html.modal-open { overflow: hidden; }
 .gm-note { font-size: 0.85rem; color: var(--muted); }
 /* Description text is justified; hyphenation (lang="en" on <html>) keeps
    the word gaps even in the narrow column */
-.gm-summary, .gm-note { text-align: justify; hyphens: auto; -webkit-hyphens: auto; }
+.gm-summary, .gm-note { text-wrap: pretty; }
 .gm-tech { padding-top: 1rem; border-top: 1px solid var(--line); font-size: 0.88rem; color: var(--muted); }
 .gm-tech span { color: var(--ink-2); font-weight: 600; margin-right: 0.3rem; }
-.gm-links { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: auto; padding-top: 0.4rem; }
+/* Store links sit right under the summary, so they are in view without scrolling */
+.gm-links { display: flex; flex-wrap: wrap; gap: 0.5rem; }
 .gm-links .store-btn:first-child { background: var(--ink); border-color: var(--ink); color: var(--on-ink); }
 .gm-links .store-btn:first-child:hover { background: var(--accent); border-color: var(--accent); }
 
