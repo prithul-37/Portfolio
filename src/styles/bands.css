@@ -1,7 +1,8 @@
 /* ---- Section bands ---------------------------------------------------------
    Each top-level section is a band of its own green (--band-1..5, in page
    order) that slides in sideways when scrolled to, alternating: odd sections
-   from the left, even ones from the right. No fade.
+   from the left, even ones from the right (on phones, 768px and below,
+   every band comes from the left). No fade.
 
    The <section> box itself never moves: its background is drawn on ::before
    and that slides together with the content. So the IntersectionObserver in
@@ -36,3 +37,9 @@ html.js body > section:nth-of-type(odd):not(.band-in)::before,
 html.js body > section:nth-of-type(odd):not(.band-in) > .container { translate: -100vw 0; }
 html.js body > section:nth-of-type(even):not(.band-in)::before,
 html.js body > section:nth-of-type(even):not(.band-in) > .container { translate: 100vw 0; }
+
+/* Phones: every band comes in from the left */
+@media (max-width: 768px) {
+  html.js body > section:nth-of-type(even):not(.band-in)::before,
+  html.js body > section:nth-of-type(even):not(.band-in) > .container { translate: -100vw 0; }
+}

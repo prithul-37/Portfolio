@@ -202,3 +202,12 @@
 .store-btn i { font-size: 1.15em; }
 .store-btn:active { transform: scale(0.98); }
 .store-btn:hover { background: var(--ink); border-color: var(--ink); color: var(--on-ink); }
+
+/* Game names drop in letter by letter, from behind each word's top edge, as
+   the card glides into view (`.in` from initReveal). Start state only under
+   html.js, so the names are never stuck hidden without JS. */
+.card-title .split-word > span {
+  transition: translate 0.7s var(--ease);
+  transition-delay: calc(0.2s + var(--i) * 0.035s);
+}
+html.js .game-card:not(.in) .card-title .split-word > span { translate: 0 -110%; }

@@ -11,4 +11,5 @@
   .nav-links, .nav-links li, .nav-menu .cv-btn { opacity: 1; transform: none; filter: none; }
   .nav-menu li, .nav-menu .cv-btn { opacity: 1; transform: none; }
   html.js .foot-mark span { translate: none; }
+  .split-word > span { translate: none !important; animation: none !important; }
 }

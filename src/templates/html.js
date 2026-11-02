@@ -32,3 +32,15 @@ export const join = (parts, sep = '\n') => parts.filter(Boolean).join(sep);
 
 /** "01 · Work": section numbers come from section order, so they never drift. */
 export const eyebrow = (n, label) => `<p class="eyebrow">${String(n).padStart(2, '0')} · ${esc(label)}</p>`;
+
+/**
+ * Text split for a letter-by-letter entrance: a screen-reader copy, then the
+ * visible letters (aria-hidden), one span each with a running --i. Each word
+ * is its own nowrap clip box, so lines still break between words.
+ */
+export const splitLetters = (text) => {
+  let i = 0;
+  const words = String(text).split(' ').map((word) =>
+    `<span class="split-word">${[...word].map((ch) => `<span style="--i:${i++}">${esc(ch)}</span>`).join('')}</span>`);
+  return `<span class="sr-only">${esc(text)}</span><span class="split" aria-hidden="true">${words.join(' ')}</span>`;
+};

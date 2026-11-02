@@ -187,7 +187,7 @@ Nav labels differ from the anchor IDs: Work → `#work`, About → `#about`, Sta
 
 
 
-**Section bands** (`src/styles/bands.css`): each top-level `body > section` is a band of its own green, `--band-1` … `--band-5` in page order (tokens in `tokens.css`, alternating lighter/deeper sage, with deep-green dark-mode equivalents). When a section's top is 15% into the viewport, `initBands()` in `features/reveal.js` adds `.band-in` and the band slides in sideways: odd sections from the left, even ones from the right. The `<section>` box never moves (that is what the observer watches); its background is on `::before`, and `::before` plus the direct `.container` child slide together. `overflow-x: clip` (not `hidden`, so the sticky portrait still works) prevents sideways page scroll. The off-screen start state only applies under `html.js` (set by the inline head script), so the bands are never stuck off-screen without JS. A new section needs a `.container` as its direct child and, past five sections, a `--band-6`.
+**Section bands** (`src/styles/bands.css`): each top-level `body > section` is a band of its own green, `--band-1` … `--band-5` in page order (tokens in `tokens.css`, alternating lighter/deeper sage, with deep-green dark-mode equivalents). When a section's top is 15% into the viewport, `initBands()` in `features/reveal.js` adds `.band-in` and the band slides in sideways: odd sections from the left, even ones from the right (at 768px and below, every band comes from the left). The `<section>` box never moves (that is what the observer watches); its background is on `::before`, and `::before` plus the direct `.container` child slide together. `overflow-x: clip` (not `hidden`, so the sticky portrait still works) prevents sideways page scroll. The off-screen start state only applies under `html.js` (set by the inline head script), so the bands are never stuck off-screen without JS. A new section needs a `.container` as its direct child and, past five sections, a `--band-6`.
 
 
 
@@ -216,6 +216,8 @@ Every section opens with a numbered `.eyebrow` ("01 · Work" … "05 · Contact"
 
 
 
+
+Game names on the cards and in the popups are letter-split by `splitLetters()` in `src/templates/html.js` (a `.sr-only` copy for screen readers, then aria-hidden letter spans grouped per `.split-word`, each word its own clip box). Card titles drop in letter by letter once the card gets `.in` (`work.css`); the popup title replays its drop every time the dialog opens (`gallery.css`).
 
 Work cards (Nov 2026 redesign) are a cover on top (a three-screenshot `.card-cover` strip, or the logo on a blurred copy of itself via `.logo-panel`), then a kicker (genre · platforms), title with a Live / In development chip, a one-line summary, and "View details". Each opens a popup: gallery left, details right.
 

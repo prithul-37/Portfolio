@@ -2,7 +2,7 @@
 // (<dialog>) per game. The popups are rendered here at build time, so their
 // text is in the page for SEO and features/gallery.js only wires behaviour.
 import { games } from '../content/games.js';
-import { asset, esc, eyebrow, icon, join } from './html.js';
+import { asset, esc, eyebrow, icon, join, splitLetters } from './html.js';
 
 const STORES = [
   { key: 'play', label: 'Google Play', platform: 'Android', icon: 'google-play-logo', platformIcon: 'android-logo' },
@@ -47,7 +47,7 @@ function renderCard(game) {
             <div class="card-body">
               <p class="card-kicker">${esc(game.genre)} · ${esc(platformsOf(game).join(' & '))}</p>
               <div class="card-titlerow">
-                <h3 class="card-title">${esc(game.title)}</h3>
+                <h3 class="card-title">${splitLetters(game.title)}</h3>
                 <span class="card-status${live ? ' is-live' : ''}">${esc(statusOf(game))}</span>
               </div>
               <p class="card-summary">${esc(game.summary)}</p>
@@ -109,7 +109,7 @@ function renderModal(game) {
         </div>
         <div class="gm-info">
           <ul class="gm-platforms" aria-label="Platforms">${platforms}</ul>
-          <h2 class="gm-title" id="${titleId}">${esc(game.title)}</h2>
+          <h2 class="gm-title" id="${titleId}">${splitLetters(game.title)}</h2>
           <p class="gm-genre">${esc(game.genre)} · ${esc(game.studio)}</p>
           <p class="gm-summary">${esc(game.about || game.summary)}</p>
           <h3 class="gm-heading">My contribution</h3>

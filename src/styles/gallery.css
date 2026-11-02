@@ -193,3 +193,14 @@ html.modal-open { overflow: hidden; }
 .gm-links { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: auto; padding-top: 0.4rem; }
 .gm-links .store-btn:first-child { background: var(--ink); border-color: var(--ink); color: var(--on-ink); }
 .gm-links .store-btn:first-child:hover { background: var(--accent); border-color: var(--accent); }
+
+/* The popup title drops in letter by letter every time the popup opens: a
+   closed <dialog> is display: none, so the animation restarts on open. */
+@keyframes title-drop {
+  from { translate: 0 -110%; }
+  to   { translate: none; }
+}
+.game-modal[open] .gm-title .split-word > span {
+  animation: title-drop 0.7s var(--ease) both;
+  animation-delay: calc(0.08s + var(--i) * 0.035s);
+}

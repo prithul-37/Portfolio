@@ -113,3 +113,23 @@ section { padding-block: var(--section-y); }
 /* The hero ends on </header>, so section + section alone would miss Work */
 .hero + section,
 section + section { border-top: 1px solid var(--line); }
+
+/* Visually hidden, still read by screen readers */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+/* Letter-split text (splitLetters() in templates/html.js). Each word clips
+   its letters, so they can drop in from behind its top edge. */
+.split-word {
+  display: inline-block;
+  white-space: nowrap;
+  clip-path: inset(-0.05em -0.3em -0.4em -0.3em);
+}
+.split-word > span { display: inline-block; }
