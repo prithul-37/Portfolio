@@ -36,7 +36,7 @@ export const games = [
     studio: 'Chichingo',
     summary: 'Send chickens into nests to shoot the coloured cubes of a picture on a spinning tray, and clear it before the nests jam.',
     // Longer text for the popup; the card uses `summary`
-    about: 'A picture made of coloured cubes sits on a spinning tray. Players send chickens from waiting lines into five nests, and each chicken shoots the cubes of its own colour that it can see. Turn the tray to open new angles and pick the order of chickens carefully to clear the picture before the nests jam.',
+    about: 'A picture made of coloured cubes sits on a spinning tray. Players send chickens from waiting lines into five nests, and each chicken shoots the cubes of its own colour that it can see. Turn the tray to open new angles and pick the order of chickens carefully to clear the picture before the nests jam. Prototyped with Supersonic.',
     contribution: [
       'Visibility-based puzzle rules: a chicken only hits cubes exposed from its nest\'s angle, so turning the board is part of every decision.',
       'Adaptive difficulty: a player-behaviour tracker records each attempt and tunes the challenge to the player\'s skill.',
@@ -191,7 +191,7 @@ export const games = [
       'Wrote the solver: a depth-first backtracking search that checks whether a deal can be won. Optimizing it was the hardest part. A check takes from under a second to two or three minutes, depending on the deal and the device.',
       'Added smoother card animations, which the original game was missing.',
     ],
-    note: 'The Unity version is still in progress and not yet released. The store links point to the current version.',
+    note: 'The Unity version is still in progress and not yet released. The store links point to the current Flutter version.',
     tech: ['Unity', 'C#', 'Flutter', 'Procedural Generation'],
     stores: {
       play: 'https://play.google.com/store/apps/details?id=com.productiveedge.churchill&hl=en',

@@ -77,9 +77,9 @@ export const about = {
   titleHtml: 'The dev behind <em>the games</em>',
   caption: 'Making games in Dhaka',
   paragraphsHtml: [
-    `I'm Prithul Biswas Dip, a Unity game developer who's just as happy
+    `I'm Prithul Biswas Dip, a Unity game developer. I'm as happy
     shipping a live title as I am getting lost in a boss fight, a fresh
-    anime, or a late-night movie. That pull toward great stories and
+    anime or a late-night movie. That pull toward great stories and
     playful experiences is exactly what got me making games in the first
     place.`,
     `Today I'm co-founder and lead game developer at ${chichingoLink},
@@ -99,7 +99,7 @@ export const about = {
     tools sped up content production on Pop'n Sort.`,
   ],
   meta: [
-    { key: 'Now', valueHtml: `Co-Founder · ${chichingoLink}` },
+    { key: 'Now', valueHtml: `Co-founder · ${chichingoLink}` },
     { key: 'Platforms', valueHtml: 'Mobile first · Indie PC' },
     { key: 'Focus', valueHtml: 'Hybrid-casual · Puzzle · Live-ops' },
   ],
@@ -116,5 +116,5 @@ export const contact = {
     { brand: 'discord', label: 'Discord', sub: profile.discord, copy: profile.discord,
       ariaLabel: `Copy Discord username ${profile.discord}` },
   ],
-  nowHtml: 'Co-founder at <strong>Chichingo</strong> · open to collaborations &amp; freelance Unity work',
+  nowHtml: 'Co-founder at <strong>Chichingo</strong> · based in Dhaka, Bangladesh',
 };

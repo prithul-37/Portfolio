@@ -20,9 +20,11 @@ export function initCopy() {
     let resetTimer = null;
 
     btn.addEventListener('click', async () => {
-      try { await navigator.clipboard.writeText(btn.dataset.copy); } catch { return; }
-      btn.classList.add('copied');
-      label.textContent = 'Copied!';
+      let ok = true;
+      try { await navigator.clipboard.writeText(btn.dataset.copy); } catch { ok = false; }
+      // If the browser blocks the clipboard, say so; the name is still on screen to copy by hand
+      btn.classList.toggle('copied', ok);
+      label.textContent = ok ? 'Copied!' : "Couldn't copy";
       btn.blur();
       clearTimeout(resetTimer);
       resetTimer = setTimeout(() => {

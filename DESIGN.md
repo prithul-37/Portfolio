@@ -61,6 +61,9 @@ typography:
     fontWeight: 600
     letterSpacing: "0.2em"
 rounded:
+  hairline: "2px"
+  focus: "6px"
+  button-square: "10px"
   sm: "12px"
   md: "22px"
   pill: "999px"
@@ -136,9 +139,9 @@ This replaced an earlier loud brutalist system (thick borders, hard offset shado
 A warm, low-chroma palette: paper and ink do the work, sage marks the few things that matter.
 
 ### Primary
-- **Sage**: the text-safe accent. Italic `<em>` words in titles, inline links, the active Path row's year, live chips, focus rings and contact icons. In dark mode it lightens to Sage (dark).
+- **Sage**: the text-safe accent. Italic `<em>` words in titles, inline links, the active Path row's year, live chips, focus rings, contact icons and the text-selection highlight (with On Ink text). In dark mode it lightens to Sage (dark).
 - **Sage Light**: decoration only, never body text (it fails contrast on paper). Live dots, link underlines, the copied-state border.
-- **Sage Soft**: the quiet sage wash behind live chips, the active Path row, text selection and the logo panel.
+- **Sage Soft**: the quiet sage wash behind live chips, the active Path row and the logo panel. Never use it for text selection: it disappears on the green section bands.
 
 ### Neutral
 - **Paper**: the page background. Becomes near-black green in dark mode.

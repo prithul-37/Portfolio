@@ -103,7 +103,7 @@ function renderModal(game) {
   return `
     <dialog class="game-modal" id="game-${esc(game.id)}" aria-labelledby="${titleId}">
       <div class="gm-panel">
-        <button type="button" class="gm-close" aria-label="Close">${icon('x')}</button>
+        <button type="button" class="gm-close" aria-label="Close ${esc(game.title)} details">${icon('x')}</button>
         <div class="gm-media">${gallery}
           <span class="card-label">${esc(game.studio)}</span>
         </div>

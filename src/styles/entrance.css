@@ -15,6 +15,14 @@
    `transform`: a forwards-filled `transform` would override the buttons'
    own :hover / :active transforms for good. */
 
+/* Every load-in animation (this file and intro.css) waits, paused at its
+   first frame, while html.anim-wait is set: until the fonts load (main.js).
+   Paused animations don't count down their delays either, so the whole
+   choreography starts together from the top. */
+html.anim-wait *,
+html.anim-wait *::before,
+html.anim-wait *::after { animation-play-state: paused !important; }
+
 /* No fades: an element is hidden (opacity 0) until its delay ends, then
    shows solid and moves. Each start state is off-screen, masked or scaled
    to zero, so nothing pops into view mid-air. */
